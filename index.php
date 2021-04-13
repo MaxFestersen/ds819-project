@@ -29,9 +29,44 @@
 </head>
 <body>
 <div class="wrapper">
-	<ul id="movie_list"></ul>
+	<!-- HEADER -->
+	<header class="header">
+		<h1>Byinfo</h1>
+		<p>Info for turister om byer, lokalitet, historie og rejse</p>
+	</header>
+	<main class="main">
+		<h2 id="town-title">Information om en dansk by.</h2>
+	</main>
+	<aside id="pixabay-images" class="hidden">
+		<h4 id="pixabay-title">Pixabay billeder</h4>
+		<!--<img src="img/pixabay_logo_square.svg" alt="pixabay logo" />-->	
+	</aside>
+	<aside id="movies">
+		<ul id="movie-list"></ul>
+	</aside>
+	<footer>
+		<section id="footer-info">
+			<p>Design og kode af max.</p>
+		</section>
+		<section id="contact-info" class="wrapper">
+			<!-- Contact information -->
+			<h5>Kontakt Informationer:</h5>
+			<address id="contact">
+				<span class="author">Max Festersen Hansen</span>
+				<a href="mailto:maxfh20@student.sdu.dk" class="email" title="Skriv en e-mail til mig." target="_blank">maxfh20@student.sdu.dk</a>
+				<a href="tel:+4529631232" class="tel" title="Ring til mig.">29 63 12 32</a>
+			</address>
+		</div>
+	</footer>
 </div>
 <!-- JAVASCRIPT FILES -->
+<script type="text/javascript">
+	// Lazy vars for javascript files.
+	let town = "Odense"
+	document.getElementById("town-title").innerHTML = "Information om " + town;
+	document.getElementById("pixabay-title").innerHTML = "Pixabay billeder fra " + town;
+</script>
 <script type="text/javascript" src="js/keys.js"></script>
+<script type="text/javascript" src="js/pixabay.js"></script>
 <!-- <script type="text/javascript" src="js/omdbapi.js"></script> -->
 </body>

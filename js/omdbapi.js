@@ -2,7 +2,7 @@ let request = "http://www.omdbapi.com/?s=turist&apikey=";
 request = request + omdbapi_key;
 //console.log(request);
 //display on the console the full API request to make sure you did everything right
-let target = document.getElementById("movie_list")
+let target = document.getElementById("movie-list")
 
 fetch(request)
 	.then((response) => {

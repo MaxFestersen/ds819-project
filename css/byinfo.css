@@ -63,6 +63,7 @@ h1, h2, h3, h4, h5, h6{
 	margin: 0; /* Removed standard margin, since whitespace is provided through line height. */
 	display: inline-block; /* Makes width element width by default. */
 	clear: both; /* Cleares both sides, but other clashing inline blocks must also have cleared clashing side, to acctually clear. */
+	font-weight: normal;
 }
 
 
@@ -101,4 +102,35 @@ ul, ul li, ol, ol li, dl, dl dt, dl dd{
 	font-size: inherit;
 	font-family: inherit;
 	color: inherit;
+}
+
+/* CLASSES */
+.hidden{
+	display: none;
+}
+
+/* TITLES */
+#town-title{
+}
+
+/* OMDB - MOVIE LIST */
+
+#movies, #movie-list{
+	display: none;
+}
+
+
+/* PIXABAY */
+#pixabay-images{
+	float: left;
+	max-width: 30%
+}
+
+#pixabay-images img{
+	max-width: 100%;
+	margin-bottom:10px;
+}
+
+#pixabay-images img:last-child{
+	margin-bottom:0;
 }

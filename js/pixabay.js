@@ -23,12 +23,12 @@ fetch(pixabayRequest)
 		pixabayImages.classList.remove("hidden");
 		//console.log(data.hits)
 		for (var i = 0; i < data.hits.length; i++){
-			//console.log(data.hits[i])
 			var obj = data.hits[i];
 			var pixImage = document.createElement("img");
 			pixImage.setAttribute("src", obj.webformatURL);
-			pixImage.setAttribute("alt", obj.tags);
-			pixImage.setAttribute("title", obj.tags);
+			var pixImageAbout = "Af: " + obj.user + " - Tags: " + obj.tags;
+			pixImage.setAttribute("alt", pixImageAbout);
+			pixImage.setAttribute("title", pixImageAbout);
 			pixabayImages.appendChild(pixImage);
 		}
 		var pixLogoLink = document.createElement("a");
@@ -46,4 +46,5 @@ fetch(pixabayRequest)
 	// Do something for an error here
 		console.log("Pixabay forespørgslen udløste en fejl.");
 		pixabayImages.classList.add("hidden");
-	})
+	}
+)

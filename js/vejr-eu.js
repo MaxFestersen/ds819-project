@@ -1,1 +1,0 @@
-//http://vejr.eu/api.php?location=Roskilde&degree=C

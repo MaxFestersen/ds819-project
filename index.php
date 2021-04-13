@@ -11,7 +11,7 @@
     <!--<meta http-equiv="X-UA-Compatible" content="IE=edge" />-->
 
     <!-- STYLLING & ICONS (FAV ICON) -->
-	<link type="text/CSS" rel="stylesheet" href="css/byinfo.css?v=0.1"/>
+	<link type="text/CSS" rel="stylesheet" href="css/byinfo.css?v=0.2"/>
     <!--<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png" />
@@ -26,6 +26,10 @@
     
 	<!-- ROBOTS -->
     <meta name="robots" content="noindex" /><!-- Block indexing of site -->
+	
+	<!-- MAPBOX API STYLLING -->
+	<link href="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css" rel="stylesheet">
+	<script src="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js"></script>
 </head>
 <body>
 <div class="wrapper">
@@ -36,13 +40,26 @@
 	</header>
 	<main class="main">
 		<h2 id="town-title">Information om en dansk by.</h2>
-		<section id="weather">
-			<h4 id="weather-title">Vejr i by</h4>
-		</section>
+		<table id="town-info-table" class="hidden">
+			<tr>
+				<th>Komune</th>
+				<td id="coumne"></td>
+			</tr>
+			<tr>
+				<th>Beboere</th>
+				<td id="residents"></td>
+			</tr>
+		</table>
 	</main>
+	<aside id="mapbox-map-wrapper" class="hidden">
+		<div id="mapbox-map"></div>
+	</aside>
 	<aside id="pixabay-images" class="hidden">
 		<h4 id="pixabay-title">Pixabay billeder</h4>
 		<!--<img src="img/pixabay_logo_square.svg" alt="pixabay logo" />-->	
+	</aside>
+	<aside id="pexels-images" class="hidden">
+		<h4 id="pexels-title">Pexels billeder</h4>
 	</aside>
 	<aside id="movies">
 		<ul id="movie-list"></ul>
@@ -65,14 +82,14 @@
 <!-- JAVASCRIPT FILES -->
 <script type="text/javascript">
 	// Lazy vars for javascript files.
-	let town = "Odense"
+	let town = "Odense";
+	let townValid = true;
 	document.getElementById("town-title").innerHTML = "Information om " + town;
-	document.getElementById("pixabay-title").innerHTML = "Pixabay billeder fra " + town;
-	document.getElementById("weather-title").innerHTML = "Vejr i " + town;
+	document.getElementById("pixabay-title").innerHTML = "Pixabay billeder om " + town;
+	document.getElementById("pexels-title").innerHTML = "Pexels billeder om " + town;
 </script>
+<script type="text/javascript" src="js/practical-functions.js"></script>
 <script type="text/javascript" src="js/keys.js"></script>
-<script type="text/javascript" src="js/dawa.js"></script>
-<script type="text/javascript" src="js/pixabay.js"></script>
-<script type="text/javascript" src="js/vejr-eu.js"></script>
+<script type="text/javascript" src="js/dawa.js?v=1"></script>
 <!-- <script type="text/javascript" src="js/omdbapi.js"></script> -->
 </body>

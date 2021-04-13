@@ -1,0 +1,104 @@
+/*	Created by Max Festersen Hansen at SDU DS819 in 2021. */
+
+/* COLORS */
+/*TODO*/
+/* OPTIONS */
+html, body{
+	height: 100%; /* Enables manipulation of height in % on block-elements. */
+	margin: 0; /* Removes document margin. */
+	padding: 0; /* Removes document padding. */
+}
+
+html{
+	scroll-behavior: smooth; /* Gives smooth scrolling effect to links that refer to a sektion. It does not work in Safari and Edge. */
+}
+
+
+/* PAGE LAYOUT */
+body{
+	/*background-color: #F4F5F7;*/
+}
+
+.wrapper{ /* Wraps content and defines a max-width for content */
+    min-height: 1px;
+    height: auto;
+	width: auto;
+	max-width:1024px;
+	margin:0 auto;
+}
+
+
+/* TEXT */
+a{
+	text-decoration: none;
+	cursor: pointer;
+}
+
+p{
+	/*font-family: 'Open Sans', sans-serif;*/
+	/*font-size: 14px;
+	line-height: 27px;
+	color: #444;*/
+	clear: both;
+}
+
+p a{
+	font-family: inherit;
+	text-decoration: underline;
+}
+
+p a:link{
+	/*color: #56979F;*/
+}
+
+p a:visited{
+	/*color: #6D6B88;*/
+}
+
+p a:active{
+	/*color: #916D47;*/
+}
+
+h1, h2, h3, h4, h5, h6{
+	margin: 0; /* Removed standard margin, since whitespace is provided through line height. */
+	display: inline-block; /* Makes width element width by default. */
+	clear: both; /* Cleares both sides, but other clashing inline blocks must also have cleared clashing side, to acctually clear. */
+}
+
+
+/* GRAPHICS */
+img{
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a img{
+	border: none;
+}
+
+figure{
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+}
+
+
+/* LISTS */
+ul, ol, dl{
+	margin: 0;
+	padding-left: 0;
+}
+
+ul, dl{
+	list-style-type: none;
+}
+
+dl{
+	float: left;
+}
+
+ul, ul li, ol, ol li, dl, dl dt, dl dd{
+	font-size: inherit;
+	font-family: inherit;
+	color: inherit;
+}

@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <!-- META DESCRIPTIONS -->
-    <title>Byinfo - Info for turister om byer, lokalitet, historie og rejse</title>
-    <meta name="description" content="[by] info for turister. Lokalitet, historie og rejse" />
+    <title>Byinfo - Info for turister om byer, lokalitet vejr, historie og rejse</title>
+    <meta name="description" content="[by] info for turister. Lokalitet, vejr, historie og rejse" />
 
     <!-- META DATA -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -32,10 +32,13 @@
 	<!-- HEADER -->
 	<header class="header">
 		<h1>Byinfo</h1>
-		<p>Info for turister om byer, lokalitet, historie og rejse</p>
+		<p>Info for turister om byer, lokalitet, vejr, historie og rejse</p>
 	</header>
 	<main class="main">
 		<h2 id="town-title">Information om en dansk by.</h2>
+		<section id="weather">
+			<h4 id="weather-title">Vejr i by</h4>
+		</section>
 	</main>
 	<aside id="pixabay-images" class="hidden">
 		<h4 id="pixabay-title">Pixabay billeder</h4>
@@ -65,8 +68,11 @@
 	let town = "Odense"
 	document.getElementById("town-title").innerHTML = "Information om " + town;
 	document.getElementById("pixabay-title").innerHTML = "Pixabay billeder fra " + town;
+	document.getElementById("weather-title").innerHTML = "Vejr i " + town;
 </script>
 <script type="text/javascript" src="js/keys.js"></script>
+<script type="text/javascript" src="js/dawa.js"></script>
 <script type="text/javascript" src="js/pixabay.js"></script>
+<script type="text/javascript" src="js/vejr-eu.js"></script>
 <!-- <script type="text/javascript" src="js/omdbapi.js"></script> -->
 </body>

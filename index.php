@@ -30,6 +30,9 @@
 	<!-- MAPBOX API STYLLING -->
 	<link href="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css" rel="stylesheet">
 	<script src="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js"></script>
+	
+	<!-- SOUNDCLOUD API -->
+	<!--<script src="https://connect.soundcloud.com/sdk/sdk-3.3.2.js"></script>-->
 </head>
 <body>
 <div class="wrapper">

@@ -29,6 +29,7 @@ fetch(dawaRequest)
 		include("js/pixabay.js");
 		include("js/pexels.js");
 		include("js/mapbox.js");
+		//include("js/soundcloud.js");
 	})
 	.catch((err) => {
 	// Do something for an error here

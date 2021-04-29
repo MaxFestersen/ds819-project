@@ -22,8 +22,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Enables responsive design. -->
 	
 	<!-- CHARSET -->
-	<meta charset="utf-8" />
-    
+    <meta content="utf-8" http-equiv="encoding">
+
 	<!-- ROBOTS -->
     <meta name="robots" content="noindex" /><!-- Block indexing of site -->
 	

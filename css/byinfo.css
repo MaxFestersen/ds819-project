@@ -1,25 +1,27 @@
-/*	Created by Max Festersen Hansen at SDU DS819 in 2021. */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:wght@400;700&display=swap')
+/*	Created by Max Festersen Hansen at SDU DS819 in 2021.	 */
 
-/* COLORS */
+/* 	COLORS	 */
 /*TODO*/
-/* OPTIONS */
+/* 	OPTIONS	 */
 html, body{
-	height: 100%; /* Enables manipulation of height in % on block-elements. */
-	margin: 0; /* Removes document margin. */
-	padding: 0; /* Removes document padding. */
+	height: 100%; /* 	Enables manipulation of height in % on block-elements.	 */
+	margin: 0; /* 	Removes document margin.	 */
+	padding: 0; /* 	Removes document padding.	 */
 }
 
 html{
-	scroll-behavior: smooth; /* Gives smooth scrolling effect to links that refer to a sektion. It does not work in Safari and Edge. */
+	scroll-behavior: smooth; /* 	Gives smooth scrolling effect to links that refer to a sektion. It does not work in Safari and Edge.	 */
 }
 
 
-/* PAGE LAYOUT */
+/* 	PAGE LAYOUT	 */
 body{
-	/*background-color: #F4F5F7;*/
+	background-image: url("../img/interlaced.png");	/* 	Background pattern from Toptal Subtle Patterns	 */
+	background-color: #F4F5F6;
 }
 
-.wrapper{ /* Wraps content and defines a max-width for content */
+.wrapper{ /* 	Wraps content and defines a max-width for content	 */
     min-height: 1px;
     height: auto;
 	width: auto;
@@ -27,9 +29,26 @@ body{
 	margin:0 auto;
 }
 
+aside{
+	float: left;
+	width: 30%;
+	margin-right: 1.5%;
+}
+aside:nth-child(3){
+	margin-right: 0;
+}
 
-/* TEXT */
+aside:nth-child(4){
+	clear:left;
+}
+
+
+/* 	TEXT	 */
+span, p, h1, h2, h3, h4, h5, h6, th, td, li{
+	font-family: 'Noto Sans', sans-serif;
+}
 a{
+	font-family: inherit;
 	text-decoration: none;
 	cursor: pointer;
 }
@@ -43,7 +62,6 @@ p{
 }
 
 p a{
-	font-family: inherit;
 	text-decoration: underline;
 }
 
@@ -60,14 +78,14 @@ p a:active{
 }
 
 h1, h2, h3, h4, h5, h6{
-	margin: 0; /* Removed standard margin, since whitespace is provided through line height. */
-	display: inline-block; /* Makes width element width by default. */
-	clear: both; /* Cleares both sides, but other clashing inline blocks must also have cleared clashing side, to acctually clear. */
+	margin: 0; /* 	Removed standard margin, since whitespace is provided through line height.	 */
+	display: inline-block; /* 	Makes width element width by default.	 */
+	clear: both; /* 	Cleares both sides, but other clashing inline blocks must also have cleared clashing side, to acctually clear.	 */
 	font-weight: normal;
 }
 
 
-/* GRAPHICS */
+/* 	GRAPHICS	 */
 img{
 	max-width: 100%;
 	max-height: 100%;
@@ -84,7 +102,7 @@ figure{
 }
 
 
-/* LISTS */
+/* 	LISTS	 */
 ul, ol, dl{
 	margin: 0;
 	padding-left: 0;
@@ -104,23 +122,27 @@ ul, ul li, ol, ol li, dl, dl dt, dl dd{
 	color: inherit;
 }
 
-/* CLASSES */
+/* 	CLASSES	 */
 .hidden{
 	display: none;
 }
 
-/* TITLES */
+.aside-wrapper{
+	clear: both;
+}
+
+/* 	TITLES	 */
 #town-title{
 }
 
-/* OMDB - MOVIE LIST */
+/* 	OMDB - MOVIE LIST	 */
 
 #movies, #movie-list{
 	display: none;
 }
 
 
-/* PIXABAY AND PEXELS */
+/* 	PIXABAY AND PEXELS	 */
 #pixabay-images, #pexels-images{
 	float: left;
 	max-width: 30%
@@ -136,10 +158,17 @@ ul, ul li, ol, ol li, dl, dl dt, dl dd{
 }
 
 
-/* MAPBOX */
+/* 	MAPBOX	 */
 #mapbox-map{
 	width: 100%;
 	height: 200px;
 	max-width:100%;
 	max-height:100%;
+}
+
+/*	OPENLIBRARY	*/	
+#book-list {
+	max-height: 50vh;
+	overflow-y: scroll;
+	overflow-x: hidden;
 }

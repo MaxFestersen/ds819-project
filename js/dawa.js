@@ -26,10 +26,11 @@ fetch(dawaRequest)
 		coumneDom.innerHTML = commune;
 		
 		/*	INCLUDE OTHER FILES	*/
-		include("js/pixabay.js");
-		include("js/pexels.js");
-		include("js/mapbox.js");
+		$.getScript("js/pixabay.js");
+		$.getScript("js/pexels.js");
+		$.getScript("js/mapbox.js");
 		//include("js/soundcloud.js");
+		$.getScript("js/open-library.js");
 	})
 	.catch((err) => {
 	// Do something for an error here

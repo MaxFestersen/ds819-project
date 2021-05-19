@@ -1,0 +1,25 @@
+Mangler:
+	Obgligatoriske api
+		Youtube
+		Pixabay
+		NYTimes
+		Mapbox OR leaflet
+			Eller andet, men man skal beskrive hvordan det bruges
+		OMDB
+		Books API
+		Your own API
+	Andre kilder
+		Egen Json
+			adresser?
+		Data visualization med CSV
+		Infobox
+			Fra wikipedia
+	Krav
+		Ingen hard coded kode til elementer
+			Altså fyld containere med kode der genereres i javascript.
+		Der skal arbejdes ud fra
+			Data Driven Design principles
+			Data Communication process life-cykle
+			Data communication principles
+			Integration of data and information from different sources by the use of web technoligies such as HTML, CSS, JavaScript
+		

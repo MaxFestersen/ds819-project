@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:wght@400;700&display=swap')
+/*	Created by Max Festersen Hansen at SDU DS819 in 2021.	 */
+
+/* 	COLORS	 */
+/*TODO*/
+/* 	OPTIONS	 */
+html, body{
+	height: 100%; /* 	Enables manipulation of height in % on block-elements.	 */
+	margin: 0; /* 	Removes document margin.	 */
+	padding: 0; /* 	Removes document padding.	 */
+}
+
+html{
+	scroll-behavior: smooth; /* 	Gives smooth scrolling effect to links that refer to a sektion. It does not work in Safari and Edge.	 */
+}
+
+
+/* 	PAGE LAYOUT	 */
+body{
+	background-image: url("../img/interlaced.png");	/* 	Background pattern from Toptal Subtle Patterns	 */
+	background-color: #F4F5F6;
+}
+
+.wrapper{ /* 	Wraps content and defines a max-width for content	 */
+    min-height: 1px;
+    height: auto;
+	width: auto;
+	max-width:1024px;
+	margin:0 auto;
+}
+
+aside{
+	float: left;
+	width: 30%;
+	margin-right: 1.5%;
+}
+aside:nth-child(3){
+	margin-right: 0;
+}
+
+aside:nth-child(4){
+	clear:left;
+}
+
+
+/* 	TEXT	 */
+span, p, h1, h2, h3, h4, h5, h6, th, td, li{
+	font-family: 'Noto Sans', sans-serif;
+}
+a{
+	font-family: inherit;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+p{
+	/*font-family: 'Open Sans', sans-serif;*/
+	/*font-size: 14px;
+	line-height: 27px;
+	color: #444;*/
+	clear: both;
+}
+
+p a{
+	text-decoration: underline;
+}
+
+p a:link{
+	/*color: #56979F;*/
+}
+
+p a:visited{
+	/*color: #6D6B88;*/
+}
+
+p a:active{
+	/*color: #916D47;*/
+}
+
+h1, h2, h3, h4, h5, h6{
+	margin: 0; /* 	Removed standard margin, since whitespace is provided through line height.	 */
+	display: inline-block; /* 	Makes width element width by default.	 */
+	clear: both; /* 	Cleares both sides, but other clashing inline blocks must also have cleared clashing side, to acctually clear.	 */
+	font-weight: normal;
+}
+
+
+/* 	GRAPHICS	 */
+img{
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a img{
+	border: none;
+}
+
+figure{
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+}
+
+
+/* 	LISTS	 */
+ul, ol, dl{
+	margin: 0;
+	padding-left: 0;
+}
+
+ul, dl{
+	list-style-type: none;
+}
+
+dl{
+	float: left;
+}
+
+ul, ul li, ol, ol li, dl, dl dt, dl dd{
+	font-size: inherit;
+	font-family: inherit;
+	color: inherit;
+}
+
+/* 	CLASSES	 */
+.hidden{
+	display: none;
+}
+
+.aside-wrapper{
+	clear: both;
+}
+
+/* 	TITLES	 */
+#town-title{
+}
+
+/* 	OMDB - MOVIE LIST	 */
+
+#movies, #movie-list{
+	display: none;
+}
+
+
+/* 	PIXABAY AND PEXELS	 */
+#pixabay-images, #pexels-images{
+	float: left;
+	max-width: 30%
+}
+
+#pixabay-images img, #pexels-images img{
+	max-width: 100%;
+	margin-bottom:10px;
+}
+
+#pixabay-images img:last-child, #pexels-images img:last-child{
+	margin-bottom:0;
+}
+
+
+/* 	MAPBOX	 */
+#mapbox-map{
+	width: 100%;
+	height: 200px;
+	max-width:100%;
+	max-height:100%;
+}
+
+/*	OPENLIBRARY	*/	
+#book-list {
+	max-height: 50vh;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}

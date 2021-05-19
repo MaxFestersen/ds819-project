@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" id="page-top">
 <head>
     <!-- META DESCRIPTIONS -->
-    <title>Byinfo - Info for turister om byer, lokalitet vejr, historie og rejse</title>
-    <meta name="description" content="[by] info for turister. Lokalitet, vejr, historie og rejse" />
+    <title>Diabetic food information</title>
+    <meta name="description" content="Information about diabetis, food for diabetics." />
 
     <!-- META DATA -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -11,7 +11,7 @@
     <!--<meta http-equiv="X-UA-Compatible" content="IE=edge" />-->
 
     <!-- STYLLING & ICONS (FAV ICON) -->
-	<link type="text/CSS" rel="stylesheet" href="css/byinfo.css?v=0.2"/>
+	<link type="text/CSS" rel="stylesheet" href="css/food.css?v=0.3"/>
     <!--<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png" />
@@ -42,77 +42,203 @@
 
 	<!-- LOCAL SCRIPTS -->	
 	<script src="highcharts/code/highcharts.js"></script>
-	<script type="text/javascript" src="js/practical-functions.js"></script>
+	<script type="text/javascript" src="js/practical-functions.js?v=0.1"></script>
 	<script type="text/javascript" src="js/keys.js"></script>
 </head>
 <body>
 <div class="wrapper">
 	<!-- HEADER -->
 	<header class="header">
-		<h1>Byinfo</h1>
-		<p>Info for turister om byer, lokalitet, vejr, historie og rejse</p>
+		<h1>Diabetic info central</h1>
+		<p class="subtitle">Information to help diabetics.</p>
 	</header>
-	<main class="main">
-		<h2 id="town-title">Information om en dansk by.</h2>
-		<table id="town-info-table" class="hidden">
-			<tr>
-				<th>Komune</th>
-				<td id="coumne"></td>
-			</tr>
-			<tr>
-				<th>Beboere</th>
-				<td id="residents"></td>
-			</tr>
-		</table>
-	</main>
-    <aside id="info-wrapper">
-		<div id="content">
-			<h4 class="headline"></h4>
-		<div class="infoBox"></div>
-    </aside>
-	<div class="aside-wrapper">
-		<aside id="mapbox-map-wrapper" class="hidden">
-			<div id="mapbox-map"></div>
-		</aside>
-		<aside id="pixabay-images" class="hidden">
-			<h4 id="pixabay-title">Pixabay billeder</h4>
-			<!--<img src="img/pixabay_logo_square.svg" alt="pixabay logo" />-->	
-		</aside>
-		<aside id="pexels-images" class="hidden">
-			<h4 id="pexels-title">Pexels billeder</h4>
-		</aside>
-		<aside id="books" class="hidden">
-			<h4 id="openlibrary-title">Bøger</h4>
-			<ul id="book-list"></ul>
-		</aside>
-		<aside id="movies" class="hidden">
-			<ul id="movie-list"></ul>
-		</aside>
-	</div>
-	<section>
-		<h3 title="Delmål 8.9 i FN's Verdensmål - for bæredygtig udvikling">Støt op om bæredygtig turisme</h3>
-		<figure id="highcharts-figure" class="highcharts-figure">
-			<div id="container"></div>
-		</figure>
-
-		<table id="goal-table" class="hidden">
-		</table>
-	</section>
-	<footer>
-		<section id="footer-info">
-			<p>Design og kode af max.</p>
+	<nav id="main-navigation">
+		<ul>
+			<li><a href="#recipies" onclick="scrollTo()">Low carb recipies</a></li>
+			<li><a href="#information" onclick="scrollTo()">Information about diabetis</a></li>
+			<li><a href="#news" onclick="scrollTo()">News about diabetis</a></li>
+			<li><a href="#media" onclick="scrollTo()">Related media</a></li>
+			<li><a href="#statistics" onclick="scrollTo()">Statistics</a></li>
+			<li><a href="#map" onclick="scrollTo()">Map.</a></li>
+			<li><a href="#about" onclick="scrollTo()">About</a></li>
+		</ul>
+	</nab>
+	<main>
+		<section id="recipies">
+			<header>
+				<h2 class="title">Low carb recipies.</h2>
+			</header>
+			<article>
+				<p>Content to be added...</p>
+			</article>
+			<aside>
+				<p>Content to be added...</p>
+			</aside>
+			<footer>
+				<nav class="-navigation">
+					<ul>
+						<li><a href="#main-navigation" onclick="scrollTo()" title="Scroll to previous section">Previous section</a></li>
+						<li><a href="#information" onclick="scrollTo()" title="Scroll to information section">Next section</a></li>
+						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top</a></li>
+					</ul>
+				</nav>
+			</footer>
 		</section>
-		<section id="contact-info" class="wrapper">
-			<!-- Contact information -->
-			<h5>Kontakt Informationer:</h5>
-			<address id="contact">
-				<span class="author">Max Festersen Hansen</span>
-				<span><a href="mailto:maxfh20@student.sdu.dk" class="email" title="Skriv en e-mail til mig." target="_blank">maxfh20@student.sdu.dk</a></span>
-				<span><a href="tel:+4529631232" class="tel" title="Ring til mig.">+45 29 63 12 32</a></span>
-			</address>
-		</div>
-	</footer>
+		<section id="information">
+			<header>
+				<h2 class="title">Information about diabetis.</h2>
+			</header>
+			<article>
+				<p>Content to be added...</p>
+			</article>
+			<aside id="info-wrapper">
+				<div class="infoBox"></div>
+				<a class="source" href="https://en.wikipedia.org/wiki/Diabetes">Source: Wikipedia</a>
+			</aside>
+			<footer>
+				<nav class="-navigation">
+					<ul>
+						<li><a href="#recipies" onclick="scrollTo()" title="Scroll to recipies section">Previous section</a></li>
+						<li><a href="#news" onclick="scrollTo()" title="Scroll to news section">Next section</a></li>
+						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top</a></li>
+					</ul>
+				</nav>
+			</footer>
+		</section>
+		<section id="news">
+			<header>
+				<h2 class="title">News about diabetis.</h2>
+			</header>
+			<article>
+				<p>Content to be added...</p>
+			</article>
+			<aside>
+				<p>Content to be added...</p>
+			</aside>
+			<footer>
+				<nav class="-navigation">
+					<ul>
+						<li><a href="#information" onclick="scrollTo()" title="Scroll to information section">Previous section</a></li>
+						<li><a href="#media" onclick="scrollTo()" title="Scroll to media section">Next section</a></li>
+						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top</a></li>
+					</ul>
+				</nav>
+			</footer>
+		</section>
+		<section id="media">
+			<header>
+				<h2 class="title">Related media.</h2>
+			</header>
+			<article class="aside-wrapper">
+				<aside id="pixabay-images" class="hidden">
+					<h4 id="pixabay-title">Pixabay billeder</h4>
+					<!--<img src="img/pixabay_logo_square.svg" alt="pixabay logo" />-->	
+				</aside>
+				<aside id="pexels-images" class="hidden">
+					<h4 id="pexels-title">Pexels billeder</h4>
+				</aside>
+				<aside id="books" class="hidden">
+					<h4 id="openlibrary-title">Bøger</h4>
+					<ul id="book-list"></ul>
+				</aside>
+				<aside id="movies" class="hidden">
+					<ul id="movie-list"></ul>
+				</aside>
+			</article>
+			<aside>
+				<p>Content to be added...</p>
+			</aside>
+			<footer>
+				<nav class="-navigation">
+					<ul>
+						<li><a href="#news" onclick="scrollTo()" title="Scroll to news section">Previous section</a></li>
+						<li><a href="#statistics" onclick="scrollTo()" title="Scroll to statistics section">Next section</a></li>
+						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top</a></li>
+					</ul>
+				</nav>
+			</footer>
+		</section>
+		<section id="statistics">
+			<header>
+				<h2 class="title">Statistics.</h2>
+			</header>
+			<article>
+				<figure id="highcharts-figure" class="highcharts-figure">
+					<div id="container"></div>
+				</figure>
+
+				<table id="goal-table" class="hidden">
+				</table>
+			</article>
+			<aside>
+				<div class="type-stats"></div>
+				<a class="source" href="https://en.wikipedia.org/wiki/Diabetes">Source: Wikipedia</a>
+			</aside>
+			<footer>
+				<nav class="-navigation">
+					<ul>
+						<li><a href="#media" onclick="scrollTo()" title="Scroll to media section">Previous section</a></li>
+						<li><a href="#map" onclick="scrollTo()" title="Scroll to map section">Next section</a></li>
+						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top</a></li>
+					</ul>
+				</nav>
+			</footer>
+		</section>
+		<section id="map">
+			<header>
+				<h2 class="title">Map.</h2>
+			</header>
+			<article>
+				<p>Content to be added...</p>
+			</article>
+			<aside id="mapbox-map-wrapper">
+				<div id="mapbox-map"></div>
+			</aside>
+			<footer>
+				<nav class="-navigation">
+					<ul>
+						<li><a href="#statistics" onclick="scrollTo()" title="Scroll to statistics section">Previous section</a></li>
+						<li><a href="#about" onclick="scrollTo()" title="Scroll to about section">Next section</a></li>
+						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top</a></li>
+					</ul>
+				</nav>
+			</footer>
+		</section>
+		<section id="about">
+			<header>
+				<h2 class="title">About.</h2>
+			</header>
+			<article>
+				<p>Content to be added...</p>
+			</article>
+			<aside>
+				<p>Content to be added...</p>
+			</aside>
+			<footer>
+				<nav class="-navigation">
+					<ul>
+						<li><a href="#map" onclick="scrollTo()" title="Scroll to map section">Previous section</a></li>
+						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top</a></li>
+					</ul>
+				</nav>
+			</footer>
+		</section>
+		<footer>
+			<section id="footer-info">
+				<p>Design og kode af max.</p>
+			</section>
+			<section id="contact-info" class="wrapper">
+				<!-- Contact information -->
+				<h5>Kontakt Informationer:</h5>
+				<address id="contact">
+					<span class="author">Max Festersen Hansen</span>
+					<span><a href="mailto:maxfh20@student.sdu.dk" class="email" title="Skriv en e-mail til mig." target="_blank">maxfh20@student.sdu.dk</a></span>
+					<span><a href="tel:+4529631232" class="tel" title="Ring til mig.">+45 29 63 12 32</a></span>
+				</address>
+			</div>
+		</footer>
+	</main>
 </div>
 <!-- JAVASCRIPT FILES -->
-<script type="text/javascript" src="js/jquery-all-in-one.js"></script>
+<script type="text/javascript" src="js/jquery-all-in-one.js?v=0.1"></script>
 </body>

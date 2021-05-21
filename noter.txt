@@ -2,18 +2,21 @@ Mangler:
 	Obgligatoriske api
 		Youtube
 		Pixabay
+			CHECK
 		NYTimes
 		Mapbox OR leaflet
 			Eller andet, men man skal beskrive hvordan det bruges
 		OMDB
 		Books API
+			openbooks
+				CHECK
+			google books
 		Your own API
 	Andre kilder
 		Egen Json
-			adresser?
 		Data visualization med CSV
-		Infobox
-			Fra wikipedia
+		Infobox fra wikipedia
+			CHECK
 	Krav
 		Ingen hard coded kode til elementer
 			Altså fyld containere med kode der genereres i javascript.

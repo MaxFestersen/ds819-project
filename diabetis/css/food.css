@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:wght@400;700&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:wght@400;700&display=swap');
 /*	Created by Max Festersen Hansen at SDU DS819 in 2021.	 */
 
 /* 	COLORS	 */
@@ -26,9 +26,69 @@ body{
     height: auto;
 	width: auto;
 	max-width:90%;
-	margin:5% auto;
+	margin:2vh auto;
 }
 
+#main-header{
+	position: relative;
+	float: left;
+	background-color: rgba(0,0,0,0.3);
+	width: 100%;
+	height: 40vh;
+	margin: auto;
+	overflow: hidden;
+	z-index: 1;
+}
+
+#main-header, #main-header *{
+	box-sizing: border-box;
+	-webkit-font-smoothing: antialiased
+}
+
+.hero-image-wrapper{
+	display: block;
+	position: relative;
+	height: 100%;
+	z-index: 2;
+}
+
+.hero-image-wrapper img{
+	display: block;
+	max-width: 100%;
+	height: auto;
+	margin: 0 auto;
+}
+
+#main-header > h1 {
+	position: absolute;
+	top: 2vh;
+	left: 2vw;
+	z-index: 4;
+}
+
+#main-header > p {
+	position: absolute;
+	bottom: 2vh;
+	left: 2vw;
+	z-index: 3;
+}
+
+#main-header > h1, #main-header > p {
+	color: #FFF;
+	-webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #000;
+	text-stroke-width: 1px;
+    text-stroke-color: #000;
+	font-weight: 700;
+}
+
+.hero-image-source{
+	position: absolute;
+	bottom: 0;
+	right:0;
+	max-width: 5vh;
+	max-height: 5vw;
+}
 
 main > section{
 	float:left;
@@ -41,34 +101,38 @@ main > section, main > section > *{
 	box-sizing: border-box;
 }
 
-section > header{
-	float: left;
-	clear: both;
-	width: 65%;
-	padding:2vh 2vw;
-	border-bottom:solid 1px #AAA;
-	border-top-left-radius: 4px;
-	border-top-right-radius: 4px;
-	background-color: #DDD;
-}
 
 section > article{
 	float:left;
-	width:65%;
-	padding:2vh 2vw;
 	background-color: #CCC;
+	width:65%;
+	max-height:80vh;
 }
 
 
 section > aside{
 	float: left;
-	width: 30%;
-	padding:2vh 2vw;
 	background-color: #CCC;
+	width: 30%;
+	max-height: 80vh;
 }
 
-section > article:nth-child(even), section > aside:nth-child(even){
+section > article:nth-child(odd), section > aside:nth-child(odd){ /* with childs, for experimenting with different positions*/
 	margin-right: 5%;
+}
+
+section > article > header, section > aside > header{
+	float: left;
+	clear: both;
+	width: 100%;
+	height: 55px;
+	line-height: 55px;
+	padding:0 2vw;
+	border-bottom:solid 1px #AAA;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	background-color: #DDD;
+	box-sizing:border-box;
 }
 
 section > footer{
@@ -80,17 +144,15 @@ section > footer{
 }
 
 /* 	TEXT	 */
-span, p, h1, h2, h3, h4, h5, h6, th, td, li{
+span, p, a, h1, h2, h3, h4, h5, h6, th, td, li{
 	font-family: 'Noto Sans', sans-serif;
 }
 a{
-	font-family: inherit;
 	text-decoration: none;
 	cursor: pointer;
 }
 
 p{
-	/*font-family: 'Open Sans', sans-serif;*/
 	/*font-size: 14px;
 	line-height: 27px;
 	color: #444;*/
@@ -167,16 +229,73 @@ ul, ul li, ol, ol li, dl, dl dt, dl dd{
 	clear: both;
 }
 
+.content-wrapper{
+	clear: both;
+	float: left;
+	box-sizing:border-box;
+	width: 100%;
+	max-height: calc(80vh - 55px);	/*	height of parrent - 55px from header	*/
+	padding:2vh 2vw;
+	overflow-y: auto;
+}
+
 /* 	TITLES	 */
 .title{
 }
 
-/* 	OMDB - MOVIE LIST	 */
-
-#movies, #movie-list{
-	display: none;
+/*	NEW YORK TIMES	*/
+.news-article-wrapper:first-child{
+	padding-top: 0;
+	border-top: 0px;
+	margin-top: 0;
 }
 
+.news-article-wrapper{
+	float:left;
+	width: 100%;
+	padding-top: 1vh;
+	border-top: solid 1px #AAA;
+	margin-top: 2vh;
+}
+
+.news-article-wrapper header img{
+	float: left;
+	width: 150px;
+	height: 150px;
+	margin-right: 2vw;
+}
+
+.news-article-wrapper header h3{
+	max-width: calc(70% - 75px - 1vw);
+}
+
+.news-article-wrapper header a{
+	float:right;
+	max-width: calc(30% - 75px - 1vw);
+}
+
+.news-article-wrapper header h3,
+.news-article-wrapper header a{
+	line-height: 150px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.news-article-wrapper footer p{
+	font-style: italic;
+}
+.news-article-wrapper footer p span{
+	color: #666;
+}
+
+.news-article-wrapper header,
+.news-article-wrapper div,
+.news-article-wrapper footer{
+	float: left;
+	clear: both;
+	width: 100%;
+}
 
 /* 	PIXABAY AND PEXELS	 */
 #pixabay-images, #pexels-images{
@@ -207,4 +326,53 @@ ul, ul li, ol, ol li, dl, dl dt, dl dd{
 	max-height: 50vh;
 	overflow-y: scroll;
 	overflow-x: hidden;
+}
+
+.book-list li:first-child{
+	padding-top: 0;
+	border-top: 0px;
+	margin-top: 0;
+}
+
+.book-list li{
+	padding-top: 1vh;
+	border-top: solid 1px #AAA;
+	margin-top: 2vh;
+}
+
+.image-wrapper{
+	clear: both;
+    width: 100%;
+    line-height: 15vh;
+}
+
+.image-wrapper img{
+    display: block;
+    max-width: 100%;
+	max-height: 15vh;
+    margin: 0 auto;
+}
+
+/* 	OMDB - MOVIE LIST	 */
+#movies, #movie-list{
+	display: none;
+}
+
+/* ANIMATION */
+/* Fading animation: https://www.w3schools.com/howto/howto_js_slideshow.asp */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 0.5s;
+  animation-name: fade;
+  animation-duration: 0.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: 0.1}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: 0.1}
+  to {opacity: 1}
 }

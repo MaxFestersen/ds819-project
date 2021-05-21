@@ -48,15 +48,15 @@
 <body>
 <div class="wrapper">
 	<!-- HEADER -->
-	<header class="header">
+	<header id="main-header" class="header">
 		<h1>Diabetic info central</h1>
 		<p class="subtitle">Information to help diabetics.</p>
+		<!--<aside id="pexels-images" class="hidden"></aside>-->
 	</header>
-	<nav id="main-navigation">
+	<nav id="mainnavigation">
 		<ul>
 			<li><a href="#recipies" onclick="scrollTo()">Low carb recipies</a></li>
 			<li><a href="#information" onclick="scrollTo()">Information about diabetis</a></li>
-			<li><a href="#news" onclick="scrollTo()">News about diabetis</a></li>
 			<li><a href="#media" onclick="scrollTo()">Related media</a></li>
 			<li><a href="#statistics" onclick="scrollTo()">Statistics</a></li>
 			<li><a href="#map" onclick="scrollTo()">Map.</a></li>
@@ -65,19 +65,28 @@
 	</nab>
 	<main>
 		<section id="recipies">
-			<header>
-				<h2 class="title">Low carb recipies.</h2>
-			</header>
 			<article>
-				<p>Content to be added...</p>
+				<header>
+					<h2 class="title">Low carb recipies.</h2>
+				</header>
+				<div class="content-wrapper">
+					<p>Content to be added...</p>
+				</div>
+				<a class="source" href="#">Source: TBA</a>
 			</article>
 			<aside>
-				<p>Content to be added...</p>
+				<header>
+					<h2 class="title">Recipe books.</h2>
+				</header>
+				<div class="content-wrapper">
+					<ul id="recipe-book-list" class="hidden book-list"></ul>
+				</div>
+				<a class="source" href="https://openlibrary.org/">Source: open library</a>
 			</aside>
 			<footer>
-				<nav class="-navigation">
+				<nav class="navigation">
 					<ul>
-						<li><a href="#main-navigation" onclick="scrollTo()" title="Scroll to previous section">Previous section</a></li>
+						<li><a href="#mainnavigation" onclick="scrollTo()" title="Scroll to previous section">Previous section</a></li>
 						<li><a href="#information" onclick="scrollTo()" title="Scroll to information section">Next section</a></li>
 						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top</a></li>
 					</ul>
@@ -85,40 +94,28 @@
 			</footer>
 		</section>
 		<section id="information">
-			<header>
-				<h2 class="title">Information about diabetis.</h2>
-			</header>
 			<article>
-				<p>Content to be added...</p>
+				<header>
+					<h2 class="title">News about diabetis.</h2>
+				</header>
+				<div class="content-wrapper">
+					<ul id="news"></ul>
+				</div>
+				<a class="source" href="#">Source: TBA</a>
 			</article>
 			<aside id="info-wrapper">
-				<div class="infoBox"></div>
+				<header>
+					<h2 class="title">Information about diabetis.</h2>
+				</header>
+				<div class="content-wrapper">
+					<div class="infoBox"></div>
+				</div>
 				<a class="source" href="https://en.wikipedia.org/wiki/Diabetes">Source: Wikipedia</a>
 			</aside>
 			<footer>
-				<nav class="-navigation">
+				<nav class="navigation">
 					<ul>
 						<li><a href="#recipies" onclick="scrollTo()" title="Scroll to recipies section">Previous section</a></li>
-						<li><a href="#news" onclick="scrollTo()" title="Scroll to news section">Next section</a></li>
-						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top</a></li>
-					</ul>
-				</nav>
-			</footer>
-		</section>
-		<section id="news">
-			<header>
-				<h2 class="title">News about diabetis.</h2>
-			</header>
-			<article>
-				<p>Content to be added...</p>
-			</article>
-			<aside>
-				<p>Content to be added...</p>
-			</aside>
-			<footer>
-				<nav class="-navigation">
-					<ul>
-						<li><a href="#information" onclick="scrollTo()" title="Scroll to information section">Previous section</a></li>
 						<li><a href="#media" onclick="scrollTo()" title="Scroll to media section">Next section</a></li>
 						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top</a></li>
 					</ul>
@@ -126,32 +123,30 @@
 			</footer>
 		</section>
 		<section id="media">
-			<header>
-				<h2 class="title">Related media.</h2>
-			</header>
 			<article class="aside-wrapper">
-				<aside id="pixabay-images" class="hidden">
-					<h4 id="pixabay-title">Pixabay billeder</h4>
-					<!--<img src="img/pixabay_logo_square.svg" alt="pixabay logo" />-->	
-				</aside>
-				<aside id="pexels-images" class="hidden">
-					<h4 id="pexels-title">Pexels billeder</h4>
-				</aside>
-				<aside id="books" class="hidden">
-					<h4 id="openlibrary-title">Bøger</h4>
-					<ul id="book-list"></ul>
-				</aside>
-				<aside id="movies" class="hidden">
-					<ul id="movie-list"></ul>
-				</aside>
+				<header>
+					<h2 class="title">Related media.</h2>
+				</header>
+				<div class="content-wrapper">
+					<aside id="movies" class="hidden">
+						<ul id="movie-list"></ul>
+					</aside>
+				</div>
+				<a class="source" href="https://www.imdb.com/">Source: IMDb via OMDb API</a>
 			</article>
 			<aside>
-				<p>Content to be added...</p>
+				<header>
+					<h2 class="title">Books about diabetis.</h2>
+				</header>
+				<div class="content-wrapper">
+					<ul id="diabetes-book-list" class="hidden book-list"></ul>
+				</div>
+				<a class="source" href="https://openlibrary.org/">Source: open library</a>
 			</aside>
 			<footer>
-				<nav class="-navigation">
+				<nav class="navigation">
 					<ul>
-						<li><a href="#news" onclick="scrollTo()" title="Scroll to news section">Previous section</a></li>
+						<li><a href="#information" onclick="scrollTo()" title="Scroll to information section">Previous section</a></li>
 						<li><a href="#statistics" onclick="scrollTo()" title="Scroll to statistics section">Next section</a></li>
 						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top</a></li>
 					</ul>
@@ -159,23 +154,30 @@
 			</footer>
 		</section>
 		<section id="statistics">
-			<header>
-				<h2 class="title">Statistics.</h2>
-			</header>
 			<article>
-				<figure id="highcharts-figure" class="highcharts-figure">
-					<div id="container"></div>
-				</figure>
-
-				<table id="goal-table" class="hidden">
-				</table>
+				<header>
+					<h2 class="title">Statistics.</h2>
+				</header>
+				<div class="content-wrapper">
+					<figure id="highcharts-figure" class="highcharts-figure">
+						<div id="container"></div>
+					</figure>
+					<table id="goal-table" class="hidden">
+					</table>
+				</div>
+				<a class="source" href="#">Source: TBA</a>
 			</article>
 			<aside>
-				<div class="type-stats"></div>
-				<a class="source" href="https://en.wikipedia.org/wiki/Diabetes">Source: Wikipedia</a>
+				<header>
+					<h2 class="title">Statistics.</h2>
+				</header>
+				<div class="content-wrapper">
+					<div class="type-stats"></div>
+				</div>
+				<a class="source" href="#">Source: TBA</a>
 			</aside>
 			<footer>
-				<nav class="-navigation">
+				<nav class="navigation">
 					<ul>
 						<li><a href="#media" onclick="scrollTo()" title="Scroll to media section">Previous section</a></li>
 						<li><a href="#map" onclick="scrollTo()" title="Scroll to map section">Next section</a></li>
@@ -185,17 +187,26 @@
 			</footer>
 		</section>
 		<section id="map">
-			<header>
-				<h2 class="title">Map.</h2>
-			</header>
 			<article>
-				<p>Content to be added...</p>
+				<header>
+					<h2 class="title">Map.</h2>
+				</header>
+				<div class="content-wrapper">
+					<p>Content to be added...</p>
+				</div>
+				<a class="source" href="#">Source: TBA</a>
 			</article>
 			<aside id="mapbox-map-wrapper">
-				<div id="mapbox-map"></div>
+				<header>
+					<h2 class="title">Map.</h2>
+				</header>
+				<div class="content-wrapper">
+					<div id="mapbox-map"></div>
+				</div>
+				<a class="source" href="#">Source: TBA</a>
 			</aside>
 			<footer>
-				<nav class="-navigation">
+				<nav class="navigation">
 					<ul>
 						<li><a href="#statistics" onclick="scrollTo()" title="Scroll to statistics section">Previous section</a></li>
 						<li><a href="#about" onclick="scrollTo()" title="Scroll to about section">Next section</a></li>
@@ -205,17 +216,24 @@
 			</footer>
 		</section>
 		<section id="about">
-			<header>
-				<h2 class="title">About.</h2>
-			</header>
 			<article>
-				<p>Content to be added...</p>
+				<header>
+					<h2 class="title">About.</h2>
+				</header>
+				<div class="content-wrapper">
+					<p>Content to be added...</p>
+				</div>
 			</article>
 			<aside>
-				<p>Content to be added...</p>
+				<header>
+					<h2 class="title">About.</h2>
+				</header>
+				<div class="content-wrapper">
+					<p>Content to be added...</p>
+				</div>
 			</aside>
 			<footer>
-				<nav class="-navigation">
+				<nav class="navigation">
 					<ul>
 						<li><a href="#map" onclick="scrollTo()" title="Scroll to map section">Previous section</a></li>
 						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top</a></li>

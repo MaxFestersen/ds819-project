@@ -15,77 +15,227 @@ function include(file) {
 
 // Define variables -------------
 var param = "diabetes";
+var param_alt = "low carb";
 
 // Set section variables -----------
 // None
 
+// DATE ------------------------------------------------------------------------------------------------------------------------
+// Used for some api paramers, like begin and end for new york times.
+var now = new Date();
+var nowString = "" + now.getFullYear();
+if(now.getMonth()<10){
+	posibleMonthZero = "0";
+} else {
+	posibleMonthZero = "";
+}
+nowString = nowString + posibleMonthZero + now.getMonth();
+if(now.getDate()<10){
+	posibleDateZero = "0";
+} else {
+	posibleDateZero = "";
+}
+nowString = nowString + posibleDateZero + now.getDate();
+//console.log(nowString);
+var pastString = now.getFullYear()-3 + "0101"; // Date starting at year 3 years ago
+//console.log(pastString);
+
+
 // NEW YORK TIMES  -------------------------------------------------------------------------------------------------------------
-//https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20160101&end_date=20220101&q=Odense&sort=newest&api-key=PSSQeujJ0dHAmk63HPmszThFprc5mIcn
-//We place the different parts of the REST request on constants so it is easy to read or change
-const nyt_url = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?'; //endpoint
-var nyt_params = 'begin_date=20160101&end_date=20220101&sort=newest';
-var nyt_topic = '&q=Odense';
+// > Request
+// I prefer to collecet the request gradually to the same string
+let nytRequest = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?'; //endpoint
+nytRequest = nytRequest + 'begin_date=' + pastString; // Begin date on format YYYYMMDD
+nytRequest = nytRequest + '&end_date=' + nowString; // End date on format YYYYMMDD
+nytRequest = nytRequest + '&sort=newest'; // Sort by newest news
+nytRequest = nytRequest + '&q=keywords=diabetes'; // Filter by parameter
+nytRequest = nytRequest + '&key=' + nyt_key;
+//console.log(nytRequest);
 
-var nyt_request = nyt_url + nyt_params + nyt_topic + nyt_key;
+// > Elements
+let news = document.getElementById("news")
 
-//display on the console the full API request to make sure you did everything right
-console.log(nyt_request);
+
+// > Request
+//console.log(nytRequest);
+fetch(nytRequest)
+.then((response) => {
+	return response.json()
+})
+.then((data) => {
+	//console.log(data.response.docs);
+	data = data.response.docs
+	for (var i = 0; i < data.length; i++){
+		// >> Structure
+		/*
+		ul
+			li
+				newsWrap
+					top
+						image  - data.multimedia[i].url - multimedia --> loop for "thumbLarge" --> find url
+						headline - data.headline.main
+						Read more link - data.web_url
+					mid
+						snippet - data.snippet
+					bottom
+						auhor - byline.original OR/AND byline.organization
+						date - data.pub_date
+		*/
+		
+		// >> Find picture
+		var nytImgLink = false;
+		for(var j=0; j < data[i].multimedia.length; j++){
+			if(data[i].multimedia[j].crop_name == "thumbLarge" || data[i].multimedia[j].subType =="thumbLarge"){
+				nytImgLink = "https://www.nytimes.com/" + data[i].multimedia[j].url;
+				break;
+			}
+		}
+		
+		// >> Find text
+		var nytHeadline = data[i].headline.main;
+		var nytTitle = data[i].headline.main;
+		var nytUrl = data[i].web_url;
+		var snippet = data[i].snippet;
+		//console.log(data[i]);
+		/*if(data[i].byline.original && data[i].byline.organization){
+			var nytAuthor = "By " + data[i].byline.original + " and " + byline.organization;
+		} else if(data[i].byline.original){*/
+			var nytAuthor = data[i].byline.original;
+		/*} else if(data[i].byline.organization){
+			var nytAuthor = "By " + data[i].byline.organization;
+		} else{
+			var nytAuthor = "Could not find author";
+		}*/
+		var nytDate = data[i].pub_date.split("T")[0];
+		
+		// >> Create elements
+		var nytLi = document.createElement("li");
+		var nytWrapper = document.createElement("article");
+		var nytWrapperTop = document.createElement("header");
+		var nytImageElem = document.createElement("img");
+		var nytTitleElem = document.createElement("h3");
+		var nytUrlElem = document.createElement("a");
+		var nytWrapperMid = document.createElement("div");
+		var nytSnippetElem = document.createElement("p");
+		var nytWrapperBottom = document.createElement("footer");
+		var nytAuthorElem = document.createElement("p");
+		var nytDateElem = document.createElement("span");
+		
+		// >> Set element attributes
+		nytLi.setAttribute("class", "news-article-wrapper");
+		if(nytImgLink){
+			nytImageElem.setAttribute("src", nytImgLink);
+			nytImageElem.setAttribute("placeholder",  nytTitle);
+		} else{
+			nytImageElem = false; // Maybe use placeholder instead?
+		}
+		nytTitleElem.setAttribute("title", nytTitle);
+		nytUrlElem.setAttribute("href", nytUrl);
+		nytUrlElem.setAttribute("title", "Read more about: " + nytTitle + " on New York Times webpage in a new tab");
+		nytUrlElem.setAttribute("target", "_blank");
+		
+		// >> Fill elements
+		// >>> Top
+		nytTitleElem.appendChild(document.createTextNode(nytTitle));
+		nytUrlElem.appendChild(document.createTextNode("Read more"));
+		nytWrapperTop.appendChild(nytImageElem);
+		nytWrapperTop.appendChild(nytTitleElem);
+		nytWrapperTop.appendChild(nytUrlElem);
+
+		// >>> Mid
+		nytSnippetElem.appendChild(document.createTextNode(snippet));
+		nytWrapperMid.appendChild(nytSnippetElem);
+
+		
+		// >>> Bottom
+		//nytAuthorElem.appendChild(document.createTextNode(nytAuthor));
+		//nytDateElem.appendChild(document.createTextNode(nytDate));
+		nytAuthorElem.innerHTML = nytAuthor + " <span>" + nytDate + "</span>";
+		nytWrapperBottom.appendChild(nytAuthorElem);
+		nytWrapperBottom.appendChild(nytDateElem);
+		
+		//>>> Wrapper
+		nytWrapper.appendChild(nytWrapperTop);
+		nytWrapper.appendChild(nytWrapperMid);
+		nytWrapper.appendChild(nytWrapperBottom);
+		
+		//>>> Li
+		nytLi.appendChild(nytWrapper);
+		
+		// >> Populate target
+		news.appendChild(nytLi);
+		
+	}
+})
+.catch((err) => {
+// Do something for an error here
+	console.log("New York Times API encountered an error.");
+	//hero.classList.add("hidden");
+})
 
 
 
 // PIXABAY -------------------------------------------------------------------------------------------------------------------
+// > Request
 let pixabayRequest = "https://pixabay.com/api/";
 pixabayRequest = pixabayRequest + "?q=" + param;
 pixabayRequest = pixabayRequest + "&image_type=all"; // Get all image types. Set to photo if results get wierd
 pixabayRequest = pixabayRequest + "&safesearch=true"; //  Filter for only images suitable for all ages 
 pixabayRequest = pixabayRequest + "&lang=da"; // 	Language code of the language to be searched in. If removed defaults to en
-pixabayRequest = pixabayRequest + "&lang=da"; 
+pixabayRequest = pixabayRequest + "&category=health"; 
+pixabayRequest = pixabayRequest + "&orientation=horizontal"; 
+pixabayRequest = pixabayRequest + "&order=latest"; 
 pixabayRequest = pixabayRequest + "&page=1"; // Result page  (also is used in relation to per_page)
-pixabayRequest = pixabayRequest + "&per_page=5"; // Limit results (also is used in relation to page)
+pixabayRequest = pixabayRequest + "&per_page=20"; // Limit results (also is used in relation to page)
 pixabayRequest = pixabayRequest + "&key=" + pixabay_key;
 //console.log(pixabayRequest);
 
-let pixabayImages = document.getElementById("pixabay-images")
+// > Elements
+let hero = document.getElementById("main-header")
 
+// > Fetch
 fetch(pixabayRequest)
-	.then((response) => {
-		return response.json()
-	})
-	.then((data) => {
-		if (document.contains(document.getElementById("pixabayLogo"))) {
-			// Remove logo on load - forces the logo to be the last image
-			document.getElementById("pixabayLogo").remove();
-		}
-		pixabayImages.classList.remove("hidden");
-		//console.log(data.hits)
-		for (var i = 0; i < data.hits.length; i++){
-			var obj = data.hits[i];
-			var pixImage = document.createElement("img");
-			pixImage.setAttribute("src", obj.webformatURL);
-			var pixImageAbout = "Af: " + obj.user + " - Tags: " + obj.tags;
-			pixImage.setAttribute("alt", pixImageAbout);
-			pixImage.setAttribute("title", pixImageAbout);
-			pixabayImages.appendChild(pixImage);
-		}
+.then((response) => {
+	return response.json()
+})
+.then((data) => {
+	for (var i = 0; i < data.hits.length; i++){
+		var obj = data.hits[i];
+		var pixImageWrapper = document.createElement("figure");
+		pixImageWrapper.setAttribute("class", "hero-image-wrapper");
+		pixImageWrapper.classList.add("fade");
+		pixImageWrapper.classList.add("hidden");
+		var pixImage = document.createElement("img");
+		pixImage.setAttribute("src", obj.webformatURL);
+		var pixImageAbout = "By: " + obj.user + " - Tags: " + obj.tags;
+		pixImage.setAttribute("alt", pixImageAbout);
+		pixImage.setAttribute("title", pixImageAbout);
+		pixImageWrapper.appendChild(pixImage)
 		var pixLogoLink = document.createElement("a");
 		pixLogoLink.setAttribute("id", "pixabayLogo");
 		var pixLogo = document.createElement("img");
+		pixLogo.setAttribute("class", "hero-image-source");
 		pixLogo.setAttribute("src", "img/pixabay_logo_square.svg");
 		pixLogo.setAttribute("alt", "Pixabay logo");
 		pixLogoLink.appendChild(pixLogo);
 		pixLogoLink.setAttribute("href", "https://pixabay.com/");
 		pixLogoLink.setAttribute("target", "_blank");
-		pixLogoLink.setAttribute("title", "Gå til Pixabay");
-		pixabayImages.appendChild(pixLogoLink);
-	})
-	.catch((err) => {
-	// Do something for an error here
-		console.log("Pixabay forespørgslen udløste en fejl.");
-		pixabayImages.classList.add("hidden");
-	})
+		pixLogoLink.setAttribute("title", "Go to Pixabay");
+		pixImageWrapper.appendChild(pixLogoLink);
+		hero.appendChild(pixImageWrapper);
+	}
+	slideIndex = 0;
+	heroRotation();
+})
+.catch((err) => {
+// Do something for an error here
+	console.log("Pixabay API encountered an error.");
+	//hero.classList.add("hidden");
+})
 
 // PEXELS ---------------------------------------------------------------------------------------------------
-let pexelsRequest = "https://api.pexels.com/v1/search";
+// Currently unused, due to redundancy
+/*let pexelsRequest = "https://api.pexels.com/v1/search";
 pexelsRequest = pexelsRequest + "?query=" + param;
 pexelsRequest = pexelsRequest + "&locale=da-DK"; // 	Language code of the language to be searched in.
 pexelsRequest = pexelsRequest + "&page=1"; // Result page  (also is used in relation to per_page)
@@ -95,44 +245,44 @@ pexelsRequest = pexelsRequest + "&per_page=5"; // Limit results (also is used in
 let pexelsImages = document.getElementById("pexels-images")
 
 fetch(pexelsRequest,{
-	headers: {
-		Authorization: pexels_key
-	}})
-	.then((response) => {
-		return response.json()
-	})
-	.then((data) => {
-		if (document.contains(document.getElementById("pexelsLogo"))) {
-			// Remove logo on load - forces the logo to be the last image
-			document.getElementById("pexelsLogo").remove();
-		}
-		pexelsImages.classList.remove("hidden");
-		//console.log(data)
-		for (var i = 0; i < data.photos.length; i++){
-			var obj = data.photos[i];
-			var pexImage = document.createElement("img");
-			pexImage.setAttribute("src", obj.src.original);
-			var pexImageAbout = "Af: " + obj.photographer;
-			pexImage.setAttribute("alt", pexImageAbout);
-			pexImage.setAttribute("title", pexImageAbout);
-			pexelsImages.appendChild(pexImage);
-		}
-		var pexLogoLink = document.createElement("a");
-		pexLogoLink.setAttribute("id", "pexelsLogo");
-		var pexLogo = document.createElement("img");
-		pexLogo.setAttribute("src", "img/pexels-logo.png");
-		pexLogo.setAttribute("alt", "Pexels logo");
-		pexLogoLink.appendChild(pexLogo);
-		pexLogoLink.setAttribute("href", "https://pexels.com/");
-		pexLogoLink.setAttribute("target", "_blank");
-		pexLogoLink.setAttribute("title", "Gå til Pexels");
-		pexelsImages.appendChild(pexLogoLink);
-	})
-	.catch((err) => {
-	// Do something for an error here
-		console.log("Pexels forespørgslen udløste en fejl.");
-		pexelsImages.classList.add("hidden");
-	})
+headers: {
+	Authorization: pexels_key
+}})
+.then((response) => {
+	return response.json()
+})
+.then((data) => {
+	if (document.contains(document.getElementById("pexelsLogo"))) {
+		// Remove logo on load - forces the logo to be the last image
+		document.getElementById("pexelsLogo").remove();
+	}
+	pexelsImages.classList.remove("hidden");
+	//console.log(data)
+	for (var i = 0; i < data.photos.length; i++){
+		var obj = data.photos[i];
+		var pexImage = document.createElement("img");
+		pexImage.setAttribute("src", obj.src.original);
+		var pexImageAbout = "Af: " + obj.photographer;
+		pexImage.setAttribute("alt", pexImageAbout);
+		pexImage.setAttribute("title", pexImageAbout);
+		pexelsImages.appendChild(pexImage);
+	}
+	var pexLogoLink = document.createElement("a");
+	pexLogoLink.setAttribute("id", "pexelsLogo");
+	var pexLogo = document.createElement("img");
+	pexLogo.setAttribute("src", "img/pexels-logo.png");
+	pexLogo.setAttribute("alt", "Pexels logo");
+	pexLogoLink.appendChild(pexLogo);
+	pexLogoLink.setAttribute("href", "https://pexels.com/");
+	pexLogoLink.setAttribute("target", "_blank");
+	pexLogoLink.setAttribute("title", "Gå til Pexels");
+	pexelsImages.appendChild(pexLogoLink);
+})
+.catch((err) => {
+// Do something for an error here
+	console.log("Pexels forespørgslen udløste en fejl.");
+	pexelsImages.classList.add("hidden");
+})*/
 
 // MAPBOX ---------------------------------------------------------------
 let mapboxMapWrapper = document.getElementById("mapbox-map-wrapper");
@@ -150,38 +300,121 @@ mapboxMap.setAttribute("title", "Breddegrad: " + lat + ". Længdegrad: " + lon +
 // OPEN LIBRARY ----------------------------------------------------------
 //http://openlibrary.org/search.json?q=Odense&lan=dan
 
+// > Request
 let openBookRequest = "http://openlibrary.org/search.json";
-openBookRequest = openBookRequest + "?title=" + param; // Filter for towns
-openBookRequest = openBookRequest + "&lan=dan"; // Filter for danish results
-//console.log(openBookRequest);
+let openBookRequest_one = openBookRequest + "?title=" + param; // Filter for diabetis
+let openBookRequest_two = openBookRequest + "?title=" + param_alt; // Filter for low carb recipies
+openBookRequest_one = openBookRequest_one + "&lan=dan"; // Filter for danish results
+openBookRequest_two = openBookRequest_two + "&lan=dan"; // Filter for danish results
+openBookRequest_two = openBookRequest_two + "&subject=Recipes"; // Filter for danish results
+//console.log(openBookRequest_one);
 //display on the console the full API request to make sure you did everything right
 
-let bookSection = document.getElementById("books")
-let bookList = document.getElementById("book-list")
 
-fetch(openBookRequest)
-	.then((response) => {
-		return response.json()
-	})
-	.then((data) => {
-		bookSection.classList.remove("hidden");
-		bookList.classList.remove("hidden");
-		//console.log(data.docs)
-		for (var i = 0; i < data.docs.length; i++){
-			var obj = data.docs[i];
-			//console.log(obj)
-			var li = document.createElement("li");
-			li.appendChild(document.createTextNode(obj.title + ", " + obj.publish_year + ", af " + obj.author_name));
-			//li.setAttribute("title", "isbn:" + obj.isbn[0]);
-			bookList.appendChild(li);
+// > Elements
+let diabetesBookList = document.getElementById("diabetes-book-list")
+let recipeBookList = document.getElementById("recipe-book-list")
+
+// > Fetch 1: diabetes books -----------
+fetch(openBookRequest_one)
+.then((response) => {
+	return response.json()
+})
+.then((data) => {
+	diabetesBookList.classList.remove("hidden");
+	//console.log(data.docs)
+	for (var i = 0; i < data.docs.length; i++){
+		var obj = data.docs[i];
+		//console.log(obj)
+		var li = document.createElement("li");
+		var img = document.createElement("img");
+		var text = ""
+		var title = obj.title; 
+		if(title){
+			text = text + title
 		}
-	})
-	.catch((err) => {
-		bookSection.classList.add("hidden");
-		bookList.classList.add("hidden");
-		bookList.innerHTML = "";
-		console.log("openlibrary forespørgslen udløste en fejl.")
-	})
+		var publish_year = obj.publish_year; 
+		if(publish_year && title){
+			text = text + " - "
+		}
+		if(publish_year){
+			text = text + publish_year
+		}
+		var author_name = obj.author_name; 
+		if(publish_year && author_name){
+			text = text + " - "
+		}
+		if(author_name){
+			text = text + " af " + author_name
+		}
+		var cover = obj.cover_i
+		if(cover){
+			img.src = "https://covers.openlibrary.org/b/id/" + cover + ".jpg";
+			img.title = text;
+			var img_wrapper = document.createElement("div");
+			img_wrapper.classList = "image-wrapper";
+			img_wrapper.appendChild(img);
+			li.appendChild(img_wrapper);
+		}
+		li.appendChild(document.createTextNode(text));
+		//li.setAttribute("title", "isbn:" + obj.isbn[0]);
+		diabetesBookList.appendChild(li);
+	}
+})
+.catch((err) => {
+	diabetesBookList.innerHTML = "";
+	console.log("Openlibrary API encountered an error with openBookRequest_one.");
+})
+
+// > Fetch 2:  Recipies booklist -----------
+fetch(openBookRequest_two).then((response) => {
+	return response.json()
+})
+.then((data) => {
+	recipeBookList.classList.remove("hidden");
+	//console.log(data.docs)
+	for (var i = 0; i < data.docs.length; i++){
+		var obj = data.docs[i];
+		//console.log(obj)
+		var li = document.createElement("li");
+		var img = document.createElement("img");
+		var text = ""
+		var title = obj.title; 
+		if(title){
+			text = text + title
+		}
+		var publish_year = obj.publish_year; 
+		if(publish_year && title){
+			text = text + " - "
+		}
+		if(publish_year){
+			text = text + publish_year
+		}
+		var author_name = obj.author_name; 
+		if(publish_year && author_name){
+			text = text + " - "
+		}
+		if(author_name){
+			text = text + " af " + author_name
+		}
+		var cover = obj.cover_i
+		if(cover){
+			img.src = "https://covers.openlibrary.org/b/id/" + cover + ".jpg";
+			img.title = text;
+			var img_wrapper = document.createElement("div");
+			img_wrapper.classList = "image-wrapper";
+			img_wrapper.appendChild(img);
+			li.appendChild(img_wrapper);
+		}
+		li.appendChild(document.createTextNode(text));
+		//li.setAttribute("title", "isbn:" + obj.isbn[0]);
+		recipeBookList.appendChild(li);
+	}
+})
+.catch((err) => {
+	recipeBookList.innerHTML = "";
+	console.log("Openlibrary API encountered an error with openBookRequest_two.");
+})
 
 // WIKIPEDIA INFOBOX ----------------------------------------------------------------------
 // HTTP request is stored in a variable url
@@ -286,6 +519,6 @@ var results = Papa.parse("data/goal891.csv", { // Load file
 		});
 	},
 	error: function() { // On error
-		console.log("CSV kunne ikke indlæses.");
+		console.log("CSV could not load.");
 	}
 });

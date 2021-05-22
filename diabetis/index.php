@@ -3,7 +3,7 @@
 <head>
     <!-- META DESCRIPTIONS -->
     <title>Diabetic food information</title>
-    <meta name="description" content="Information about diabetis, food for diabetics." />
+    <meta name="description" content="Information about diabetes, food for diabetics." />
 
     <!-- META DATA -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -50,19 +50,20 @@
 	<!-- HEADER -->
 	<header id="main-header" class="header">
 		<h1>Diabetic info central</h1>
-		<p class="subtitle">Information to help diabetics.</p>
+		<p class="subtitle">Diabetes related information</p>
+		<figure class="diabetes-logo" ><img src="img/Blue_circle_for_diabetes.svg" alt="The symbol for diabetes" /></figure>
 		<!--<aside id="pexels-images" class="hidden"></aside>-->
 	</header>
 	<nav id="mainnavigation">
 		<ul>
-			<li><a href="#recipies" onclick="scrollTo()">Low carb recipies</a></li>
-			<li><a href="#information" onclick="scrollTo()">Information about diabetis</a></li>
-			<li><a href="#media" onclick="scrollTo()">Related media</a></li>
+			<li><a href="#recipies" onclick="scrollTo()">Recipies</a></li>
+			<li><a href="#information" onclick="scrollTo()">Information</a></li>
+			<li><a href="#media" onclick="scrollTo()">Media</a></li>
 			<li><a href="#statistics" onclick="scrollTo()">Statistics</a></li>
-			<li><a href="#map" onclick="scrollTo()">Map.</a></li>
+			<li><a href="#map" onclick="scrollTo()">Map</a></li>
 			<li><a href="#about" onclick="scrollTo()">About</a></li>
 		</ul>
-	</nab>
+	</nav>
 	<main>
 		<section id="recipies">
 			<article>
@@ -86,9 +87,9 @@
 			<footer>
 				<nav class="navigation">
 					<ul>
-						<li><a href="#mainnavigation" onclick="scrollTo()" title="Scroll to previous section">Previous section</a></li>
-						<li><a href="#information" onclick="scrollTo()" title="Scroll to information section">Next section</a></li>
-						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top</a></li>
+						<li><a href="#mainnavigation" onclick="scrollTo()" title="Scroll to main navigation">Previous section <</a></li>
+						<li><a href="#information" onclick="scrollTo()" title="Scroll to information section">Next section ></a></li>
+						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top ^</a></li>
 					</ul>
 				</nav>
 			</footer>
@@ -96,16 +97,16 @@
 		<section id="information">
 			<article>
 				<header>
-					<h2 class="title">News about diabetis.</h2>
+					<h2 class="title">News about diabetes.</h2>
 				</header>
 				<div class="content-wrapper">
 					<ul id="news"></ul>
 				</div>
-				<a class="source" href="#">Source: TBA</a>
+				<a class="source" href="https://www.nytimes.com/">Source: New York Times</a>
 			</article>
 			<aside id="info-wrapper">
 				<header>
-					<h2 class="title">Information about diabetis.</h2>
+					<h2 class="title">Information about diabetes.</h2>
 				</header>
 				<div class="content-wrapper">
 					<div class="infoBox"></div>
@@ -115,9 +116,9 @@
 			<footer>
 				<nav class="navigation">
 					<ul>
-						<li><a href="#recipies" onclick="scrollTo()" title="Scroll to recipies section">Previous section</a></li>
-						<li><a href="#media" onclick="scrollTo()" title="Scroll to media section">Next section</a></li>
-						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top</a></li>
+						<li><a href="#recipies" onclick="scrollTo()" title="Scroll to recipies section">Previous section <</a></li>
+						<li><a href="#media" onclick="scrollTo()" title="Scroll to media section">Next section ></a></li>
+						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top ^</a></li>
 					</ul>
 				</nav>
 			</footer>
@@ -136,7 +137,7 @@
 			</article>
 			<aside>
 				<header>
-					<h2 class="title">Books about diabetis.</h2>
+					<h2 class="title">Books about diabetes.</h2>
 				</header>
 				<div class="content-wrapper">
 					<ul id="diabetes-book-list" class="hidden book-list"></ul>
@@ -146,9 +147,9 @@
 			<footer>
 				<nav class="navigation">
 					<ul>
-						<li><a href="#information" onclick="scrollTo()" title="Scroll to information section">Previous section</a></li>
-						<li><a href="#statistics" onclick="scrollTo()" title="Scroll to statistics section">Next section</a></li>
-						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top</a></li>
+						<li><a href="#information" onclick="scrollTo()" title="Scroll to information section">Previous section <</a></li>
+						<li><a href="#statistics" onclick="scrollTo()" title="Scroll to statistics section">Next section ></a></li>
+						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top ^</a></li>
 					</ul>
 				</nav>
 			</footer>
@@ -179,9 +180,9 @@
 			<footer>
 				<nav class="navigation">
 					<ul>
-						<li><a href="#media" onclick="scrollTo()" title="Scroll to media section">Previous section</a></li>
-						<li><a href="#map" onclick="scrollTo()" title="Scroll to map section">Next section</a></li>
-						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top</a></li>
+						<li><a href="#media" onclick="scrollTo()" title="Scroll to media section">Previous section <</a></li>
+						<li><a href="#map" onclick="scrollTo()" title="Scroll to map section">Next section ></a></li>
+						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top ^</a></li>
 					</ul>
 				</nav>
 			</footer>
@@ -208,9 +209,9 @@
 			<footer>
 				<nav class="navigation">
 					<ul>
-						<li><a href="#statistics" onclick="scrollTo()" title="Scroll to statistics section">Previous section</a></li>
-						<li><a href="#about" onclick="scrollTo()" title="Scroll to about section">Next section</a></li>
-						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top</a></li>
+						<li><a href="#statistics" onclick="scrollTo()" title="Scroll to statistics section">Previous section <</a></li>
+						<li><a href="#about" onclick="scrollTo()" title="Scroll to about section">Next section ></a></li>
+						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top ^</a></li>
 					</ul>
 				</nav>
 			</footer>
@@ -235,8 +236,8 @@
 			<footer>
 				<nav class="navigation">
 					<ul>
-						<li><a href="#map" onclick="scrollTo()" title="Scroll to map section">Previous section</a></li>
-						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top</a></li>
+						<li><a href="#map" onclick="scrollTo()" title="Scroll to map section">Previous section <</a></li>
+						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top ^</a></li>
 					</ul>
 				</nav>
 			</footer>

@@ -32,7 +32,7 @@ body{
 #main-header{
 	position: relative;
 	float: left;
-	background-color: rgba(0,0,0,0.3);
+	background-color: rgba(191, 216, 224, 0.3);
 	width: 100%;
 	height: 40vh;
 	margin: auto;
@@ -63,31 +63,75 @@ body{
 	position: absolute;
 	top: 2vh;
 	left: 2vw;
-	z-index: 4;
+	z-index: 5;
+	font-size: 48px;
 }
 
 #main-header > p {
 	position: absolute;
 	bottom: 2vh;
 	left: 2vw;
+	z-index: 4;
+	font-size: 32px;
+}
+
+#main-header .diabetes-logo {
+	position: absolute;
+	top: 2vh;
+	right: 2vw;
 	z-index: 3;
 }
 
 #main-header > h1, #main-header > p {
-	color: #FFF;
+	color: #568BD7;
 	-webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: #000;
+    -webkit-text-stroke-color: #ecfff8;
 	text-stroke-width: 1px;
-    text-stroke-color: #000;
+    text-stroke-color: #ecfff8;
 	font-weight: 700;
 }
 
-.hero-image-source{
+#main-header .hero-image-source{
 	position: absolute;
 	bottom: 0;
 	right:0;
-	max-width: 5vh;
-	max-height: 5vw;
+	max-width: 10vh;
+	max-height: 10vw;
+}
+
+#mainnavigation{
+	float: left;
+	width: 100%;
+	margin: 1vh 0;
+}
+
+#mainnavigation ul{
+	float: left;
+	width: 100%;
+}
+
+#mainnavigation li{
+	float: left;
+	min-width: calc(16.66% - 0.8333vw);
+	padding-right: 1vw;
+}
+
+#mainnavigation li:last-child{
+	padding-right: 0;
+}
+
+#mainnavigation li a{
+	text-align: center;
+	color: #ECFFF8;
+	background-color: #CC2936;
+	float: left;
+	width: 100%;
+	height: 100%;
+	padding: 1vh 0;
+}
+
+#mainnavigation li a:hover{
+	background-color: #a3202b;
 }
 
 main > section{
@@ -104,7 +148,7 @@ main > section, main > section > *{
 
 section > article{
 	float:left;
-	background-color: #CCC;
+	background-color: #BFD8E0;
 	width:65%;
 	max-height:80vh;
 }
@@ -112,7 +156,7 @@ section > article{
 
 section > aside{
 	float: left;
-	background-color: #CCC;
+	background-color: #BFD8E0;
 	width: 30%;
 	max-height: 80vh;
 }
@@ -128,10 +172,10 @@ section > article > header, section > aside > header{
 	height: 55px;
 	line-height: 55px;
 	padding:0 2vw;
-	border-bottom:solid 1px #AAA;
+	border-bottom:solid 1px #231F20;
 	border-top-left-radius: 4px;
 	border-top-right-radius: 4px;
-	background-color: #DDD;
+	background-color: #568BD7;
 	box-sizing:border-box;
 }
 
@@ -147,6 +191,7 @@ section > footer{
 span, p, a, h1, h2, h3, h4, h5, h6, th, td, li{
 	font-family: 'Noto Sans', sans-serif;
 }
+
 a{
 	text-decoration: none;
 	cursor: pointer;
@@ -254,7 +299,7 @@ ul, ul li, ol, ol li, dl, dl dt, dl dd{
 	float:left;
 	width: 100%;
 	padding-top: 1vh;
-	border-top: solid 1px #AAA;
+	border-top: solid 1px #231F20;
 	margin-top: 2vh;
 }
 
@@ -336,7 +381,7 @@ ul, ul li, ol, ol li, dl, dl dt, dl dd{
 
 .book-list li{
 	padding-top: 1vh;
-	border-top: solid 1px #AAA;
+	border-top: solid 1px #231F20;
 	margin-top: 2vh;
 }
 

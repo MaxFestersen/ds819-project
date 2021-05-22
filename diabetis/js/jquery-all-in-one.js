@@ -302,7 +302,7 @@ mapboxMap.setAttribute("title", "Breddegrad: " + lat + ". Længdegrad: " + lon +
 
 // > Request
 let openBookRequest = "http://openlibrary.org/search.json";
-let openBookRequest_one = openBookRequest + "?title=" + param; // Filter for diabetis
+let openBookRequest_one = openBookRequest + "?title=" + param; // Filter for diabetes
 let openBookRequest_two = openBookRequest + "?title=" + param_alt; // Filter for low carb recipies
 openBookRequest_one = openBookRequest_one + "&lan=dan"; // Filter for danish results
 openBookRequest_two = openBookRequest_two + "&lan=dan"; // Filter for danish results

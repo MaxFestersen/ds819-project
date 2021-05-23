@@ -213,14 +213,14 @@ fetch(pixabayRequest)
 		pixImageWrapper.appendChild(pixImage)
 		var pixLogoLink = document.createElement("a");
 		pixLogoLink.setAttribute("id", "pixabayLogo");
-		var pixLogo = document.createElement("img");
+		var pixLogo = document.createElement("img"); // Append pixabay logo, for individual classification, for if another source might be added.
 		pixLogo.setAttribute("class", "hero-image-source");
 		pixLogo.setAttribute("src", "img/pixabay_logo_square.svg");
 		pixLogo.setAttribute("alt", "Pixabay logo");
 		pixLogoLink.appendChild(pixLogo);
 		pixLogoLink.setAttribute("href", "https://pixabay.com/");
 		pixLogoLink.setAttribute("target", "_blank");
-		pixLogoLink.setAttribute("title", "Go to Pixabay");
+		pixLogoLink.setAttribute("title", "Banner-image source: Pixabay"); 
 		pixImageWrapper.appendChild(pixLogoLink);
 		hero.appendChild(pixImageWrapper);
 	}
@@ -324,40 +324,59 @@ fetch(openBookRequest_one)
 	diabetesBookList.classList.remove("hidden");
 	//console.log(data.docs)
 	for (var i = 0; i < data.docs.length; i++){
+		// >> Setting object
 		var obj = data.docs[i];
-		//console.log(obj)
+		console.log(obj)
+		
+		// >> Setting html variables
 		var li = document.createElement("li");
+		var p = document.createElement("p");
+		var link = document.createElement("a");
 		var img = document.createElement("img");
-		var text = ""
-		var title = obj.title; 
+		
+		// >> Setting js variables and adding attributes
+		var text = "";
+		var title = obj.title;
 		if(title){
-			text = text + title
+			text = text + title;
 		}
 		var publish_year = obj.publish_year; 
 		if(publish_year && title){
 			text = text + " - "
 		}
 		if(publish_year){
-			text = text + publish_year
+			text = text + publish_year;
 		}
 		var author_name = obj.author_name; 
 		if(publish_year && author_name){
 			text = text + " - "
 		}
 		if(author_name){
-			text = text + " af " + author_name
+			text = text + " by " + author_name;
 		}
-		var cover = obj.cover_i
+		if(obj.seed[0]){
+			link.appendChild(document.createTextNode("Read about"));
+			link.setAttribute("href", "https://openlibrary.org/" + obj.seed[0]);
+			link.setAttribute("title", "Read more about " + title + "On openlibrary.org");
+			link.setAttribute("target", "_blank");
+		}
+		var cover = obj.cover_i;
 		if(cover){
 			img.src = "https://covers.openlibrary.org/b/id/" + cover + ".jpg";
-			img.title = text;
+			img.setAttribute("title",  text);
 			var img_wrapper = document.createElement("div");
 			img_wrapper.classList = "image-wrapper";
 			img_wrapper.appendChild(img);
 			li.appendChild(img_wrapper);
 		}
-		li.appendChild(document.createTextNode(text));
+		
+		// >> Append childs
+		p.appendChild(document.createTextNode(text));
+		li.appendChild(p);
+		li.appendChild(link);
 		//li.setAttribute("title", "isbn:" + obj.isbn[0]);
+		
+		// >> Populate target
 		diabetesBookList.appendChild(li);
 	}
 })
@@ -374,10 +393,17 @@ fetch(openBookRequest_two).then((response) => {
 	recipeBookList.classList.remove("hidden");
 	//console.log(data.docs)
 	for (var i = 0; i < data.docs.length; i++){
+		// >> Setting object
 		var obj = data.docs[i];
 		//console.log(obj)
+		
+		// >> Setting html variables
 		var li = document.createElement("li");
+		var p = document.createElement("p");
 		var img = document.createElement("img");
+		var link = document.createElement("a");
+		
+		// >> Setting js variables and adding attributes
 		var text = ""
 		var title = obj.title; 
 		if(title){
@@ -395,7 +421,13 @@ fetch(openBookRequest_two).then((response) => {
 			text = text + " - "
 		}
 		if(author_name){
-			text = text + " af " + author_name
+			text = text + " by " + author_name
+		}
+		if(obj.seed[0]){
+			link.appendChild(document.createTextNode("Read about"));
+			link.setAttribute("href", "https://openlibrary.org/" + obj.seed[0]);
+			link.setAttribute("title", "Read more about " + title + "On openlibrary.org");
+			link.setAttribute("target", "_blank");
 		}
 		var cover = obj.cover_i
 		if(cover){
@@ -406,8 +438,14 @@ fetch(openBookRequest_two).then((response) => {
 			img_wrapper.appendChild(img);
 			li.appendChild(img_wrapper);
 		}
-		li.appendChild(document.createTextNode(text));
+		
+		// >> Append childs
+		p.appendChild(document.createTextNode(text));
+		li.appendChild(p);
+		li.appendChild(link);
 		//li.setAttribute("title", "isbn:" + obj.isbn[0]);
+		
+		// >> Populate target
 		recipeBookList.appendChild(li);
 	}
 })

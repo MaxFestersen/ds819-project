@@ -175,7 +175,7 @@
 				<div class="content-wrapper">
 					<div class="type-stats"></div>
 				</div>
-				<a class="source" href="#">Source: TBA</a>
+				<a class="source" href="https://en.wikipedia.org/wiki/Diabetes">Source: Wikipedia</a>
 			</aside>
 			<footer>
 				<nav class="navigation">

@@ -326,55 +326,56 @@ fetch(openBookRequest_one)
 	for (var i = 0; i < data.docs.length; i++){
 		// >> Setting object
 		var obj = data.docs[i];
-		console.log(obj)
+		//console.log(obj)
 		
 		// >> Setting html variables
 		var li = document.createElement("li");
-		var p = document.createElement("p");
-		var link = document.createElement("a");
+		var titleElem = document.createElement("h3");
+		var info = document.createElement("p");
+		var date = document.createElement("span");
 		var img = document.createElement("img");
+		var link = document.createElement("a");
+		var article = document.createElement("article");
 		
 		// >> Setting js variables and adding attributes
-		var text = "";
 		var title = obj.title;
-		if(title){
-			text = text + title;
-		}
-		var publish_year = obj.publish_year; 
-		if(publish_year && title){
-			text = text + " - "
-		}
-		if(publish_year){
-			text = text + publish_year;
-		}
+		titleElem.setAttribute("class", "book-title");
 		var author_name = obj.author_name; 
-		if(publish_year && author_name){
-			text = text + " - "
-		}
-		if(author_name){
-			text = text + " by " + author_name;
-		}
+		var publish_year = obj.publish_year;
+		info.setAttribute("class", "book-info");
 		if(obj.seed[0]){
 			link.appendChild(document.createTextNode("Read about"));
 			link.setAttribute("href", "https://openlibrary.org/" + obj.seed[0]);
 			link.setAttribute("title", "Read more about " + title + "On openlibrary.org");
 			link.setAttribute("target", "_blank");
 		}
-		var cover = obj.cover_i;
+		var cover = obj.cover_i
 		if(cover){
 			img.src = "https://covers.openlibrary.org/b/id/" + cover + ".jpg";
-			img.setAttribute("title",  text);
+			img.title = title;
 			var img_wrapper = document.createElement("div");
 			img_wrapper.classList = "image-wrapper";
 			img_wrapper.appendChild(img);
-			li.appendChild(img_wrapper);
+			article.appendChild(img_wrapper);
 		}
 		
 		// >> Append childs
-		p.appendChild(document.createTextNode(text));
-		li.appendChild(p);
-		li.appendChild(link);
-		//li.setAttribute("title", "isbn:" + obj.isbn[0]);
+		if(title){
+			titleElem.appendChild(document.createTextNode(title));
+			article.appendChild(titleElem);
+		}
+		if(author_name && publish_year){
+			info.innerHTML = "By " + author_name + " <span>" + publish_year + "</span>";
+		} else if(author_name){
+			info.appendChild(document.createTextNode("By " + author_name));
+		} else if(publish_year){
+			date.appendChild(document.createTextNode("Published: " + publish_year));
+			info.appendChild(date);
+		}
+		article.appendChild(info);
+		article.appendChild(link);
+		li.appendChild(article);
+		//article.setAttribute("title", "isbn:" + obj.isbn[0]);
 		
 		// >> Populate target
 		diabetesBookList.appendChild(li);
@@ -399,30 +400,19 @@ fetch(openBookRequest_two).then((response) => {
 		
 		// >> Setting html variables
 		var li = document.createElement("li");
-		var p = document.createElement("p");
+		var titleElem = document.createElement("h3");
+		var info = document.createElement("p");
+		var date = document.createElement("span");
 		var img = document.createElement("img");
 		var link = document.createElement("a");
+		var article = document.createElement("article");
 		
 		// >> Setting js variables and adding attributes
-		var text = ""
-		var title = obj.title; 
-		if(title){
-			text = text + title
-		}
-		var publish_year = obj.publish_year; 
-		if(publish_year && title){
-			text = text + " - "
-		}
-		if(publish_year){
-			text = text + publish_year
-		}
+		var title = obj.title;
+		titleElem.setAttribute("class", "book-title");
 		var author_name = obj.author_name; 
-		if(publish_year && author_name){
-			text = text + " - "
-		}
-		if(author_name){
-			text = text + " by " + author_name
-		}
+		var publish_year = obj.publish_year;
+		info.setAttribute("class", "book-info");
 		if(obj.seed[0]){
 			link.appendChild(document.createTextNode("Read about"));
 			link.setAttribute("href", "https://openlibrary.org/" + obj.seed[0]);
@@ -432,18 +422,30 @@ fetch(openBookRequest_two).then((response) => {
 		var cover = obj.cover_i
 		if(cover){
 			img.src = "https://covers.openlibrary.org/b/id/" + cover + ".jpg";
-			img.title = text;
+			img.title = title;
 			var img_wrapper = document.createElement("div");
 			img_wrapper.classList = "image-wrapper";
 			img_wrapper.appendChild(img);
-			li.appendChild(img_wrapper);
+			article.appendChild(img_wrapper);
 		}
 		
 		// >> Append childs
-		p.appendChild(document.createTextNode(text));
-		li.appendChild(p);
-		li.appendChild(link);
-		//li.setAttribute("title", "isbn:" + obj.isbn[0]);
+		if(title){
+			titleElem.appendChild(document.createTextNode(title));
+			article.appendChild(titleElem);
+		}
+		if(author_name && publish_year){
+			info.innerHTML = "By " + author_name + " <span>" + publish_year + "</span>";
+		} else if(author_name){
+			info.appendChild(document.createTextNode("By " + author_name));
+		} else if(publish_year){
+			date.appendChild(document.createTextNode("Published: " + publish_year));
+			info.appendChild(date);
+		}
+		article.appendChild(info);
+		article.appendChild(link);
+		li.appendChild(article);
+		//article.setAttribute("title", "isbn:" + obj.isbn[0]);
 		
 		// >> Populate target
 		recipeBookList.appendChild(li);

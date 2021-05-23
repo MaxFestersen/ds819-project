@@ -355,6 +355,11 @@ ul, ul li, ol, ol li, dl, dl dt, dl dd{
 	margin-top: 2vh;
 }
 
+.news-article-wrapper article{
+	float: left;
+	width: 100%;
+}
+
 .news-article-wrapper header img{
 	float: left;
 	width: 150px;
@@ -395,26 +400,48 @@ ul, ul li, ol, ol li, dl, dl dt, dl dd{
 }
 
 /* INFOBOX */
-.infobox-above{
-	display: none;
-	background-color: #568BD7 !important;
-}
-
-/* 	PIXABAY AND PEXELS	 */
-#pixabay-images, #pexels-images{
+.infoBox{
+	display: table;
 	float: left;
-	max-width: 30%
+	width: 100%;
+	text-align: justify;
+	border-spacing: 1vw 2vh;
 }
 
-#pixabay-images img, #pexels-images img{
-	max-width: 100%;
-	margin-bottom:10px;
+.infobox-above{
+	text-align: left;
+	background-color: transparent !important;
 }
 
-#pixabay-images img:last-child, #pexels-images img:last-child{
-	margin-bottom:0;
+.infobox-above:before{
+	content: "Scientific  name: ";
 }
 
+.infoBox .image{
+	display: block;
+	margin:0 auto;
+}
+
+.infoBox .image img{
+	display: block;
+	margin:0 auto;
+}
+
+/*	TYPE1/2 TABLE*/
+.type-stats{
+	display: table;
+	float: left;
+	width: 100%;
+	text-align: justify;
+	border-spacing: 1vw 2vh;
+}
+
+.type-stats caption{
+	font-family: 'Noto Sans', sans-serif;
+	text-align: left;
+	font-weight: 700;
+	font-size: 120%;
+}
 
 /* 	MAPBOX	 */
 #mapbox-map{
@@ -454,6 +481,13 @@ ul, ul li, ol, ol li, dl, dl dt, dl dd{
     max-width: 100%;
 	max-height: 15vh;
     margin: 0 auto;
+}
+
+.book-info{
+	font-style: italic;
+}
+.book-info span{
+	color: #666;
 }
 
 /* 	OMDB - MOVIE LIST	 */

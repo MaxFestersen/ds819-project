@@ -341,18 +341,23 @@ ul, ul li, ol, ol li, dl, dl dt, dl dd{
 }
 
 /*	NEW YORK TIMES	*/
+.news-article-wrapper{
+	float:left;
+	width: 100%;
+	padding: 2vh 0;
+	border-top: solid 1px #CC2936;
+	border-bottom: solid 1px #DEB841;
+}
+
 .news-article-wrapper:first-child{
 	padding-top: 0;
 	border-top: 0px;
 	margin-top: 0;
 }
 
-.news-article-wrapper{
-	float:left;
-	width: 100%;
-	padding-top: 1vh;
-	border-top: solid 1px #231F20;
-	margin-top: 2vh;
+.news-article-wrapper:last-child{
+	padding-bottom: 0;
+	border-bottom: 0px;
 }
 
 .news-article-wrapper article{
@@ -437,6 +442,7 @@ ul, ul li, ol, ol li, dl, dl dt, dl dd{
 }
 
 .type-stats caption{
+	display: none;
 	font-family: 'Noto Sans', sans-serif;
 	text-align: left;
 	font-weight: 700;
@@ -458,16 +464,23 @@ ul, ul li, ol, ol li, dl, dl dt, dl dd{
 	overflow-x: hidden;
 }
 
+.book-list li{
+	float:left;
+	width: 100%;
+	padding: 2vh 0;
+	border-top: solid 1px #CC2936;
+	border-bottom: solid 1px #DEB841;
+}
+
 .book-list li:first-child{
 	padding-top: 0;
 	border-top: 0px;
 	margin-top: 0;
 }
 
-.book-list li{
-	padding-top: 1vh;
-	border-top: solid 1px #231F20;
-	margin-top: 2vh;
+.book-list li:last-child{
+	padding-bottom: 0;
+	border-bottom: 0px;
 }
 
 .image-wrapper{
@@ -492,7 +505,81 @@ ul, ul li, ol, ol li, dl, dl dt, dl dd{
 
 /* 	OMDB - MOVIE LIST	 */
 #movies, #movie-list{
-	display: none;
+	float: left;
+	width: 100%;
+}
+
+#movie-list li{
+	float:left;
+	width: 100%;
+	padding: 2vh 0;
+	border-top: solid 1px #CC2936;
+	border-bottom: solid 1px #DEB841;
+}
+
+#movie-list li:first-child{
+	padding-top: 0;
+	border-top: 0px;
+	margin-top: 0;
+}
+
+#movie-list li:last-child{
+	padding-bottom: 0;
+	border-bottom: 0px;
+}
+
+
+#movie-list article{
+	float: left;
+	width: 100%;
+}
+
+#movie-list header{
+	float: left;
+	clear: both;
+	width: 100%;
+}
+
+#movie-list header img{
+	float: left;
+	height: 150px;
+	margin-right: 2vw;
+}
+
+#movie-list header h3{
+	line-height: 150px;
+}
+
+
+#movie-list header h3 span{
+	font-style: italic;
+	color: #666;
+}
+
+#movie-list footer{
+    position: relative;
+	float: left;
+	clear: both;
+    height: 0;
+	width: 50%;
+    padding-bottom: 28.125%; /* proportion value to aspect ratio 16:9 (9 / 16 = 0.5625 or 56.25%) */
+	margin-top: 1vh;
+    overflow: hidden;
+}
+
+#movie-list footer.error{
+	width: 100%;
+	height: auto;
+	padding-bottom: 0;
+}
+
+#movie-list footer iframe{
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 100%;
+	border: none;
 }
 
 /* ANIMATION */

@@ -17,9 +17,6 @@ function include(file) {
 var param = "diabetes";
 var param_alt = "low carb";
 
-// Set section variables -----------
-// None
-
 // DATE ------------------------------------------------------------------------------------------------------------------------
 // Used for some api paramers, like begin and end for new york times.
 var now = new Date();
@@ -200,28 +197,39 @@ fetch(pixabayRequest)
 })
 .then((data) => {
 	for (var i = 0; i < data.hits.length; i++){
+		// >> Create html elements
 		var obj = data.hits[i];
 		var pixImageWrapper = document.createElement("figure");
+		var pixImage = document.createElement("img");
+		var pixLogoLink = document.createElement("a");
+		var pixLogo = document.createElement("img"); // Append pixabay logo, for individual classification, for if another source might be added.
+
+		// >> Create content
+		var pixImageAbout = "By: " + obj.user + " - Tags: " + obj.tags;
+		
+		// >> Set element attributes
 		pixImageWrapper.setAttribute("class", "hero-image-wrapper");
 		pixImageWrapper.classList.add("fade");
 		pixImageWrapper.classList.add("hidden");
-		var pixImage = document.createElement("img");
 		pixImage.setAttribute("src", obj.webformatURL);
-		var pixImageAbout = "By: " + obj.user + " - Tags: " + obj.tags;
 		pixImage.setAttribute("alt", pixImageAbout);
 		pixImage.setAttribute("title", pixImageAbout);
-		pixImageWrapper.appendChild(pixImage)
-		var pixLogoLink = document.createElement("a");
-		pixLogoLink.setAttribute("id", "pixabayLogo");
-		var pixLogo = document.createElement("img"); // Append pixabay logo, for individual classification, for if another source might be added.
 		pixLogo.setAttribute("class", "hero-image-source");
 		pixLogo.setAttribute("src", "img/pixabay_logo_square.svg");
 		pixLogo.setAttribute("alt", "Pixabay logo");
-		pixLogoLink.appendChild(pixLogo);
+		pixLogoLink.setAttribute("class", "pixabay-logo");
 		pixLogoLink.setAttribute("href", "https://pixabay.com/");
 		pixLogoLink.setAttribute("target", "_blank");
 		pixLogoLink.setAttribute("title", "Banner-image source: Pixabay"); 
+		
+		// >> Set attributes
+		
+		// >> Fill elements
+		pixImageWrapper.appendChild(pixImage)
+		pixLogoLink.appendChild(pixLogo);
 		pixImageWrapper.appendChild(pixLogoLink);
+		
+		// >> Populate target
 		hero.appendChild(pixImageWrapper);
 	}
 	slideIndex = 0;
@@ -474,7 +482,118 @@ $.getJSON(wikiUrl, function (data){
 });
 
 // OMDB API ------------------------------------------------------------------------------
-//include("js/omdbapi.js");
+let omdbRequest = "http://www.omdbapi.com/?";
+omdbRequest = omdbRequest + "s=" + param; // // Search for movies with diabetes in the title
+omdbRequest = omdbRequest + "&type=movie"; // Filter for movies only (ignore series and episodes)
+omdbRequest = omdbRequest + "&apikey=" + omdbapi_key;
+//console.log(request);
+//display on the console the full API request to make sure you did everything right
+let movieList = document.getElementById("movie-list")
+
+fetch(omdbRequest)
+.then((response) => {
+	return response.json()
+})
+.then((data) => {
+	//console.log(data.Search)
+	for (var i = 0; i < data.Search.length; i++){
+		/*
+		ul
+			li
+				article
+					InfoDiv
+						Image
+						P
+							Title
+								span
+									Year
+					Trailer
+						Iframe - Trailer
+		*/
+
+		// >> Setting object
+		var obj = data.Search[i];
+		//console.log(obj)
+		
+		// >> Setting html variables
+		var li = document.createElement("li");
+		var article = document.createElement("article");
+		var movieInfo = document.createElement("h3");
+		var infoSection = document.createElement("header");
+		let trailerSection = document.createElement("footer");
+		var movieImg = document.createElement("img");
+		
+		// >> JS variables
+		//obj.Title
+		//obj.Year
+		//obj.Poster
+		
+		
+		// >> Set element attributes
+		if(obj.Poster != "N/A"){ // Ignore if set as "N/A"
+			movieImg.setAttribute("src", obj.Poster);
+			movieImg.setAttribute("alt", obj.Title);
+		}
+		
+		// >> YOUTUBE API ------------------------------------------------------------------------------
+		var ytRequest = 'https://www.googleapis.com/youtube/v3/search?'; //endpoint
+		ytRequest = ytRequest + 'part=snippet'; //Snippet?
+		ytRequest = ytRequest + "&maxResults=1"; // Limit results to 1 result
+		ytRequest = ytRequest + '&q=' + obj.Title + "%20trailer"; // %20 means space
+		ytRequest = ytRequest + YT_key;
+		//console.log(ytRequest);
+		
+		// >>> Youtube request
+		fetch(ytRequest)
+		.then((ytResponse) => {
+			return ytResponse.json();
+		})
+		.then((ytData) => {
+			if(ytData.error){
+				var errorMessage = document.createElement("p");
+				errorMessage.appendChild(document.createTextNode("No Youtube trailer was able to load."));
+				trailerSection.setAttribute("class", "error");
+				trailerSection.appendChild(errorMessage);
+			} else{
+				for (var j = 0; j < ytData.items.length; j++){
+					var ytObj = ytData.items[j];
+					var trailerIframe = document.createElement("iframe");
+					trailerIframe.setAttribute("src", "https://www.youtube.com/embed/" + ytObj.id.videoId + "?controls=0&showinfo=1");
+					trailerIframe.setAttribute("frameborder", "0");
+					trailerIframe.setAttribute("allowfullscreen", "true");
+					trailerSection.appendChild(trailerIframe);
+				}
+			}
+		}).catch((err) => {
+				var errorMessage = document.createElement("p");
+				errorMessage.appendChild(document.createTextNode("No Youtube trailer was able to load."));
+				trailerSection.setAttribute("class", "error");
+				trailerSection.appendChild(errorMessage);
+		})
+		//console.log(ytSucces);
+	
+		// >> Append childs
+		if(obj.Poster != "N/A"){
+			infoSection.appendChild(movieImg);
+		}
+		if(obj.Year != "N/A"){
+			movieInfo.innerHTML = obj.Title + " <span>" + obj.Year + "</span>";
+		} else{
+			movieInfo.appendChild(document.createTextNode(obj.Title));
+		}
+		infoSection.appendChild(movieInfo);
+		article.appendChild(infoSection);
+		article.appendChild(trailerSection);
+		li.appendChild(article);
+		
+		// >> Populate target
+		movieList.appendChild(li);
+	}
+})
+.catch((err) => {
+// Do something for an error here
+	console.log("OMDB API encountered an error.");
+})
 
 // CSV DATA
 // MÅL 8.9

@@ -14,10 +14,14 @@ Mangler:
 			openbooks
 				CHECK
 			google books
+				
 		Your own API
+			
 	Andre kilder
 		Egen Json
+			
 		Data visualization med CSV
+			CHECK
 		Infobox fra wikipedia
 			CHECK
 	Krav

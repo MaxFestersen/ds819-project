@@ -1,12 +1,15 @@
 Mangler:
 	Obgligatoriske api
 		Youtube
+			CHECK
 		Pixabay
 			CHECK
 		NYTimes
+			CHECK
 		Mapbox OR leaflet
 			Eller andet, men man skal beskrive hvordan det bruges
 		OMDB
+			CHECK
 		Books API
 			openbooks
 				CHECK

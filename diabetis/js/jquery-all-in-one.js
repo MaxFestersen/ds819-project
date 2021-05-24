@@ -597,47 +597,79 @@ fetch(omdbRequest)
 
 // CSV DATA
 // MÅL 8.9
-var results = Papa.parse("data/goal891.csv", { // Load file
+var results = Papa.parse("data/SDG03041.csv", { // Load file
 	download: true, // Fluff that needs to be there
 	complete: function(results) { // On complete
-		/*OMR20 = Object.values(extractColumn(results.data, 0));
-		OMR20.shift();
-		OMR20.pop();
-		console.log(OMR20); //OMR20	*/
-		TID = Object.values(extractColumn(results.data, 1));
-		TID.shift();
-		TID.pop();
-		//console.log(TID); //TID
-		
-		INDHOLD = Object.values(extractColumn(results.data, 2));
-		INDHOLD.shift();
-		INDHOLD.pop();
-		for (i = 0; i < INDHOLD.length; i++) {
-			INDHOLD[i] = parseFloat(INDHOLD[i]);
+		//console.log(results); //OMR20	*/
+		//INDHOLD
+		minTid = 0;
+		maxTid = 0
+		kolArr = [];
+		cancerArr = [];
+		cardiovascularArr = [];
+		diabetesArr = [];
+		for(var i = 1; i < results.data.length; i++){
+			var obj = results.data[i];
+			//console.log(obj);
+			var aarsag = obj[1];
+			var Tid = parseFloat(obj[2]);
+			var indhold = parseFloat(obj[3]);
+			if(i == 1){
+				minTid = Tid;
+				maxTid = Tid;
+			}
+			if(Tid < minTid){
+				minTid = Tid;
+			}
+			if(Tid > maxTid){
+				maxTid = Tid;
+			}
+		console.log(obj[2]);
+			switch(aarsag) {
+				case "KOL":
+					kolArr.push(indhold)
+					break;
+				case "Kræft":
+					cancerArr.push(indhold)
+					break;
+				case "Hjerte/karsygdomme":
+					cardiovascularArr.push(indhold)
+					break;
+				case "Sukkersyge":
+					diabetesArr.push(indhold)
+					break;
+				default:
+					//console.log("fail");
+			}
 		}
-		//console.log(INDHOLD); //INDHOLD
-		
 		
 		Highcharts.chart('container', {
 
 			title: {
-				text: 'Værditilvækst i turistindustrien i forhold til det samlede BNP og vækstraten heri'
+				text: ''
 			},
 
 			subtitle: {
-				text: 'År'
+				text: ''
 			},
 
+			credits: {
+				enabled: false
+			},
+			
 			yAxis: {
 				title: {
-					text: 'OMR20'
+					text: 'Mortality per 100.000 persons'
 				}
 			},
 
 			xAxis: {
 				accessibility: {
-					rangeDescription: 'Årerække: 2014 til 2016'
+					rangeDescription: 'Years: ' + minTid + "-" + maxTid
+				}, title: {
+					text: 'Years: ' + minTid + "-" + maxTid
 				}
+
 			},
 
 			legend: {
@@ -651,20 +683,30 @@ var results = Papa.parse("data/goal891.csv", { // Load file
 					label: {
 						connectorAllowed: false
 					},
-					pointStart: 2014
+					pointStart: minTid
 				}
 			},
 
 			series: [{
-				name: 'Indhold',
-				data: INDHOLD
+				name: 'Diabetes',
+				color: "#568BD7",
+				data: diabetesArr
+			}, {
+				name: 'Chronic obstructive pulmonary disease',
+				color: "#CC2936",
+				data: kolArr
+			}, {
+				name: 'Cancer',
+				color: "#DEB841",
+				data: cancerArr
+			}, {
+				name: 'Cardiovascular disease',
+				color: "#BFD8E0",
+				data: cardiovascularArr
 			}],
 
 			responsive: {
 				rules: [{
-					condition: {
-						maxWidth: 500
-					},
 					chartOptions: {
 						legend: {
 							layout: 'horizontal',

@@ -126,10 +126,10 @@
 		<section id="media">
 			<article class="aside-wrapper">
 				<header>
-					<h2 class="title">Related media.</h2>
+					<h2 class="title">Movies and documentaries about diabetes.</h2>
 				</header>
 				<div class="content-wrapper">
-					<aside id="movies" class="hidden">
+					<aside id="movies">
 						<ul id="movie-list"></ul>
 					</aside>
 				</div>
@@ -170,7 +170,7 @@
 			</article>
 			<aside>
 				<header>
-					<h2 class="title">Statistics.</h2>
+					<h2 class="title" id="stats-table">Comparison of type 1 and 2 diabetes.</h2>
 				</header>
 				<div class="content-wrapper">
 					<div class="type-stats"></div>

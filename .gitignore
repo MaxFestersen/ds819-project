@@ -1,5 +1,5 @@
 # ignore api keys
-js/keys.js
+keys.js
 
 # ignore everything in the root except the "wp-content" directory.
 !wp-content/

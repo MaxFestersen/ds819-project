@@ -157,7 +157,7 @@
 		<section id="statistics">
 			<article>
 				<header>
-					<h2 class="title">Statistics.</h2>
+					<h2 class="title" title="Mortality due to cardiovascular disease, cancer, diabetes and Chronic obstructive pulmonary disease in Denmark">Mortality due to cardiovascular disease, cancer, diabetes and Chronic obstructive pulmonary disease in Denmark.</h2>
 				</header>
 				<div class="content-wrapper">
 					<figure id="highcharts-figure" class="highcharts-figure">
@@ -166,7 +166,7 @@
 					<table id="goal-table" class="hidden">
 					</table>
 				</div>
-				<a class="source" href="#">Source: TBA</a>
+				<a class="source" href="https://www.dst.dk/da/Statistik/Sdg/03-sundhed-og-trivsel/delmaal-04/indikator-1#istart">Source: dst.dk</a>
 			</article>
 			<aside>
 				<header>

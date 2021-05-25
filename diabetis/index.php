@@ -157,7 +157,7 @@
 		<section id="statistics">
 			<article>
 				<header>
-					<h2 class="title" title="Mortality due to cardiovascular disease, cancer, diabetes and Chronic obstructive pulmonary disease in Denmark">Mortality due to cardiovascular disease, cancer, diabetes and Chronic obstructive pulmonary disease in Denmark.</h2>
+					<h2 class="title" title="Mortality due to cardiovascular disease, cancer, diabetes and Chronic obstructive pulmonary disease in Denmark">Mortality due to non-transmitable diseases in Denmark.</h2>
 				</header>
 				<div class="content-wrapper">
 					<figure id="highcharts-figure" class="highcharts-figure">

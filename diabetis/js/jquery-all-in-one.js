@@ -570,8 +570,7 @@ fetch(omdbRequest)
 				trailerSection.setAttribute("class", "error");
 				trailerSection.appendChild(errorMessage);
 		})
-		//console.log(ytSucces);
-	
+
 		// >> Append childs
 		if(obj.Poster != "N/A"){
 			infoSection.appendChild(movieImg);
@@ -624,7 +623,6 @@ var results = Papa.parse("data/SDG03041.csv", { // Load file
 			if(Tid > maxTid){
 				maxTid = Tid;
 			}
-		console.log(obj[2]);
 			switch(aarsag) {
 				case "KOL":
 					kolArr.push(indhold)
@@ -642,7 +640,8 @@ var results = Papa.parse("data/SDG03041.csv", { // Load file
 					//console.log("fail");
 			}
 		}
-		
+		//Point.setState('hover')
+		try{
 		Highcharts.chart('container', {
 
 			title: {
@@ -659,7 +658,7 @@ var results = Papa.parse("data/SDG03041.csv", { // Load file
 			
 			yAxis: {
 				title: {
-					text: 'Mortality per 100.000 persons'
+					text: 'Mortality per 100.000 danes'
 				}
 			},
 
@@ -686,16 +685,12 @@ var results = Papa.parse("data/SDG03041.csv", { // Load file
 					pointStart: minTid
 				}
 			},
+			
+			tooltip: {
+				shared: true
+			},
 
 			series: [{
-				name: 'Diabetes',
-				color: "#568BD7",
-				data: diabetesArr
-			}, {
-				name: 'Chronic obstructive pulmonary disease',
-				color: "#CC2936",
-				data: kolArr
-			}, {
 				name: 'Cancer',
 				color: "#DEB841",
 				data: cancerArr
@@ -703,6 +698,14 @@ var results = Papa.parse("data/SDG03041.csv", { // Load file
 				name: 'Cardiovascular disease',
 				color: "#BFD8E0",
 				data: cardiovascularArr
+			}, {
+				name: 'Chronic obstructive pulmonary disease',
+				color: "#CC2936",
+				data: kolArr
+			}, {
+				name: 'Diabetes',
+				color: "#568BD7",
+				data: diabetesArr
 			}],
 
 			responsive: {
@@ -718,6 +721,11 @@ var results = Papa.parse("data/SDG03041.csv", { // Load file
 			}
 
 		});
+		} catch(e){
+			// Silence error
+			// Note: An error will be produced when run. This error does not affect performance or visuals. It is not documented, and changeing any values seems to do nothing. So silence it is.
+		}
+
 	},
 	error: function() { // On error
 		console.log("CSV could not load.");

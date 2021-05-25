@@ -293,18 +293,121 @@ headers: {
 })*/
 
 // MAPBOX ---------------------------------------------------------------
+// > Set vars
 let mapboxMapWrapper = document.getElementById("mapbox-map-wrapper");
-lat=1;
-lon=1;
+lat=56.355;
+lon=9.5155848;
+diabetesMortality = false;
+
+// > Initate map
 var map = new mapboxgl.Map({
 	container: 'mapbox-map', // container id
-	style: 'mapbox://styles/mapbox/streets-v11', // style URL
+	style: 'mapbox://styles/maxfest/ckp3x4zqf2q7l18sur9tt7xr0', // style URL
 	center: [lon, lat], // starting position [lng, lat]
-	zoom: 10 // starting zoom
+	zoom: 6, // starting zoom
 });
-let mapboxMap = document.getElementById("mapbox-map");
-mapboxMap.setAttribute("title", "Breddegrad: " + lat + ". Længdegrad: " + lon + ".");
+
+// > Load local json file
+fetch('data/deabetis_death_denmark_2019_by_region.json',{
+	headers : { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+       }
+})
+.then(response => response.text())
+.then((data) => {
+	//console.log(data);
+	diabetesMortality = JSON.parse(String(data));
+	//console.log(diabetesMortality);
+})
+
+// > Populate map after load
+map.on('load', function (e) {
+	map.addSource('places', {
+		'type': 'geojson',
+		'data': diabetesMortality
+	});
 	
+	map.addLayer({
+		'id': '0',
+		'type': 'fill',
+		'source': 'places',
+		'layout': {},
+		'paint': {
+			'fill-color': [
+				'interpolate',
+				['linear'],
+				['get', 'mortality'], // Bad attribute to color by point (it will change if updated), but it was a lot more easy than grouping by any other attribute.
+				129,
+				'#2b456b',
+				226,
+				'#CC2936',
+				235,
+				'#DEB841',
+				299,
+				'#231F20',
+				397,
+				'#568BD7'
+			],
+			'fill-opacity': 0.5
+		}
+	});
+});
+
+// > Map info -------------------------------------------------------
+// >> Set vars
+let mapboxMap = document.getElementById("mapbox-map-info");
+
+map.on('load', function (e) {
+	for (var i = 0; i < diabetesMortality.features.length; i++){
+		// >>> Setting object
+		var obj = diabetesMortality.features[i].properties;
+		//console.log(obj)
+		
+		// >>> Setting html variables
+		var mapInfoLi = document.createElement("li");
+		var mapInfoColorBox = document.createElement("figure");
+		var mapInfoText = document.createElement("p");
+		
+		// >> Setting js variables
+		var mapInfoName = obj.name;
+		var mapInfoMortality = obj.mortality;
+		var mapInfoColor = "#2b456b";
+		//console.log(mapInfoMortality);
+		switch(mapInfoMortality) {
+			case 129:
+				mapInfoColor = "#2b456b";
+				break;
+			case 226:
+				mapInfoColor = "#CC2936";
+				break;
+			case 235:
+				mapInfoColor = "#DEB841";
+				break;
+			case 299:
+				mapInfoColor = "#231F20";
+				break;
+			case 397:
+				mapInfoColor = "#568BD7";
+				break;
+			default:
+				mapInfoColor = "#000";
+				break;
+		}
+
+		// >> Setting attributes
+		mapInfoColorBox.setAttribute("style", "background-color:" + mapInfoColor + ";");
+		
+		// >> Append childs
+		mapInfoText.innerHTML = mapInfoName + ": <span>" + mapInfoMortality + "</span>";
+		mapInfoLi.appendChild(mapInfoColorBox);
+		mapInfoLi.appendChild(mapInfoText);
+		
+		// >> Populate target
+		mapboxMap.appendChild(mapInfoLi);
+	}
+});
+
 // OPEN LIBRARY ----------------------------------------------------------
 //http://openlibrary.org/search.json?q=Odense&lan=dan
 

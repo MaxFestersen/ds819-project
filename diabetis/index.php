@@ -190,21 +190,21 @@
 		<section id="map">
 			<article>
 				<header>
-					<h2 class="title">Map.</h2>
-				</header>
-				<div class="content-wrapper">
-					<p>Content to be added...</p>
-				</div>
-				<a class="source" href="#">Source: TBA</a>
-			</article>
-			<aside id="mapbox-map-wrapper">
-				<header>
-					<h2 class="title">Map.</h2>
+					<h2 class="title" title="Mortality due to deabetis in Denmark 2019 by region">Map: Mortality due to deabetis in Denmark 2019 by region</h2>
 				</header>
 				<div class="content-wrapper">
 					<div id="mapbox-map"></div>
 				</div>
-				<a class="source" href="#">Source: TBA</a>
+				<a class="source" href="https://www.statistikbanken.dk/FOD507">Source: Danmarks Statistik</a>
+			</article>
+			<aside id="mapbox-map-wrapper">
+				<header>
+					<h2 class="title">Info for map</h2>
+				</header>
+				<div class="content-wrapper">
+					<ul id="mapbox-map-info"></ul>
+				</div>
+				<a class="source" href="https://www.statistikbanken.dk/FOD507">Source: Danmarks Statistik</a>
 			</aside>
 			<footer>
 				<nav class="navigation">

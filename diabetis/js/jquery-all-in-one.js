@@ -1,6 +1,6 @@
 // Define variables ------------------------------------------------------------------------------------------------------------
 var param = "diabetes";
-var param_alt = "low carb";
+var paramAlt = "low carb";
 
 // DATE ------------------------------------------------------------------------------------------------------------------------
 // Used for some api paramers, like begin and end for new york times.
@@ -31,7 +31,7 @@ nytRequest = nytRequest + 'begin_date=' + pastString; // Begin date on format YY
 nytRequest = nytRequest + '&end_date=' + nowString; // End date on format YYYYMMDD
 nytRequest = nytRequest + '&sort=newest'; // Sort by newest news
 nytRequest = nytRequest + '&q=keywords=diabetes'; // Filter by parameter
-nytRequest = nytRequest + '&key=' + nyt_key;
+nytRequest = nytRequest + '&key=' + nytKey;
 //console.log(nytRequest);
 
 // > Elements
@@ -159,11 +159,11 @@ pixabayRequest = pixabayRequest + "&orientation=horizontal";
 pixabayRequest = pixabayRequest + "&order=latest"; 
 pixabayRequest = pixabayRequest + "&page=1"; // Result page  (also is used in relation to per_page)
 pixabayRequest = pixabayRequest + "&per_page=20"; // Limit results (also is used in relation to page)
-pixabayRequest = pixabayRequest + "&key=" + pixabay_key;
+pixabayRequest = pixabayRequest + "&key=" + pixabayKey;
 //console.log(pixabayRequest);
 
 // > Elements
-let hero = document.getElementById("main-header")
+let hero = document.getElementById("main-header");
 
 // > Fetch
 fetch(pixabayRequest)
@@ -196,8 +196,6 @@ fetch(pixabayRequest)
 		pixLogoLink.setAttribute("href", "https://pixabay.com/");
 		pixLogoLink.setAttribute("target", "_blank");
 		pixLogoLink.setAttribute("title", "Banner-image source: Pixabay"); 
-		
-		// >> Set attributes
 		
 		// >> Fill elements
 		pixImageWrapper.appendChild(pixImage)
@@ -342,7 +340,7 @@ map.on('load', function (e) {
 // > Request
 let openBookRequest = "http://openlibrary.org/search.json";
 let openBookRequest_one = openBookRequest + "?title=" + param; // Filter for diabetes
-let openBookRequest_two = openBookRequest + "?title=" + param_alt; // Filter for low carb recipies
+let openBookRequest_two = openBookRequest + "?title=" + paramAlt; // Filter for low carb recipes
 openBookRequest_one = openBookRequest_one + "&lan=dan"; // Filter for danish results
 openBookRequest_two = openBookRequest_two + "&lan=dan"; // Filter for danish results
 openBookRequest_two = openBookRequest_two + "&subject=Recipes"; // Filter for danish results
@@ -426,7 +424,8 @@ fetch(openBookRequest_one)
 })
 
 // > Fetch 2:  Recipies booklist -----------
-fetch(openBookRequest_two).then((response) => {
+fetch(openBookRequest_two)
+.then((response) => {
 	return response.json()
 })
 .then((data) => {
@@ -513,10 +512,11 @@ $.getJSON(wikiUrl, function (data){
 });
 
 // OMDB API ------------------------------------------------------------------------------
+/*
 let omdbRequest = "http://www.omdbapi.com/?";
 omdbRequest = omdbRequest + "s=" + param; // // Search for movies with diabetes in the title
 omdbRequest = omdbRequest + "&type=movie"; // Filter for movies only (ignore series and episodes)
-omdbRequest = omdbRequest + "&apikey=" + omdbapi_key;
+omdbRequest = omdbRequest + "&apikey=" + omdbapiKey;
 //console.log(request);
 //display on the console the full API request to make sure you did everything right
 let movieList = document.getElementById("movie-list")
@@ -540,7 +540,7 @@ fetch(omdbRequest)
 									Year
 					Trailer
 						Iframe - Trailer
-		*/
+		*//*
 
 		// >> Setting object
 		var obj = data.Search[i];
@@ -566,7 +566,7 @@ fetch(omdbRequest)
 		ytRequest = ytRequest + 'part=snippet'; //Snippet?
 		ytRequest = ytRequest + "&maxResults=1"; // Limit results to 1 result
 		ytRequest = ytRequest + '&q=' + obj.Title + "%20trailer"; // %20 means space
-		ytRequest = ytRequest + YT_key;
+		ytRequest = ytRequest + YTKey;
 		//console.log(ytRequest);
 		
 		// >>> Youtube request
@@ -618,9 +618,273 @@ fetch(omdbRequest)
 .catch((err) => {
 // Do something for an error here
 	console.log("OMDB API encountered an error.");
-})
+})*/
 
-// CSV DATA
+// RECIPE SEARCH API --------------------------------------------------------------------------------------------------------
+// http://www.recipepuppy.com/about/api/
+// https://spoonacular.com/food-api/docs#Search-Recipes-Complex
+// https://spoonacular.com/food-api/docs#Get-Recipe-Information
+// > Elements
+let recipeWrapper = document.getElementById("recipe-wrapper");
+
+function recipeSearchRequest(){
+	// Reset target
+	recipeWrapper.innerHTML = "";
+
+	// > Get user parameters
+	let searchParam = document.getElementById("recipe-search").value;
+	let ingedientsParam = document.getElementById("recipe-ingredients").value;
+	let recipeMealTypeParam = document.getElementById("recipe-meal-type");
+	let recipeDietParam = document.getElementById("recipe-meal-diet");
+	let recipeIntolerancesParam = document.getElementById("recipe-meal-intolerances");
+	let recipeCuisineParam = document.getElementById("recipe-meal-cuisines");
+	//let recipeLiElemmitParam = document.getElementById("recipe-limit").value;
+	let recipeCarbLimitParam = document.getElementById("recipe-carb-limit").value;
+	
+	// > Format user/form parameters
+	// >> Search type
+	searchParam = searchParam.trim().replace(" ", "%00");
+	ingedientsParam = ingedientsParam.trim().replace(" ", "%00").toLowerCase();
+	if(ingedientsParam){
+		ingedientsParam = "&includeIngredients=" + ingedientsParam;
+	} else{
+		includeIngredients = "";
+	}
+	
+	// >> Select type
+	recipeMealTypeParam = recipeMealTypeParam.options[recipeMealTypeParam.selectedIndex].value;
+	let recipeMealType = "";
+	if(recipeMealTypeParam != "any"){
+		recipeMealType = "&type" + recipeMealTypeParam;
+	}
+	recipeIntolerancesParam = recipeIntolerancesParam.options[recipeIntolerancesParam.selectedIndex].value;
+	let recipeIntolerances = "";
+	if(recipeIntolerancesParam != "none"){
+		recipeIntolerances = "&intolerances" + recipeIntolerancesParam;
+	}
+	recipeDietParam = recipeDietParam.options[recipeDietParam.selectedIndex].value;
+	let recipeDiet = "";
+	if(recipeDietParam != "none"){
+		recipeDiet = "&diet" + recipeDietParam;
+	}
+	recipeCuisineParam = recipeCuisineParam.options[recipeCuisineParam.selectedIndex].value;
+	let recipeCuisine = "";
+	if(recipeCuisineParam != "any"){
+		recipeCuisine = "&cuisine" + recipeCuisineParam;
+	}
+	
+	// Number type
+	let recipeCarbLimit = "";
+	if(recipeCarbLimitParam>1){
+		recipeCarbLimit = "&maxCarbs=" + parseInt(recipeCarbLimitParam);
+	} else{
+		recipeCarbLimit = "&maxCarbs=1";
+	}
+	let recipeLiElemmit = "";
+	/*if(recipeLiElemmitParam>1 && recipeLiElemmitParam<=5){
+		recipeLiElemmit = "&number=" + recipeLiElemmit;
+	} else{*/
+		recipeLiElemmit = "&number=1";
+	//}
+	
+	// > Request
+	let recipeSearchRequest = "https://api.spoonacular.com/recipes/complexSearch/?";
+	recipeSearchRequest = recipeSearchRequest + "query=" + searchParam; // Search by input value
+	recipeSearchRequest = recipeSearchRequest + recipeMealType; // Filter by type
+	recipeSearchRequest = recipeSearchRequest + recipeIntolerances; // Filter by intolerances
+	recipeSearchRequest = recipeSearchRequest + recipeDiet; // Filter by diet
+	recipeSearchRequest = recipeSearchRequest + recipeCuisine; // Filter by cuisine
+	recipeSearchRequest = recipeSearchRequest + recipeCarbLimit; // Filter by cuisine
+	recipeSearchRequest = recipeSearchRequest + recipeLiElemmit; // Limit results
+	if(recipeSearchRequest !== "https://api.spoonacular.com/recipes/complexSearch/?query=&number=1"){
+		// Add key or fail intentionally
+		recipeSearchRequest = recipeSearchRequest + spoonacularKey; // Search by input value
+	}
+	console.log(recipeSearchRequest);
+	
+	// > Fetch
+	fetch(recipeSearchRequest)
+	.then((response) => {
+		return response.json();
+	})
+	.then((data) => {
+		console.log(data);
+		var obj = data.results
+		if(obj.length>0){
+			for (let i = 0; i < obj.length; i++){
+				/*
+				ul
+					li
+						article
+							header
+								Image
+								Title
+								Read more
+							footer
+								Carbs
+								Info
+								Source
+									name & link
+				*/
+				// >> Create html elements
+				var recipeUlElem = document.createElement("ul");
+				var recipeLiElem = document.createElement("li");
+				var recipeArticleiElem = document.createElement("article");
+				var recipeHeaderElem = document.createElement("header");
+				var recipeImageElem = document.createElement("img");
+				var recipeTitleElem = document.createElement("h3");
+				var recipeReadMoreElem = document.createElement("a");
+				var recipeFooterElem = document.createElement("footer");
+				var recipeSourceElem = document.createElement("a");
+				var recipeCarbsElem = document.createElement("p");
+				var recipeInfoElem = document.createElement("p");
+				
+				// >> Create content
+				var recipeId = obj[i].id;
+				var recipeImage = obj[i].image;
+				var recipeCarbs = obj[i].carbs;
+				if(!recipeCarbs){
+					//Inconsistent position. Might be a top level attribute. Might have some place among nutrition.nutrients. Posibly other places.
+					let recipeNutrition = obj[i].nutrition.nutrients;
+					for(let j = 0; j < recipeNutrition.length; j++){
+						if(obj[i].nutrition.nutrients[j].title == "Carbohydrates" || obj[i].nutrition.nutrients[j].title == "Carb" || obj[i].nutrition.nutrients[j].title == "Carbs"){
+							recipeCarbs = obj[i].nutrition.nutrients[j].amount.toFixed(2).toString().replace(".", ",") + obj[i].nutrition.nutrients[j].unit + " Carbs";
+							break;
+						}
+					}
+				} else{
+					recipeCarbs = recipeCarbs + " Carbs";
+				}
+				var recipeTitle = "";
+				var recipeInfoString = "";
+				var sourceText = "";
+				var sourceUrl = "";
+				
+				// >>> Get recipe Infoemarion
+				var recipeRequest = "https://api.spoonacular.com/recipes/" + recipeId + "/information?includeNutrition=false";
+				recipeRequest = recipeRequest + spoonacularKey; // Search by input value
+				console.log(recipeRequest);
+				fetch(recipeRequest)
+				.then((recipeRequestResponse) => {
+					return recipeRequestResponse.json();
+				})
+				.then((recipeData) => {
+					console.log(recipeData);
+					recipeTitle = recipeData.title;
+					sourceText = recipeData.creditsText;
+					sourceUrl = recipeData.sourceUrl;
+					if(recipeData.servings){
+						recipeInfoString = recipeInfoString + ", Servings: " + recipeData.servings;
+					}
+					if(recipeData.readyInMinutes){
+						recipeInfoString = recipeInfoString + ", Ready in: " + recipeData.readyInMinutes;
+					}
+					if(recipeData.dairyFree){
+						recipeInfoString = recipeInfoString + ", Dairy free";
+					}
+					if(recipeData.vegan){
+						recipeInfoString = recipeInfoString + ", Vegan";
+					}
+					if(recipeData.vegetarian){
+						recipeInfoString = recipeInfoString + ", Vegetarian";
+					}
+					if(recipeData.glutenFree){
+						recipeInfoString = recipeInfoString + ", Gluten free";
+					}
+					if(recipeData.sustainable){
+						recipeInfoString = recipeInfoString + ", Sustainable";
+					}
+					if(recipeData.veryHealthy){
+						recipeInfoString = recipeInfoString + ", Healthy";
+					} else{
+						recipeInfoString = recipeInfoString + ", Not specified as healthy";
+					}
+					if(recipeData.veryPopular){
+						recipeInfoString = recipeInfoString + ", Popular";
+					} else{
+						recipeInfoString = recipeInfoString + ", Not popular";
+					}
+					if(recipeData.cheap){
+						recipeInfoString = recipeInfoString + ", Cheap";
+					} else{
+						recipeInfoString = recipeInfoString + ", Not cheap";
+					}
+					if(recipeData.dishTypes){
+						for(let j = 0; j < recipeData.dishTypes.length; j++){
+							recipeInfoString = recipeInfoString + ", " + recipeData.dishTypes[j];
+						}
+					}
+					if(recipeData.diets){
+						for(let j = 0; j < recipeData.diets.length; j++){
+							recipeInfoString = recipeInfoString + ", " + recipeData.diets[j];
+						}
+					}
+					if(recipeData.cuisines){
+						for(let j = 0; j < recipeData.cuisines.length; j++){
+							recipeInfoString = recipeInfoString + ", " + recipeData.cuisines[j];
+						}
+					}
+					if(recipeInfoString){
+						recipeInfoString = recipeInfoString.slice(1); // Remove starting comma
+						recipeInfoString = recipeInfoString.trim();
+					}
+					recipeReadMoreElem.setAttribute("href", sourceUrl);
+					recipeReadMoreElem.setAttribute("title", sourceText);
+					recipeSourceElem.setAttribute("href", sourceUrl);
+					recipeImageElem.setAttribute("src", recipeImage);
+					recipeImageElem.setAttribute("alt", recipeTitle);
+					recipeTitleElem.setAttribute("title", recipeTitle);
+					recipeReadMoreElem.setAttribute("title", "Read more on " + sourceUrl);
+					// >> Set attributes
+					//console.log(recipeImage);
+					recipeSourceElem.setAttribute("class", "source");
+					recipeCarbsElem.setAttribute("class", "recipe-carb-amount");
+					recipeInfoElem.setAttribute("class", "recipe-info");
+					
+					// >> Fill elements
+					recipeTitleElem.appendChild(document.createTextNode(recipeTitle));
+					recipeReadMoreElem.appendChild(document.createTextNode("Read more"));
+					recipeHeaderElem.appendChild(recipeImageElem);
+					recipeHeaderElem.appendChild(recipeTitleElem);
+					recipeHeaderElem.appendChild(recipeReadMoreElem);
+					recipeCarbsElem.appendChild(document.createTextNode(recipeCarbs));
+					recipeInfoElem.appendChild(document.createTextNode(recipeInfoString));
+					recipeSourceElem.appendChild(document.createTextNode(sourceText));
+					recipeFooterElem.appendChild(recipeCarbsElem);
+					recipeFooterElem.appendChild(recipeInfoElem);
+					recipeFooterElem.appendChild(recipeSourceElem);
+					recipeArticleiElem.appendChild(recipeHeaderElem);
+					recipeArticleiElem.appendChild(recipeFooterElem);
+					recipeLiElem.appendChild(recipeArticleiElem);
+					recipeUlElem.appendChild(recipeLiElem);
+					
+					// >> Populate target
+					recipeWrapper.appendChild(recipeUlElem);
+				})
+				.catch((err) => {
+					recipeWrapper.innerHTML = "<p>Could not find any recipes</p>";
+					console.log(err);
+				});
+			}
+		} else{
+			recipeWrapper.innerHTML = "<p>Could not find any recipes</p>";
+		}
+	})
+	.catch((err) => {
+		recipeWrapper.innerHTML = "<p>Could not find any recipes</p>";
+		console.log(err);
+	});
+	return(false);
+}
+
+
+// Run on load
+document.addEventListener('DOMContentLoaded', function(){
+	recipeSearchRequest();
+}, false);
+
+
+// CSV DATA -----------------------------------------------------------------------------------------------------------------
 // MÅL 8.9
 var results = Papa.parse("data/SDG03041.csv", { // Load file - https://www.papaparse.com/docs
 	download: true, // Fluff that needs to be there

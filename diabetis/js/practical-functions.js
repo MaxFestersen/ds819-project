@@ -1,4 +1,5 @@
 // Scroll to id of event href (use onclick from a a element)
+// From previous project by me
 function scrollTo(){
 	// Logic
 	event.preventDefault(); // Stop default scroll logic

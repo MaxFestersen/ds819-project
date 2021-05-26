@@ -51,7 +51,7 @@
 	</header>
 	<nav id="mainnavigation">
 		<ul>
-			<li><a href="#recipies" onclick="scrollTo()">Recipies</a></li>
+			<li><a href="#recipes" onclick="scrollTo()">Recipies</a></li>
 			<li><a href="#information" onclick="scrollTo()">Information</a></li>
 			<li><a href="#media" onclick="scrollTo()">Media</a></li>
 			<li><a href="#mortality" onclick="scrollTo()">Mortality</a></li>
@@ -59,17 +59,113 @@
 		</ul>
 	</nav>
 	<main>
-		<section id="recipies">
+		<section id="recipes">
 			<article>
 				<header>
-					<h2 class="title">Low carb recipies.</h2>
+					<h2 class="title">Recipe</h2>
 				</header>
 				<div class="content-wrapper">
-					<p>Content to be added...</p>
+					<div id="recipe-wrapper"></div>
 				</div>
-				<a class="source" href="#">Source: TBA</a>
+				<a class="source" href="https://spoonacular.com/">Source: Spoonacular</a>
 			</article>
 			<aside>
+				<header>
+					<h2 class="title">Search and filter Recipes</h2>
+				</header>
+				<div class="content-wrapper">
+					<form id="recipe-search-form" onsubmit="recipeSearchRequest(); return false;">
+						<label for="recipe-search">Query:</label>
+						<input id="recipe-search" type="Search" value="Low Carb" placeholder="Query" name="recipe-search" title="Ssarch for anything" required />
+						<label for="recipe-ingredients">Ingredients (seperate with comma):</label>
+						<input id="recipe-ingredients" type="Search" value="" placeholder="Ingredients" name="recipe-ingredients" title="Seperate with comma" />
+						<label for="recipe-meal-type">Meal type:</label>
+						<select name="recipe-meal-type" id="recipe-meal-type" title="Choose type of meal from dropdown">
+							<option value="any">Any</option>
+							<option value="main%20course">Main course</option>
+							<option value="side%20dish">Side dish</option>
+							<option value="desert">Desert</option>
+							<option value="appetizer">Appetizer</option>
+							<option value="salad">Salad</option>
+							<option value="bread">Bread</option>
+							<option value="breakfast">Breakfast</option>
+							<option value="soup">Soup</option>
+							<option value="beverage">Beverage</option>
+							<option value="sauce">Sauce</option>
+							<option value="marinade">Marinade</option>
+							<option value="fingerfood">Fingerfood</option>
+							<option value="snack">Snack</option>
+							<option value="drink">Drink</option>
+						</select>
+						<label for="recipe-meal-cuisines">Cuisines:</label>
+						<select name="recipe-meal-cuisines" id="recipe-meal-cuisines" title="Choose cuisines from dropdown">
+							<option value="any">Any</option>
+							<option value="African">African</option>
+							<option value="American">American</option>
+							<option value="British">British</option>
+							<option value="Cajun">Cajun</option>
+							<option value="Caribbean">Caribbean</option>
+							<option value="Chinese">Chinese</option>
+							<option value="Eastern%00European">Eastern European</option>
+							<option value="European">European</option>
+							<option value="French">French</option>
+							<option value="German">German</option>
+							<option value="Greek">Greek</option>
+							<option value="Indian">Indian</option>
+							<option value="Irish">Irish</option>
+							<option value="Italian">Italian</option>
+							<option value="Japanese">Japanese</option>
+							<option value="Jewish">Jewish</option>
+							<option value="Korean">Korean</option>
+							<option value="Latin%00American">Latin American</option>
+							<option value="Mediterranean">Mediterranean</option>
+							<option value="Mexican">Mexican</option>
+							<option value="Middle%00Eastern">Middle Eastern</option>
+							<option value="Nordic">Nordic</option>
+							<option value="Southern">Southern</option>
+							<option value="Spanish">Spanish</option>
+							<option value="Thai">Thai</option>
+							<option value="Vietnamese">Vietnamese</option>
+						</select>
+						<label for="recipe-meal-intolerances">Intolerances:</label>
+						<select name="recipe-meal-intolerances" id="recipe-meal-intolerances" title="Choose intolerances from dropdown">
+							<option value="none">Not set</option>
+							<option value="Dairy">Dairy</option>
+							<option value="Egg">Egg</option>
+							<option value="Gluten">Gluten</option>
+							<option value="Grain">Grain</option>
+							<option value="Peanut">Peanut</option>
+							<option value="Seafood">Seafood</option>
+							<option value="Sesame">Sesame</option>
+							<option value="Shellfish">Shellfish</option>
+							<option value="Soy">Soy</option>
+							<option value="Sulfite">Sulfite</option>
+							<option value="Tree%20Nut">Tree Nut</option>
+							<option value="Wheat">Wheat</option>
+						</select>
+						<label for="recipe-meal-diet">Diet:</label>
+						<select name="recipe-meal-diet" id="recipe-meal-diet" title="Choose diet from dropdown">
+							<option value="none">Not set</option>
+							<option value="Gluten%20Free">Gluten Free</option>
+							<option value="Ketogenic">Ketogenic</option>
+							<option value="Vegetarian">Vegetarian</option>
+							<option value="Lacto-Vegetarian">Lacto-Vegetarian</option>
+							<option value="Ovo-Vegetarian">Ovo-Vegetarian</option>
+							<option value="Vegan">Vegan</option>
+							<option value="Pescetarian">Pescetarian</option>
+							<option value="Paleo">Paleo</option>
+							<option value="Primal">Primal</option>
+							<option value="Whole30">Whole30</option>
+						</select>
+						<label for="recipe-carb-limit">Maximum number of carbs:</label>
+						<input id="recipe-carb-limit" type="number" value="100" min="0" placeholder="Max carb" name="recipe-carb-limit" title="Maximum number of carbs" required />
+						<label for="recipe-limit">Result limit:</label>
+						<!--<input id="recipe-limit" type="number" value="2" min="0" max="5" placeholder="1-5" name="recipe-limit" title="Limit results" />-->
+						<input type="submit" value="Submit" title="Search for recipes with ingredient">
+					</form>
+				</div>
+			</aside>
+			<article>
 				<header>
 					<h2 class="title">Recipe books.</h2>
 				</header>
@@ -77,7 +173,7 @@
 					<ul id="recipe-book-list" class="hidden book-list"></ul>
 				</div>
 				<a class="source" href="https://openlibrary.org/">Source: open library</a>
-			</aside>
+			</article>
 			<footer>
 				<nav class="navigation">
 					<ul>
@@ -110,7 +206,7 @@
 			<footer>
 				<nav class="navigation">
 					<ul>
-						<li><a href="#recipies" onclick="scrollTo()" title="Scroll to recipies section">Previous section <</a></li>
+						<li><a href="#recipes" onclick="scrollTo()" title="Scroll to recipes section">Previous section <</a></li>
 						<li><a href="#media" onclick="scrollTo()" title="Scroll to media section">Next section ></a></li>
 						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top ^</a></li>
 					</ul>

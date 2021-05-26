@@ -232,7 +232,7 @@ section > footer{
 
 
 /* 	TEXT	 */
-span, p, a, h1, h2, h3, h4, h5, h6, th, td, li, img{
+span, p, a, h1, h2, h3, h4, h5, h6, th, td, li, img, label, input, option, select {
 	font-family: 'Noto Sans', sans-serif;
 }
 
@@ -328,6 +328,125 @@ ul, ul li, ol, ol li{
 	white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+}
+
+/*	RECIPIES	*/
+#recipe-wrapper, #recipe-wrapper ul{
+	float:left;
+	width: 100%;
+}
+
+#recipe-wrapper li{
+	float:left;
+	width: 100%;
+	padding: 2vh 0;
+	border-top: solid 1px #CC2936;
+	border-bottom: solid 1px #DEB841;
+}
+
+#recipe-wrapper li:first-child{
+	padding-top: 0;
+	border-top: 0px;
+	margin-top: 0;
+}
+
+#recipe-wrapper li:last-child{
+	padding-bottom: 0;
+	border-bottom: 0px;
+}
+
+#recipe-wrapper article{
+	float: left;
+	width: 100%;
+}
+
+#recipe-wrapper header img{
+	float: left;
+	width: 150px;
+	height: 150px;
+	margin-right: 2vw;
+}
+
+#recipe-wrapper header h3{
+	max-width: calc(70% - 75px - 1vw);
+}
+
+#recipe-wrapper header a{
+	float:right;
+	max-width: calc(30% - 75px - 1vw);
+}
+
+#recipe-wrapper header h3,
+#recipe-wrapper header a{
+	line-height: 150px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+#recipe-wrapper footer .recipe-carb-amount{
+	color: #231F20;
+	font-weight: 700;
+	clear: both;
+}
+
+#recipe-wrapper footer .recipe-info{
+	font-style: italic;
+}
+#recipe-wrapper footer a{
+	clear: both;
+	font-style: italic;
+}
+
+#recipe-wrapper header,
+#recipe-wrapper div,
+#recipe-wrapper footer{
+	float: left;
+	clear: both;
+	width: 100%;
+}
+
+#recipe-search-form{
+	float: left;
+	width: 100%;
+}
+
+#recipe-search-form label{
+	clear: left;
+	padding: 1vh 0;
+	margin-top: 0.5vh;
+}
+
+#recipe-search-form label:first-child{
+	margin-top: 0;
+}
+
+#recipe-search-form input[type="search"],
+#recipe-search-form input[type="number"],
+#recipe-search-form select{
+	clear: right;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 1vh 1vw;
+	border: solid 1px #568BD7;
+	margin-bottom: 0.5vh;
+}
+
+#recipe-search-form input[type="submit"]{
+	clear: both;
+	font-weight: 700;
+	color: #231F20;
+	background-color: #568BD7;
+	box-sizing: border-box;
+	width: 100%;
+	padding: 1vh 1vw;
+	border: solid 2px #231F20;
+	margin-top: 1vh;
+}
+
+#recipe-search-form input[type="submit"]:hover{
+	cursor: pointer;
+	background-color: #446fac;
 }
 
 /*	NEW YORK TIMES	*/
@@ -510,9 +629,29 @@ ul, ul li, ol, ol li{
 
 .image-wrapper img{
     display: block;
+	float: left;
     max-width: 100%;
-	max-height: 15vh;
+	max-height: 20vh;
     margin: 0 auto;
+}
+
+#recipe-book-list h3,
+#recipe-book-list p,
+#recipe-book-list a{
+	clear: right;
+}
+
+#recipe-book-list .image-wrapper{
+	float: left;
+	clear: right;
+	width: auto;
+	line-height: inherit;
+}
+
+#recipe-book-list img{
+	display: inline-block;
+	margin:0;
+	margin-right: 2vw;
 }
 
 .book-info{

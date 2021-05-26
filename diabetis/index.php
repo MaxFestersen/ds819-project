@@ -54,7 +54,6 @@
 			<li><a href="#recipies" onclick="scrollTo()">Recipies</a></li>
 			<li><a href="#information" onclick="scrollTo()">Information</a></li>
 			<li><a href="#media" onclick="scrollTo()">Media</a></li>
-			<li><a href="#statistics" onclick="scrollTo()">Statistics</a></li>
 			<li><a href="#mortality" onclick="scrollTo()">Mortality</a></li>
 			<li><a href="#about" onclick="scrollTo()">About</a></li>
 		</ul>
@@ -143,13 +142,13 @@
 				<nav class="navigation">
 					<ul>
 						<li><a href="#information" onclick="scrollTo()" title="Scroll to information section">Previous section <</a></li>
-						<li><a href="#statistics" onclick="scrollTo()" title="Scroll to statistics section">Next section ></a></li>
+						<li><a href="#mortality" onclick="scrollTo()" title="Scroll to mortality section">Next section ></a></li>
 						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top ^</a></li>
 					</ul>
 				</nav>
 			</footer>
 		</section>
-		<section id="statistics">
+		<section id="mortality">
 			<article>
 				<header>
 					<h2 class="title" title="Mortality due to cardiovascular disease, cancer, diabetes and Chronic obstructive pulmonary disease in Denmark">Mortality due to non-transmitable diseases in Denmark.</h2>
@@ -172,17 +171,6 @@
 				</div>
 				<a class="source" href="https://en.wikipedia.org/wiki/Diabetes">Source: Wikipedia</a>
 			</aside>
-			<footer>
-				<nav class="navigation">
-					<ul>
-						<li><a href="#media" onclick="scrollTo()" title="Scroll to media section">Previous section <</a></li>
-						<li><a href="#mortality" onclick="scrollTo()" title="Scroll to mortality section">Next section ></a></li>
-						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top ^</a></li>
-					</ul>
-				</nav>
-			</footer>
-		</section>
-		<section id="mortality">
 			<article>
 				<header>
 					<h2 class="title" title="Mortality due to deabetis in Denmark 2019 by region">Map: Mortality due to deabetis in Denmark 2019 by region</h2>
@@ -204,7 +192,7 @@
 			<footer>
 				<nav class="navigation">
 					<ul>
-						<li><a href="#statistics" onclick="scrollTo()" title="Scroll to statistics section">Previous section <</a></li>
+						<li><a href="#media" onclick="scrollTo()" title="Scroll to media section">Previous section <</a></li>
 						<li><a href="#about" onclick="scrollTo()" title="Scroll to about section">Next section ></a></li>
 						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top ^</a></li>
 					</ul>

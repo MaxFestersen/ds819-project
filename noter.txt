@@ -16,7 +16,7 @@ Mangler:
 			google books
 				
 		Your own API
-			
+			CHECK
 	Andre kilder
 		Egen Json
 			CHECK
@@ -27,12 +27,15 @@ Mangler:
 	Krav
 		Ingen hard coded kode til elementer
 			Altså fyld containere med kode der genereres i javascript.
+				CHECK
 		Der skal arbejdes ud fra
 			Data Driven Design principles
 			Data Communication process life-cykle
 			Data communication principles
 			Integration of data and information from different sources by the use of web technoligies such as HTML, CSS, JavaScript
+				CHECK
 		No dummy content is allowed
+			CHECK
 		Kildedokumentation til alt kode der er brugt fra tutorials og tips
 			CHECK
 	Indhold

@@ -7,7 +7,7 @@ Mangler:
 		NYTimes
 			CHECK
 		Mapbox OR leaflet
-			Eller andet, men man skal beskrive hvordan det bruges
+			CHECK
 		OMDB
 			CHECK
 		Books API
@@ -19,7 +19,7 @@ Mangler:
 			
 	Andre kilder
 		Egen Json
-			
+			CHECK
 		Data visualization med CSV
 			CHECK
 		Infobox fra wikipedia
@@ -32,4 +32,12 @@ Mangler:
 			Data Communication process life-cykle
 			Data communication principles
 			Integration of data and information from different sources by the use of web technoligies such as HTML, CSS, JavaScript
-		
+		No dummy content is allowed
+		Kildedokumentation til alt kode der er brugt fra tutorials og tips
+			CHECK
+	Indhold
+		don’t just copy-paste information from the official website
+			CHECK
+		write on the home page what this website isabout
+		what is the purpose of it
+		why is different from the official website

@@ -1,19 +1,4 @@
-function extractColumn(arr, column) {
-	// https://gist.github.com/eddieajau/5f3e289967de60cf7bf9
-	return arr.map(x => x[column])
-}
-
-function include(file) {
-	//https://www.geeksforgeeks.org/how-to-include-a-javascript-file-in-another-javascript-file/
-	var script  = document.createElement('script');
-	script.src  = file;
-	script.type = 'text/javascript';
-	script.defer = true;
-	document.getElementsByTagName('head').item(0).appendChild(script);
-}
-
-
-// Define variables -------------
+// Define variables ------------------------------------------------------------------------------------------------------------
 var param = "diabetes";
 var param_alt = "low carb";
 
@@ -52,9 +37,9 @@ nytRequest = nytRequest + '&key=' + nyt_key;
 // > Elements
 let news = document.getElementById("news")
 
-
 // > Request
 //console.log(nytRequest);
+/*	Fetch method: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch	*/
 fetch(nytRequest)
 .then((response) => {
 	return response.json()
@@ -93,16 +78,7 @@ fetch(nytRequest)
 		var nytTitle = data[i].headline.main;
 		var nytUrl = data[i].web_url;
 		var snippet = data[i].snippet;
-		//console.log(data[i]);
-		/*if(data[i].byline.original && data[i].byline.organization){
-			var nytAuthor = "By " + data[i].byline.original + " and " + byline.organization;
-		} else if(data[i].byline.original){*/
-			var nytAuthor = data[i].byline.original;
-		/*} else if(data[i].byline.organization){
-			var nytAuthor = "By " + data[i].byline.organization;
-		} else{
-			var nytAuthor = "Could not find author";
-		}*/
+		var nytAuthor = data[i].byline.original;
 		var nytDate = data[i].pub_date.split("T")[0];
 		
 		// >> Create elements
@@ -167,7 +143,6 @@ fetch(nytRequest)
 .catch((err) => {
 // Do something for an error here
 	console.log("New York Times API encountered an error.");
-	//hero.classList.add("hidden");
 })
 
 
@@ -236,63 +211,16 @@ fetch(pixabayRequest)
 	heroRotation();
 })
 .catch((err) => {
-// Do something for an error here
 	console.log("Pixabay API encountered an error.");
-	//hero.classList.add("hidden");
 })
 
-// PEXELS ---------------------------------------------------------------------------------------------------
-// Currently unused, due to redundancy
-/*let pexelsRequest = "https://api.pexels.com/v1/search";
-pexelsRequest = pexelsRequest + "?query=" + param;
-pexelsRequest = pexelsRequest + "&locale=da-DK"; // 	Language code of the language to be searched in.
-pexelsRequest = pexelsRequest + "&page=1"; // Result page  (also is used in relation to per_page)
-pexelsRequest = pexelsRequest + "&per_page=5"; // Limit results (also is used in relation to page)
-//console.log(pexelsRequest);
-
-let pexelsImages = document.getElementById("pexels-images")
-
-fetch(pexelsRequest,{
-headers: {
-	Authorization: pexels_key
-}})
-.then((response) => {
-	return response.json()
-})
-.then((data) => {
-	if (document.contains(document.getElementById("pexelsLogo"))) {
-		// Remove logo on load - forces the logo to be the last image
-		document.getElementById("pexelsLogo").remove();
-	}
-	pexelsImages.classList.remove("hidden");
-	//console.log(data)
-	for (var i = 0; i < data.photos.length; i++){
-		var obj = data.photos[i];
-		var pexImage = document.createElement("img");
-		pexImage.setAttribute("src", obj.src.original);
-		var pexImageAbout = "Af: " + obj.photographer;
-		pexImage.setAttribute("alt", pexImageAbout);
-		pexImage.setAttribute("title", pexImageAbout);
-		pexelsImages.appendChild(pexImage);
-	}
-	var pexLogoLink = document.createElement("a");
-	pexLogoLink.setAttribute("id", "pexelsLogo");
-	var pexLogo = document.createElement("img");
-	pexLogo.setAttribute("src", "img/pexels-logo.png");
-	pexLogo.setAttribute("alt", "Pexels logo");
-	pexLogoLink.appendChild(pexLogo);
-	pexLogoLink.setAttribute("href", "https://pexels.com/");
-	pexLogoLink.setAttribute("target", "_blank");
-	pexLogoLink.setAttribute("title", "Gå til Pexels");
-	pexelsImages.appendChild(pexLogoLink);
-})
-.catch((err) => {
-// Do something for an error here
-	console.log("Pexels forespørgslen udløste en fejl.");
-	pexelsImages.classList.add("hidden");
-})*/
 
 // MAPBOX ---------------------------------------------------------------
+/*
+	Using guides:
+	https://docs.mapbox.com/mapbox-gl-js/example/geojson-polygon/
+	https://geojsonlint.com/
+*/
 // > Set vars
 let mapboxMapWrapper = document.getElementById("mapbox-map-wrapper");
 lat=56.355;
@@ -334,7 +262,7 @@ map.on('load', function (e) {
 		'source': 'places',
 		'layout': {},
 		'paint': {
-			'fill-color': [
+			'fill-color': [ /*	https://docs.mapbox.com/mapbox-gl-js/example/updating-choropleth/	*/
 				'interpolate',
 				['linear'],
 				['get', 'mortality'], // Bad attribute to color by point (it will change if updated), but it was a lot more easy than grouping by any other attribute.
@@ -626,11 +554,6 @@ fetch(omdbRequest)
 		let trailerSection = document.createElement("footer");
 		var movieImg = document.createElement("img");
 		
-		// >> JS variables
-		//obj.Title
-		//obj.Year
-		//obj.Poster
-		
 		
 		// >> Set element attributes
 		if(obj.Poster != "N/A"){ // Ignore if set as "N/A"
@@ -699,7 +622,7 @@ fetch(omdbRequest)
 
 // CSV DATA
 // MÅL 8.9
-var results = Papa.parse("data/SDG03041.csv", { // Load file
+var results = Papa.parse("data/SDG03041.csv", { // Load file - https://www.papaparse.com/docs
 	download: true, // Fluff that needs to be there
 	complete: function(results) { // On complete
 		//console.log(results); //OMR20	*/
@@ -745,85 +668,85 @@ var results = Papa.parse("data/SDG03041.csv", { // Load file
 		}
 		//Point.setState('hover')
 		try{
-		Highcharts.chart('container', {
+			Highcharts.chart('container', {
 
-			title: {
-				text: ''
-			},
-
-			subtitle: {
-				text: ''
-			},
-
-			credits: {
-				enabled: false
-			},
-			
-			yAxis: {
 				title: {
-					text: 'Mortality per 100.000 danes'
-				}
-			},
+					text: ''
+				},
 
-			xAxis: {
-				accessibility: {
-					rangeDescription: 'Years: ' + minTid + "-" + maxTid
-				}, title: {
-					text: 'Years: ' + minTid + "-" + maxTid
-				}
+				subtitle: {
+					text: ''
+				},
 
-			},
-
-			legend: {
-				layout: 'vertical',
-				align: 'right',
-				verticalAlign: 'middle'
-			},
-
-			plotOptions: {
-				series: {
-					label: {
-						connectorAllowed: false
-					},
-					pointStart: minTid
-				}
-			},
-			
-			tooltip: {
-				shared: true
-			},
-
-			series: [{
-				name: 'Cancer',
-				color: "#DEB841",
-				data: cancerArr
-			}, {
-				name: 'Cardiovascular disease',
-				color: "#BFD8E0",
-				data: cardiovascularArr
-			}, {
-				name: 'Chronic obstructive pulmonary disease',
-				color: "#CC2936",
-				data: kolArr
-			}, {
-				name: 'Diabetes',
-				color: "#568BD7",
-				data: diabetesArr
-			}],
-
-			responsive: {
-				rules: [{
-					chartOptions: {
-						legend: {
-							layout: 'horizontal',
-							align: 'center',
-							verticalAlign: 'bottom'
-						}
+				credits: {
+					enabled: false
+				},
+				
+				yAxis: {
+					title: {
+						text: 'Mortality per 100.000 danes'
 					}
-				}]
-			}
+				},
 
-		});
+				xAxis: {
+					accessibility: {
+						rangeDescription: 'Years: ' + minTid + "-" + maxTid
+					}, title: {
+						text: 'Years: ' + minTid + "-" + maxTid
+					}
+
+				},
+
+				legend: {
+					layout: 'vertical',
+					align: 'right',
+					verticalAlign: 'middle'
+				},
+
+				plotOptions: {
+					series: {
+						label: {
+							connectorAllowed: false
+						},
+						pointStart: minTid
+					}
+				},
+				
+				tooltip: {
+					shared: true
+				},
+
+				series: [{
+					name: 'Cancer',
+					color: "#DEB841",
+					data: cancerArr
+				}, {
+					name: 'Cardiovascular disease',
+					color: "#BFD8E0",
+					data: cardiovascularArr
+				}, {
+					name: 'Chronic obstructive pulmonary disease',
+					color: "#CC2936",
+					data: kolArr
+				}, {
+					name: 'Diabetes',
+					color: "#568BD7",
+					data: diabetesArr
+				}],
+
+				responsive: {
+					rules: [{
+						chartOptions: {
+							legend: {
+								layout: 'horizontal',
+								align: 'center',
+								verticalAlign: 'bottom'
+							}
+						}
+					}]
+				}
+
+			});
 		} catch(e){
 			// Silence error
 			// Note: An error will be produced when run. This error does not affect performance or visuals. It is not documented, and changeing any values seems to do nothing. So silence it is.

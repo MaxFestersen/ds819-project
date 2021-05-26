@@ -1,8 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:wght@400;700&display=swap'); /* google font - https://fonts.google.com/specimen/Noto+Sans?query=noto */
 /*	Created by Max Festersen Hansen at SDU DS819 in 2021.	 */
 
-/* 	COLORS	 */
-/*TODO*/
 /* 	OPTIONS	 */
 html, body{
 	height: 100%; /* 	Enables manipulation of height in % on block-elements.	 */
@@ -17,7 +15,7 @@ html{
 
 /* 	PAGE LAYOUT	 */
 body{
-	background-image: url("../img/interlaced.png");	/* 	Background pattern from Toptal Subtle Patterns	 */
+	background-image: url("../img/interlaced.png");	/* 	Background pattern from Toptal Subtle Patterns - https://www.toptal.com/designers/subtlepatterns/interlaced/	 */
 	background-color: #F4F5F6;
 }
 
@@ -254,22 +252,6 @@ p{
 	margin:0;
 }
 
-p a{
-	text-decoration: underline;
-}
-
-p a:link{
-	/*color: #56979F;*/
-}
-
-p a:visited{
-	/*color: #6D6B88;*/
-}
-
-p a:active{
-	/*color: #916D47;*/
-}
-
 h1, h2, h3, h4, h5, h6{
 	margin: 0; /* 	Removed standard margin, since whitespace is provided through line height.	 */
 	display: inline-block; /* 	Makes width element width by default.	 */
@@ -299,20 +281,16 @@ figure{
 
 
 /* 	LISTS	 */
-ul, ol, dl{
+ul, ol{
 	margin: 0;
 	padding-left: 0;
 }
 
-ul, dl{
+ul{
 	list-style-type: none;
 }
 
-dl{
-	float: left;
-}
-
-ul, ul li, ol, ol li, dl, dl dt, dl dd{
+ul, ul li, ol, ol li{
 	font-size: inherit;
 	font-family: inherit;
 	color: inherit;

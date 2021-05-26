@@ -31,17 +31,13 @@
 	<link href="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css" rel="stylesheet">
 	<script src="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js"></script>
 	
-	<!-- SOUNDCLOUD API -->
-	<!--<script src="https://connect.soundcloud.com/sdk/sdk-3.3.2.js"></script>-->
-	
 	<!-- SCRIPTS -->
 	<!-- EXTERNAL SCRIPTS -->
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script type="text/javascript" src="js/papaparse.min.js"></script>
-    <!--script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script-->
 
 	<!-- LOCAL SCRIPTS -->	
-	<script src="highcharts/code/highcharts.js"></script>
+	<script src="js/highcharts/code/highcharts.js"></script>
 	<script type="text/javascript" src="js/practical-functions.js?v=0.1"></script>
 	<script type="text/javascript" src="js/keys.js"></script>
 </head>
@@ -52,7 +48,6 @@
 		<h1>Diabetic info central</h1>
 		<p class="subtitle">Diabetes related information</p>
 		<figure class="diabetes-logo" ><img src="img/Blue_circle_for_diabetes.svg" alt="The symbol for diabetes" /></figure>
-		<!--<aside id="pexels-images" class="hidden"></aside>-->
 	</header>
 	<nav id="mainnavigation">
 		<ul>
@@ -60,7 +55,7 @@
 			<li><a href="#information" onclick="scrollTo()">Information</a></li>
 			<li><a href="#media" onclick="scrollTo()">Media</a></li>
 			<li><a href="#statistics" onclick="scrollTo()">Statistics</a></li>
-			<li><a href="#map" onclick="scrollTo()">Map</a></li>
+			<li><a href="#mortality" onclick="scrollTo()">Mortality</a></li>
 			<li><a href="#about" onclick="scrollTo()">About</a></li>
 		</ul>
 	</nav>
@@ -181,13 +176,13 @@
 				<nav class="navigation">
 					<ul>
 						<li><a href="#media" onclick="scrollTo()" title="Scroll to media section">Previous section <</a></li>
-						<li><a href="#map" onclick="scrollTo()" title="Scroll to map section">Next section ></a></li>
+						<li><a href="#mortality" onclick="scrollTo()" title="Scroll to mortality section">Next section ></a></li>
 						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top ^</a></li>
 					</ul>
 				</nav>
 			</footer>
 		</section>
-		<section id="map">
+		<section id="mortality">
 			<article>
 				<header>
 					<h2 class="title" title="Mortality due to deabetis in Denmark 2019 by region">Map: Mortality due to deabetis in Denmark 2019 by region</h2>
@@ -236,7 +231,7 @@
 			<footer>
 				<nav class="navigation">
 					<ul>
-						<li><a href="#map" onclick="scrollTo()" title="Scroll to map section">Previous section <</a></li>
+						<li><a href="#mortality" onclick="scrollTo()" title="Scroll to mortality section">Previous section <</a></li>
 						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top ^</a></li>
 					</ul>
 				</nav>

@@ -1015,7 +1015,13 @@ var results = Papa.parse("data/SDG03041.csv", { // Load file - https://www.papap
 					color: "#568BD7",
 					data: diabetesArr
 				}],
-
+				
+				chart: {
+					style: {
+						fontFamily: "'Noto Sans', sans-serif"
+					}
+				},				
+				
 				responsive: {
 					rules: [{
 						chartOptions: {

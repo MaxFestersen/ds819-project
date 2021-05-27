@@ -203,6 +203,15 @@
 				</div>
 				<a class="source" href="https://en.wikipedia.org/wiki/Diabetes">Source: Wikipedia</a>
 			</aside>
+			<article>
+				<header>
+					<h2 class="title" id="stats-table">Comparison of type 1 and 2 diabetes.</h2>
+				</header>
+				<div class="content-wrapper">
+					<div class="type-stats"></div>
+				</div>
+				<a class="source" href="https://en.wikipedia.org/wiki/Diabetes">Source: Wikipedia</a>
+			</article>
 			<footer>
 				<nav class="navigation">
 					<ul>
@@ -247,28 +256,6 @@
 		<section id="mortality">
 			<article>
 				<header>
-					<h2 class="title" title="Mortality due to cardiovascular disease, cancer, diabetes and Chronic obstructive pulmonary disease in Denmark">Mortality due to non-transmitable diseases in Denmark.</h2>
-				</header>
-				<div class="content-wrapper">
-					<figure id="highcharts-figure" class="highcharts-figure">
-						<div id="container"></div>
-					</figure>
-					<table id="goal-table" class="hidden">
-					</table>
-				</div>
-				<a class="source" href="https://www.dst.dk/da/Statistik/Sdg/03-sundhed-og-trivsel/delmaal-04/indikator-1#istart">Source: dst.dk</a>
-			</article>
-			<aside>
-				<header>
-					<h2 class="title" id="stats-table">Comparison of type 1 and 2 diabetes.</h2>
-				</header>
-				<div class="content-wrapper">
-					<div class="type-stats"></div>
-				</div>
-				<a class="source" href="https://en.wikipedia.org/wiki/Diabetes">Source: Wikipedia</a>
-			</aside>
-			<article>
-				<header>
 					<h2 class="title" title="Mortality due to deabetis in Denmark 2019 by region">Map: Mortality due to deabetis in Denmark 2019 by region</h2>
 				</header>
 				<div class="content-wrapper">
@@ -285,6 +272,19 @@
 				</div>
 				<a class="source" href="https://www.statistikbanken.dk/FOD507">Source: Danmarks Statistik</a>
 			</aside>
+			<article>
+				<header>
+					<h2 class="title" title="Mortality due to cardiovascular disease, cancer, diabetes and Chronic obstructive pulmonary disease in Denmark">Mortality due to non-transmitable diseases in Denmark.</h2>
+				</header>
+				<div class="content-wrapper">
+					<figure id="highcharts-figure" class="highcharts-figure">
+						<div id="container"></div>
+					</figure>
+					<table id="goal-table" class="hidden">
+					</table>
+				</div>
+				<a class="source" href="https://www.dst.dk/da/Statistik/Sdg/03-sundhed-og-trivsel/delmaal-04/indikator-1#istart">Source: dst.dk</a>
+			</article>
 			<footer>
 				<nav class="navigation">
 					<ul>

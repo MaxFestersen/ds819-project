@@ -51,14 +51,41 @@
 	</header>
 	<nav id="mainnavigation">
 		<ul>
+			<li><a href="#about" onclick="scrollTo()">About</a></li>
 			<li><a href="#recipes" onclick="scrollTo()">Recipies</a></li>
 			<li><a href="#information" onclick="scrollTo()">Information</a></li>
 			<li><a href="#media" onclick="scrollTo()">Media</a></li>
 			<li><a href="#mortality" onclick="scrollTo()">Mortality</a></li>
-			<li><a href="#about" onclick="scrollTo()">About</a></li>
 		</ul>
 	</nav>
 	<main>
+		<section id="about">
+			<article class="full-width">
+				<header>
+					<h2 class="title">About.</h2>
+				</header>
+				<div class="content-wrapper">
+					<p>This page features information about diabetes with <a href="#information" onclick="scrollTo()">news</a> <a href="#info-wrapper" onclick="scrollTo()">a infocard</a>, <a href="#type-stats" onclick="scrollTo()">a comparison of type 1 and type 2 diabetes</a> and <a href="#tips" onclick="scrollTo()">tips</a>. Media with <a href="#movies" onclick="scrollTo()">movie list with trailers</a> and <a href="#diabetes-book-list" onclick="scrollTo()">book list</a> about diabetes. Information about morality, conveyed through a <a href="#diabetes-book-list" onclick="scrollTo()">map</a> and a <a href="highcharts-figure" onclick="scrollTo()">chart</a>.</p>
+					<h4>Contact information</p>
+					<address id="contact">
+						<p class="author" title="author">Max Festersen Hansen</p>
+						<p><a href="mailto:maxfh20@student.sdu.dk" class="email" title="Write e-mail to the author." target="_blank">maxfh20@student.sdu.dk</a></p>
+						<p><a href="tel:+4529631232" class="tel" title="call the author.">+45 29 63 12 32</a></p>
+						<p><a href="https://github.com/MaxFestersen/ds819-project" target="_blank">Source code</a></p>
+					</address>
+				</div>
+			</article>
+			<p class="notice"><span class="important">Important notice</span>: this site features almost no original content. All content is subject to change. This site is licenced under the <a href="https://github.com/MaxFestersen/ds819-project/blob/main/LICENSE" target="_blank">MIT licence</a>.  All sources are provided for the individual content.</p>
+			<footer>
+				<nav class="navigation">
+					<ul>
+						<li><a href="#mainnavigation" onclick="scrollTo()" title="Scroll to main navigation">Previous section <</a></li>
+						<li><a href="#recipes" onclick="scrollTo()" title="Scroll to recipes navigation">Next section ></a></li>
+						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top ^</a></li>
+					</ul>
+				</nav>
+			</footer>
+		</section>
 		<section id="recipes">
 			<article>
 				<header>
@@ -67,7 +94,10 @@
 				<div class="content-wrapper">
 					<div id="recipe-wrapper"></div>
 				</div>
-				<a class="source" href="https://spoonacular.com/">Source: Spoonacular</a>
+				<a class="source" href="https://spoonacular.com/" target="_blank">Source: Spoonacular</a>
+				<p class="notice">Find a recipe with the search option to the right. You must one query, but can choose any other filter as you please.</p>
+				<p class="notice"><span class="important">Important notice</span>: The amount of carbs is an estimate and will vary depending on your ingredients and preperation.</p>
+				<p class="notice"><span class="important">Important notice</span>: Recipes come from various sources. Do keep in mind, that some cooks, might not be accurate with measurements, and metadata, so some missclasification can occur.</p>
 			</article>
 			<aside>
 				<header>
@@ -165,19 +195,19 @@
 					</form>
 				</div>
 			</aside>
-			<article>
+			<article class="full-width">
 				<header>
 					<h2 class="title">Recipe books.</h2>
 				</header>
 				<div class="content-wrapper">
 					<ul id="recipe-book-list" class="hidden book-list"></ul>
 				</div>
-				<a class="source" href="https://openlibrary.org/">Source: open library</a>
+				<a class="source" href="https://openlibrary.org/" target="_blank">Source: open library</a>
 			</article>
 			<footer>
 				<nav class="navigation">
 					<ul>
-						<li><a href="#mainnavigation" onclick="scrollTo()" title="Scroll to main navigation">Previous section <</a></li>
+						<li><a href="#about" onclick="scrollTo()" title="Scroll to about section">Previous section <</a></li>
 						<li><a href="#information" onclick="scrollTo()" title="Scroll to information section">Next section ></a></li>
 						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top ^</a></li>
 					</ul>
@@ -192,7 +222,7 @@
 				<div class="content-wrapper">
 					<ul id="news"></ul>
 				</div>
-				<a class="source" href="https://www.nytimes.com/">Source: New York Times</a>
+				<a class="source" href="https://www.nytimes.com/" target="_blank">Source: New York Times</a>
 			</article>
 			<aside id="info-wrapper">
 				<header>
@@ -201,7 +231,7 @@
 				<div class="content-wrapper">
 					<div class="infoBox"></div>
 				</div>
-				<a class="source" href="https://en.wikipedia.org/wiki/Diabetes">Source: Wikipedia</a>
+				<a class="source" href="https://en.wikipedia.org/wiki/Diabetes" target="_blank">Source: Wikipedia</a>
 			</aside>
 			<article>
 				<header>
@@ -210,8 +240,30 @@
 				<div class="content-wrapper">
 					<div class="type-stats"></div>
 				</div>
-				<a class="source" href="https://en.wikipedia.org/wiki/Diabetes">Source: Wikipedia</a>
+				<a class="source" href="https://en.wikipedia.org/wiki/Diabetes" target="_blank">Source: Wikipedia</a>
 			</article>
+			<aside>
+				<header>
+					<h2 class="title">Tips.</h2>
+				</header>
+				<div class="content-wrapper">
+					<ul id="tips">
+						<li>
+							<p>There are various organisations to help give information, research, awareness, aid and more in relation to diabetes. Some include:</p>
+							<ul>
+								<li><p>In Denmark: <a href="https://diabetes.dk/" target="_blank">diabetes foreningen</a>.</p></li>
+								<li><p>In America: <a href="https://www.diabetes.org/" target="_blank">American Diabetes Assosiation</a>.</p></li>
+								<li><p>In UK: <a href="https://www.diabetes.org.uk/" target="_blank">Diabetes UK</a>.</p></li>
+							</ul>
+						</li>
+						<li><p>There are various apps that can aid the daily life of a diabetic for both type 1 and type 2. For danes, <a href="https://www.sdcc.dk/undersoegelse-og-behandling/vejledninger/Sider/App-oversigten.aspx" title="Steno Diabetes Center Copenhagen" target="_blank">SDCC</a> has created a good list for purposes like insulin calculation, carb calculation, exercise, medicin, networking and more.</p></li>
+						<li><p>It can be a good idea to count calories. Follow an oficial guide, like <a href="https://diabetes.dk/sundhed/mad/kulhydrat/kulhydrattaelling" target="_blank">the one from diabetes foreningen</a>, or use an official app like Diabetes og kulhydrattælling via <a href="https://play.google.com/store/apps/details?id=com.diabetesforeningen.kulhydrat" target="_blank">Google Play</a> or <a href="https://apps.apple.com/dk/app/diabetes-og-kulhydratt-lling/id505922881?l=da" target="_blank">App Store</a>.</p></li>
+						<li><p>Diabetes might affect your sex life. Check out a official guide, like <a href="https://diabetes.dk/sundhed/kroppen/sexliv" target="_blank">the one on diabetes foreningen</a>.</p></li>
+						<li><p>Overveight is a common problem among type 2 diabetics.  Check out a official guide, like <a href="https://diabetes.dk/sundhed/kroppen/overvaegt-og-vaegttab" target="_blank">the one on diabetes foreningen</a>.</p></li>
+						<li><p><a href="https://medlineplus.gov/ency/patientinstructions/000323.htm" title="soruce of claim" target="_blank">Diabetes can potentially harm eyes and eyesight</a>. It is recomended to attend regular exams. Do contact your doctor and ask how often you should be examined and what options are near you.</p></li>
+					</ul>
+				</div>
+			</aside>
 			<footer>
 				<nav class="navigation">
 					<ul>
@@ -232,7 +284,8 @@
 						<ul id="movie-list"></ul>
 					</aside>
 				</div>
-				<a class="source" href="https://www.imdb.com/">Source: IMDb via OMDb API</a>
+				<a class="source" href="https://www.imdb.com/" target="_blank">Source: IMDb via OMDb API</a>
+				<p class="notice"><span class="important">Important notice</span>: Some content is not a movie or a documentary, despite being labeld as. The trailers provided are found automatically on YouTube, and might not be very accurate.</p>
 			</article>
 			<aside>
 				<header>
@@ -241,7 +294,7 @@
 				<div class="content-wrapper">
 					<ul id="diabetes-book-list" class="hidden book-list"></ul>
 				</div>
-				<a class="source" href="https://openlibrary.org/">Source: open library</a>
+				<a class="source" href="https://openlibrary.org/" target="_blank">Source: open library</a>
 			</aside>
 			<footer>
 				<nav class="navigation">
@@ -261,7 +314,7 @@
 				<div class="content-wrapper">
 					<div id="mapbox-map"></div>
 				</div>
-				<a class="source" href="https://www.statistikbanken.dk/FOD507">Source: Danmarks Statistik</a>
+				<a class="source" href="https://www.statistikbanken.dk/FOD507" target="_blank">Source: Danmarks Statistik</a>
 			</article>
 			<aside id="mapbox-map-wrapper">
 				<header>
@@ -270,9 +323,9 @@
 				<div class="content-wrapper">
 					<ul id="mapbox-map-info"></ul>
 				</div>
-				<a class="source" href="https://www.statistikbanken.dk/FOD507">Source: Danmarks Statistik</a>
+				<a class="source" href="https://www.statistikbanken.dk/FOD507" target="_blank">Source: Danmarks Statistik</a>
 			</aside>
-			<article>
+			<article class="full-width">
 				<header>
 					<h2 class="title" title="Mortality due to cardiovascular disease, cancer, diabetes and Chronic obstructive pulmonary disease in Denmark">Mortality due to non-transmitable diseases in Denmark.</h2>
 				</header>
@@ -283,58 +336,17 @@
 					<table id="goal-table" class="hidden">
 					</table>
 				</div>
-				<a class="source" href="https://www.dst.dk/da/Statistik/Sdg/03-sundhed-og-trivsel/delmaal-04/indikator-1#istart">Source: dst.dk</a>
+				<a class="source" href="https://www.dst.dk/da/Statistik/Sdg/03-sundhed-og-trivsel/delmaal-04/indikator-1#istart" target="_blank">Source: dst.dk</a>
 			</article>
 			<footer>
 				<nav class="navigation">
 					<ul>
 						<li><a href="#media" onclick="scrollTo()" title="Scroll to media section">Previous section <</a></li>
-						<li><a href="#about" onclick="scrollTo()" title="Scroll to about section">Next section ></a></li>
 						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top ^</a></li>
 					</ul>
 				</nav>
 			</footer>
 		</section>
-		<section id="about">
-			<article>
-				<header>
-					<h2 class="title">About.</h2>
-				</header>
-				<div class="content-wrapper">
-					<p>Content to be added...</p>
-				</div>
-			</article>
-			<aside>
-				<header>
-					<h2 class="title">About.</h2>
-				</header>
-				<div class="content-wrapper">
-					<p>Content to be added...</p>
-				</div>
-			</aside>
-			<footer>
-				<nav class="navigation">
-					<ul>
-						<li><a href="#mortality" onclick="scrollTo()" title="Scroll to mortality section">Previous section <</a></li>
-						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top ^</a></li>
-					</ul>
-				</nav>
-			</footer>
-		</section>
-		<footer>
-			<section id="footer-info">
-				<p>Design og kode af max.</p>
-			</section>
-			<section id="contact-info" class="wrapper">
-				<!-- Contact information -->
-				<h5>Kontakt Informationer:</h5>
-				<address id="contact">
-					<span class="author">Max Festersen Hansen</span>
-					<span><a href="mailto:maxfh20@student.sdu.dk" class="email" title="Skriv en e-mail til mig." target="_blank">maxfh20@student.sdu.dk</a></span>
-					<span><a href="tel:+4529631232" class="tel" title="Ring til mig.">+45 29 63 12 32</a></span>
-				</address>
-			</div>
-		</footer>
 	</main>
 </div>
 <!-- JAVASCRIPT FILES -->

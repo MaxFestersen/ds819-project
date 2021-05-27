@@ -535,7 +535,7 @@ fetch(omdbRequest)
 })
 .then((data) => {
 	// >> Sorting
-	console.log(data.Search);
+	//console.log(data.Search);
 	data.Search.sort((a,b) => {
 		return (parseInt(b.Year) - parseInt(a.Year));
 	});
@@ -841,7 +841,9 @@ function recipeSearchRequest(){
 					}
 					recipeReadMoreElem.setAttribute("href", sourceUrl);
 					recipeReadMoreElem.setAttribute("title", sourceText);
+					recipeReadMoreElem.setAttribute("target", "_blank");
 					recipeSourceElem.setAttribute("href", sourceUrl);
+					recipeSourceElem.setAttribute("target", "_blank");
 					recipeImageElem.setAttribute("src", recipeImage);
 					recipeImageElem.setAttribute("alt", recipeTitle);
 					recipeTitleElem.setAttribute("title", recipeTitle);

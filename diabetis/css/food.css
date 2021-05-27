@@ -262,9 +262,22 @@ h1, h2, h3, h4, h5, h6{
 	margin: 0; /* 	Removed standard margin, since whitespace is provided through line height.	 */
 	display: inline-block; /* 	Makes width element width by default.	 */
 	clear: both; /* 	Cleares both sides, but other clashing inline blocks must also have cleared clashing side, to acctually clear.	 */
-	font-weight: normal;
+	font-weight: 400;
 }
 
+h4{
+	font-weight: 700;
+	margin-top: 2vh;
+}
+
+.important{
+	color: #CC2936;
+	font-weight: 700;
+}
+
+.notice{
+	color: #000;
+}
 
 /* 	GRAPHICS	 */
 img{
@@ -302,6 +315,15 @@ ul, ul li, ol, ol li{
 	color: inherit;
 }
 
+#tips{
+	margin-left: 1.2em;
+	list-style-type: disc;
+}
+#tips ul{
+	margin-left: 1.2em;
+	list-style-type: circle;
+}
+
 /* 	CLASSES	 */
 .hidden{
 	display: none;
@@ -319,6 +341,10 @@ ul, ul li, ol, ol li{
 	max-height: calc(80vh - 55px);	/*	height of parrent - 55px from header	*/
 	padding:2vh 2vw;
 	overflow-y: auto;
+}
+
+.full-width{
+	width: 100% !important;
 }
 
 /* 	TITLES	 */

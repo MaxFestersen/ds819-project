@@ -361,7 +361,7 @@ fetch(openBookRequest_one)
 	diabetesBookList.classList.remove("hidden");
 	// >> Sorting
 	//console.log(data.docs.publish_year);
-	data.docs.sort((a,b) => {
+	data.docs.sort((a,b) => { //https://flaviocopes.com/how-to-sort-array-of-objects-by-property-javascript/
 		return (parseInt(a.first_publish_year) + parseInt(b.first_publish_year));
 	})
 	for (var i = 0; i < data.docs.length; i++){

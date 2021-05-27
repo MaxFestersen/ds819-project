@@ -359,7 +359,11 @@ fetch(openBookRequest_one)
 })
 .then((data) => {
 	diabetesBookList.classList.remove("hidden");
-	//console.log(data.docs)
+	// >> Sorting
+	//console.log(data.docs.publish_year);
+	data.docs.sort((a,b) => {
+		return (parseInt(a.first_publish_year) + parseInt(b.first_publish_year));
+	})
 	for (var i = 0; i < data.docs.length; i++){
 		// >> Setting object
 		var obj = data.docs[i];
@@ -431,6 +435,10 @@ fetch(openBookRequest_two)
 .then((data) => {
 	recipeBookList.classList.remove("hidden");
 	//console.log(data.docs)
+	// >> Sorting
+	data.docs.sort((a,b) => {
+		return (parseInt(a.first_publish_year) + parseInt(b.first_publish_year));
+	})
 	for (var i = 0; i < data.docs.length; i++){
 		// >> Setting object
 		var obj = data.docs[i];
@@ -512,7 +520,7 @@ $.getJSON(wikiUrl, function (data){
 });
 
 // OMDB API ------------------------------------------------------------------------------
-/*
+
 let omdbRequest = "http://www.omdbapi.com/?";
 omdbRequest = omdbRequest + "s=" + param; // // Search for movies with diabetes in the title
 omdbRequest = omdbRequest + "&type=movie"; // Filter for movies only (ignore series and episodes)
@@ -526,21 +534,24 @@ fetch(omdbRequest)
 	return response.json()
 })
 .then((data) => {
+	// >> Sorting
+	console.log(data.Search);
+	data.Search.sort((a,b) => {
+		return (parseInt(b.Year) - parseInt(a.Year));
+	});
 	//console.log(data.Search)
 	for (var i = 0; i < data.Search.length; i++){
-		/*
-		ul
-			li
-				article
-					InfoDiv
-						Image
-						P
-							Title
-								span
-									Year
-					Trailer
-						Iframe - Trailer
-		*//*
+		//ul
+		//	li
+		//		article
+		//			InfoDiv
+		//				Image
+		//				P
+		//					Title
+		//						span
+		//							Year
+		//			Trailer
+		//				Iframe - Trailer
 
 		// >> Setting object
 		var obj = data.Search[i];
@@ -618,7 +629,7 @@ fetch(omdbRequest)
 .catch((err) => {
 // Do something for an error here
 	console.log("OMDB API encountered an error.");
-})*/
+})
 
 // RECIPE SEARCH API --------------------------------------------------------------------------------------------------------
 // http://www.recipepuppy.com/about/api/
@@ -700,7 +711,7 @@ function recipeSearchRequest(){
 		// Add key or fail intentionally
 		recipeSearchRequest = recipeSearchRequest + spoonacularKey; // Search by input value
 	}
-	console.log(recipeSearchRequest);
+	//console.log(recipeSearchRequest);
 	
 	// > Fetch
 	fetch(recipeSearchRequest)
@@ -708,7 +719,7 @@ function recipeSearchRequest(){
 		return response.json();
 	})
 	.then((data) => {
-		console.log(data);
+		//console.log(data);
 		var obj = data.results
 		if(obj.length>0){
 			for (let i = 0; i < obj.length; i++){
@@ -763,13 +774,13 @@ function recipeSearchRequest(){
 				// >>> Get recipe Infoemarion
 				var recipeRequest = "https://api.spoonacular.com/recipes/" + recipeId + "/information?includeNutrition=false";
 				recipeRequest = recipeRequest + spoonacularKey; // Search by input value
-				console.log(recipeRequest);
+				//console.log(recipeRequest);
 				fetch(recipeRequest)
 				.then((recipeRequestResponse) => {
 					return recipeRequestResponse.json();
 				})
 				.then((recipeData) => {
-					console.log(recipeData);
+					//console.log(recipeData);
 					recipeTitle = recipeData.title;
 					sourceText = recipeData.creditsText;
 					sourceUrl = recipeData.sourceUrl;

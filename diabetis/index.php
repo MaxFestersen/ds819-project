@@ -62,7 +62,7 @@
 		<section id="about">
 			<article class="full-width">
 				<header>
-					<h2 class="title">About.</h2>
+					<h2 class="title" title="About">About</h2>
 				</header>
 				<div class="content-wrapper">
 					<p>This page features information about diabetes with <a href="#information" onclick="scrollTo()">news</a> <a href="#info-wrapper" onclick="scrollTo()">a infocard</a>, <a href="#type-stats" onclick="scrollTo()">a comparison of type 1 and type 2 diabetes</a> and <a href="#tips" onclick="scrollTo()">tips</a>. Media with <a href="#movies" onclick="scrollTo()">movie list with trailers</a> and <a href="#diabetes-book-list" onclick="scrollTo()">book list</a> about diabetes. Information about morality, conveyed through a <a href="#diabetes-book-list" onclick="scrollTo()">map</a> and a <a href="highcharts-figure" onclick="scrollTo()">chart</a>.</p>
@@ -89,7 +89,7 @@
 		<section id="recipes">
 			<article>
 				<header>
-					<h2 class="title">Recipe</h2>
+					<h2 class="title" title="Recipe">Recipe</h2>
 				</header>
 				<div class="content-wrapper">
 					<div id="recipe-wrapper"></div>
@@ -101,7 +101,7 @@
 			</article>
 			<aside>
 				<header>
-					<h2 class="title">Search and filter Recipes</h2>
+					<h2 class="title" title="Search and filter Recipes">Search and filter Recipes</h2>
 				</header>
 				<div class="content-wrapper">
 					<form id="recipe-search-form" onsubmit="recipeSearchRequest(); return false;">
@@ -197,7 +197,7 @@
 			</aside>
 			<article class="full-width">
 				<header>
-					<h2 class="title">Recipe books.</h2>
+					<h2 class="title" title="Recipe books">Recipe books</h2>
 				</header>
 				<div class="content-wrapper">
 					<ul id="recipe-book-list" class="hidden book-list"></ul>
@@ -217,7 +217,7 @@
 		<section id="information">
 			<article>
 				<header>
-					<h2 class="title">News about diabetes.</h2>
+					<h2 class="title" title="News about diabetes">News about diabetes</h2>
 				</header>
 				<div class="content-wrapper">
 					<ul id="news"></ul>
@@ -226,7 +226,7 @@
 			</article>
 			<aside id="info-wrapper">
 				<header>
-					<h2 class="title">Information about diabetes.</h2>
+					<h2 class="title" title="Information about diabetes">Information about diabetes</h2>
 				</header>
 				<div class="content-wrapper">
 					<div class="infoBox"></div>
@@ -235,7 +235,7 @@
 			</aside>
 			<article>
 				<header>
-					<h2 class="title" id="stats-table">Comparison of type 1 and 2 diabetes.</h2>
+					<h2 class="title" id="stats-table" title="Comparison of type 1 and 2 diabetes">Comparison of type 1 and 2 diabetes</h2>
 				</header>
 				<div class="content-wrapper">
 					<div class="type-stats"></div>
@@ -244,7 +244,7 @@
 			</article>
 			<aside>
 				<header>
-					<h2 class="title">Tips.</h2>
+					<h2 class="title" title="Tips">Tips</h2>
 				</header>
 				<div class="content-wrapper">
 					<ul id="tips">
@@ -277,7 +277,7 @@
 		<section id="media">
 			<article class="aside-wrapper">
 				<header>
-					<h2 class="title">Movies and documentaries about diabetes.</h2>
+					<h2 class="title" title="Movies and documentaries about diabetes">Movies and documentaries about diabetes</h2>
 				</header>
 				<div class="content-wrapper">
 					<aside id="movies">
@@ -289,7 +289,7 @@
 			</article>
 			<aside>
 				<header>
-					<h2 class="title">Books about diabetes.</h2>
+					<h2 class="title" title="Books about diabetes">Books about diabetes</h2>
 				</header>
 				<div class="content-wrapper">
 					<ul id="diabetes-book-list" class="hidden book-list"></ul>
@@ -318,7 +318,7 @@
 			</article>
 			<aside id="mapbox-map-wrapper">
 				<header>
-					<h2 class="title">Info for map</h2>
+					<h2 class="title" title="Information for map">Information for map</h2>
 				</header>
 				<div class="content-wrapper">
 					<ul id="mapbox-map-info"></ul>
@@ -327,7 +327,7 @@
 			</aside>
 			<article class="full-width">
 				<header>
-					<h2 class="title" title="Mortality due to cardiovascular disease, cancer, diabetes and Chronic obstructive pulmonary disease in Denmark">Mortality due to non-transmitable diseases in Denmark.</h2>
+					<h2 class="title" title="Mortality due to cardiovascular disease, cancer, diabetes and Chronic obstructive pulmonary disease in Denmark">Mortality due to non-transmitable diseases in Denmark</h2>
 				</header>
 				<div class="content-wrapper">
 					<figure id="highcharts-figure" class="highcharts-figure">

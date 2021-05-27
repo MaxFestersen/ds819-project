@@ -47,7 +47,7 @@
 	<header id="main-header" class="header">
 		<h1>Diabetic info central</h1>
 		<p class="subtitle">Diabetes related information</p>
-		<figure class="diabetes-logo" ><img src="img/Blue_circle_for_diabetes.svg" alt="The symbol for diabetes" /></figure>
+		<figure class="diabetes-logo" title="Universal blue circle symbol for diabetes"><img src="img/Blue_circle_for_diabetes.svg" alt="Universal blue circle symbol for diabetes" /></figure>
 	</header>
 	<nav id="mainnavigation">
 		<ul>

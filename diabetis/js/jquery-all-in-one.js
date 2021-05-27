@@ -143,6 +143,7 @@ fetch(nytRequest)
 .catch((err) => {
 // Do something for an error here
 	console.log("New York Times API encountered an error.");
+	console.log(err);
 })
 
 
@@ -210,6 +211,7 @@ fetch(pixabayRequest)
 })
 .catch((err) => {
 	console.log("Pixabay API encountered an error.");
+	console.log(err);
 })
 
 
@@ -335,10 +337,10 @@ map.on('load', function (e) {
 });
 
 // OPEN LIBRARY ----------------------------------------------------------
-//http://openlibrary.org/search.json?q=Odense&lan=dan
+//https://openlibrary.org/search.json?q=Odense&lan=dan
 
 // > Request
-let openBookRequest = "http://openlibrary.org/search.json";
+let openBookRequest = "https://openlibrary.org/search.json";
 let openBookRequest_one = openBookRequest + "?title=" + param; // Filter for diabetes
 let openBookRequest_two = openBookRequest + "?title=" + paramAlt; // Filter for low carb recipes
 openBookRequest_one = openBookRequest_one + "&lan=dan"; // Filter for danish results
@@ -425,6 +427,7 @@ fetch(openBookRequest_one)
 .catch((err) => {
 	diabetesBookList.innerHTML = "";
 	console.log("Openlibrary API encountered an error with openBookRequest_one.");
+	console.log(err);
 })
 
 // > Fetch 2:  Recipies booklist -----------
@@ -500,6 +503,7 @@ fetch(openBookRequest_two)
 .catch((err) => {
 	recipeBookList.innerHTML = "";
 	console.log("Openlibrary API encountered an error with openBookRequest_two.");
+	console.log(err);
 })
 
 // WIKIPEDIA INFOBOX ----------------------------------------------------------------------
@@ -521,7 +525,7 @@ $.getJSON(wikiUrl, function (data){
 
 // OMDB API ------------------------------------------------------------------------------
 
-let omdbRequest = "http://www.omdbapi.com/?";
+let omdbRequest = "https://www.omdbapi.com/?";
 omdbRequest = omdbRequest + "s=" + param; // // Search for movies with diabetes in the title
 omdbRequest = omdbRequest + "&type=movie"; // Filter for movies only (ignore series and episodes)
 omdbRequest = omdbRequest + "&apikey=" + omdbapiKey;
@@ -629,10 +633,10 @@ fetch(omdbRequest)
 .catch((err) => {
 // Do something for an error here
 	console.log("OMDB API encountered an error.");
+	console.log(err);
 })
 
 // RECIPE SEARCH API --------------------------------------------------------------------------------------------------------
-// http://www.recipepuppy.com/about/api/
 // https://spoonacular.com/food-api/docs#Search-Recipes-Complex
 // https://spoonacular.com/food-api/docs#Get-Recipe-Information
 // > Elements
@@ -714,14 +718,15 @@ function recipeSearchRequest(){
 	//console.log(recipeSearchRequest);
 	
 	// > Fetch
+	//console.log(recipeSearchRequest);
 	fetch(recipeSearchRequest)
 	.then((response) => {
 		return response.json();
 	})
 	.then((data) => {
 		//console.log(data);
-		var obj = data.results
-		if(obj.length>0){
+		if(data.results.length>0){
+			var obj = data.results;
 			for (let i = 0; i < obj.length; i++){
 				/*
 				ul

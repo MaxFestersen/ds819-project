@@ -67,7 +67,7 @@
 				<div class="content-wrapper">
 					<p>The purpose of this page is to give diabetics and thoose who want to know more, tools and information about diabetes from many different resources in on a information hub.</p>
 					<p>This page features information about diabetes with <a href="#information" onclick="scrollTo()">news</a> <a href="#info-wrapper" onclick="scrollTo()">a infocard</a>, <a href="#type-stats" onclick="scrollTo()">a comparison of type 1 and type 2 diabetes</a> and <a href="#tips" onclick="scrollTo()">tips</a>. Media with <a href="#movies" onclick="scrollTo()">movie list with trailers</a> and <a href="#diabetes-book-list" onclick="scrollTo()">book list</a> about diabetes. Information about morality, conveyed through a <a href="#diabetes-book-list" onclick="scrollTo()">map</a> and a <a href="highcharts-figure" onclick="scrollTo()">chart</a>.</p>
-					<h4>Contact information</p>
+					<h4>Contact information</h4>
 					<address id="contact">
 						<p class="author" title="author">Max Festersen Hansen</p>
 						<p><a href="mailto:maxfh20@student.sdu.dk" class="email" title="Write e-mail to the author." target="_blank">maxfh20@student.sdu.dk</a></p>
@@ -80,7 +80,7 @@
 			<footer>
 				<nav class="navigation">
 					<ul>
-						<li><a href="#mainnavigation" onclick="scrollTo()" title="Scroll to main navigation">Previous section <</a></li>
+						<li><a href="#mainnavigation" onclick="scrollTo()" title="Scroll to main navigation">Previous section &lt;</a></li>
 						<li><a href="#recipes" onclick="scrollTo()" title="Scroll to recipes navigation">Next section ></a></li>
 						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top ^</a></li>
 					</ul>
@@ -190,8 +190,8 @@
 						</select>
 						<label for="recipe-carb-limit">Maximum number of carbs:</label>
 						<input id="recipe-carb-limit" type="number" value="100" min="0" placeholder="Max carb" name="recipe-carb-limit" title="Maximum number of carbs" required />
-						<label for="recipe-limit">Result limit:</label>
-						<!--<input id="recipe-limit" type="number" value="2" min="0" max="5" placeholder="1-5" name="recipe-limit" title="Limit results" />-->
+						<!--<label for="recipe-limit">Result limit:</label>
+						<input id="recipe-limit" type="number" value="2" min="0" max="5" placeholder="1-5" name="recipe-limit" title="Limit results" />-->
 						<input type="submit" value="Submit" title="Search for recipes with ingredient">
 					</form>
 				</div>
@@ -208,7 +208,7 @@
 			<footer>
 				<nav class="navigation">
 					<ul>
-						<li><a href="#about" onclick="scrollTo()" title="Scroll to about section">Previous section <</a></li>
+						<li><a href="#about" onclick="scrollTo()" title="Scroll to about section">Previous section &lt;</a></li>
 						<li><a href="#information" onclick="scrollTo()" title="Scroll to information section">Next section ></a></li>
 						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top ^</a></li>
 					</ul>
@@ -268,7 +268,7 @@
 			<footer>
 				<nav class="navigation">
 					<ul>
-						<li><a href="#recipes" onclick="scrollTo()" title="Scroll to recipes section">Previous section <</a></li>
+						<li><a href="#recipes" onclick="scrollTo()" title="Scroll to recipes section">Previous section &lt;</a></li>
 						<li><a href="#media" onclick="scrollTo()" title="Scroll to media section">Next section ></a></li>
 						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top ^</a></li>
 					</ul>
@@ -300,7 +300,7 @@
 			<footer>
 				<nav class="navigation">
 					<ul>
-						<li><a href="#information" onclick="scrollTo()" title="Scroll to information section">Previous section <</a></li>
+						<li><a href="#information" onclick="scrollTo()" title="Scroll to information section">Previous section &lt;</a></li>
 						<li><a href="#mortality" onclick="scrollTo()" title="Scroll to mortality section">Next section ></a></li>
 						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top ^</a></li>
 					</ul>
@@ -342,7 +342,7 @@
 			<footer>
 				<nav class="navigation">
 					<ul>
-						<li><a href="#media" onclick="scrollTo()" title="Scroll to media section">Previous section <</a></li>
+						<li><a href="#media" onclick="scrollTo()" title="Scroll to media section">Previous section &lt;</a></li>
 						<li><a href="#page-top" onclick="scrollTo()" title="Scroll to top of page">Page top ^</a></li>
 					</ul>
 				</nav>

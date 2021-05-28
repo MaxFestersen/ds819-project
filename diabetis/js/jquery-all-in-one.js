@@ -30,12 +30,12 @@ let nytRequest = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?'; //
 nytRequest = nytRequest + 'begin_date=' + pastString; // Begin date on format YYYYMMDD
 nytRequest = nytRequest + '&end_date=' + nowString; // End date on format YYYYMMDD
 nytRequest = nytRequest + '&sort=newest'; // Sort by newest news
-nytRequest = nytRequest + '&q=keywords=diabetes'; // Filter by parameter
+nytRequest = nytRequest + '&q=keywords=' + param; // Filter by parameter
 nytRequest = nytRequest + '&key=' + nytKey;
 //console.log(nytRequest);
 
 // > Elements
-let news = document.getElementById("news")
+let news = document.getElementById("news");
 
 // > Request
 //console.log(nytRequest);
@@ -46,40 +46,39 @@ fetch(nytRequest)
 })
 .then((data) => {
 	//console.log(data.response.docs);
-	data = data.response.docs
-	for (var i = 0; i < data.length; i++){
+	obj = data.response.docs;
+	for (var i = 0; i < obj.length; i++){
 		// >> Structure
 		/*
 		ul
 			li
 				newsWrap
 					top
-						image  - data.multimedia[i].url - multimedia --> loop for "thumbLarge" --> find url
-						headline - data.headline.main
-						Read more link - data.web_url
+						image  - obj.multimedia[i].url - multimedia --> loop for "thumbLarge" --> find url
+						headline - obj.headline.main
+						Read more link - obj.web_url
 					mid
-						snippet - data.snippet
+						snippet - obj.snippet
 					bottom
 						auhor - byline.original OR/AND byline.organization
-						date - data.pub_date
+						date - obj.pub_date
 		*/
 		
 		// >> Find picture
 		var nytImgLink = false;
-		for(var j=0; j < data[i].multimedia.length; j++){
-			if(data[i].multimedia[j].crop_name == "thumbLarge" || data[i].multimedia[j].subType =="thumbLarge"){
-				nytImgLink = "https://www.nytimes.com/" + data[i].multimedia[j].url;
+		for(var j=0; j < obj[i].multimedia.length; j++){
+			if(obj[i].multimedia[j].crop_name == "thumbLarge" || obj[i].multimedia[j].subType =="thumbLarge"){
+				nytImgLink = "https://www.nytimes.com/" + obj[i].multimedia[j].url;
 				break;
 			}
 		}
 		
 		// >> Find text
-		var nytHeadline = data[i].headline.main;
-		var nytTitle = data[i].headline.main;
-		var nytUrl = data[i].web_url;
-		var snippet = data[i].snippet;
-		var nytAuthor = data[i].byline.original;
-		var nytDate = data[i].pub_date.split("T")[0];
+		var nytTitle = obj[i].headline.main;
+		var nytUrl = obj[i].web_url;
+		var snippet = obj[i].snippet;
+		var nytAuthor = obj[i].byline.original;
+		var nytDate = obj[i].pub_date.split("T")[0];
 		
 		// >> Create elements
 		var nytLi = document.createElement("li");
@@ -111,7 +110,9 @@ fetch(nytRequest)
 		// >>> Top
 		nytTitleElem.appendChild(document.createTextNode(nytTitle));
 		nytUrlElem.appendChild(document.createTextNode("Read more"));
-		nytWrapperTop.appendChild(nytImageElem);
+		if(nytImageElem){
+			nytWrapperTop.appendChild(nytImageElem);
+		}
 		nytWrapperTop.appendChild(nytTitleElem);
 		nytWrapperTop.appendChild(nytUrlElem);
 
@@ -725,171 +726,175 @@ function recipeSearchRequest(){
 	})
 	.then((data) => {
 		//console.log(data);
-		if(data.results.length>0){
-			var obj = data.results;
-			for (let i = 0; i < obj.length; i++){
-				/*
-				ul
-					li
-						article
-							header
-								Image
-								Title
-								Read more
-							footer
-								Carbs
-								Info
-								Source
-									name & link
-				*/
-				// >> Create html elements
-				var recipeUlElem = document.createElement("ul");
-				var recipeLiElem = document.createElement("li");
-				var recipeArticleiElem = document.createElement("article");
-				var recipeHeaderElem = document.createElement("header");
-				var recipeImageElem = document.createElement("img");
-				var recipeTitleElem = document.createElement("h3");
-				var recipeReadMoreElem = document.createElement("a");
-				var recipeFooterElem = document.createElement("footer");
-				var recipeSourceElem = document.createElement("a");
-				var recipeCarbsElem = document.createElement("p");
-				var recipeInfoElem = document.createElement("p");
-				
-				// >> Create content
-				var recipeId = obj[i].id;
-				var recipeImage = obj[i].image;
-				var recipeCarbs = obj[i].carbs;
-				if(!recipeCarbs){
-					//Inconsistent position. Might be a top level attribute. Might have some place among nutrition.nutrients. Posibly other places.
-					let recipeNutrition = obj[i].nutrition.nutrients;
-					for(let j = 0; j < recipeNutrition.length; j++){
-						if(obj[i].nutrition.nutrients[j].title == "Carbohydrates" || obj[i].nutrition.nutrients[j].title == "Carb" || obj[i].nutrition.nutrients[j].title == "Carbs"){
-							recipeCarbs = obj[i].nutrition.nutrients[j].amount.toFixed(2).toString().replace(".", ",") + obj[i].nutrition.nutrients[j].unit + " Carbs";
-							break;
+		if(data.results){
+			if(data.results.length>0){
+				var obj = data.results;
+				for (let i = 0; i < obj.length; i++){
+					/*
+					ul
+						li
+							article
+								header
+									Image
+									Title
+									Read more
+								footer
+									Carbs
+									Info
+									Source
+										name & link
+					*/
+					// >> Create html elements
+					var recipeUlElem = document.createElement("ul");
+					var recipeLiElem = document.createElement("li");
+					var recipeArticleiElem = document.createElement("article");
+					var recipeHeaderElem = document.createElement("header");
+					var recipeImageElem = document.createElement("img");
+					var recipeTitleElem = document.createElement("h3");
+					var recipeReadMoreElem = document.createElement("a");
+					var recipeFooterElem = document.createElement("footer");
+					var recipeSourceElem = document.createElement("a");
+					var recipeCarbsElem = document.createElement("p");
+					var recipeInfoElem = document.createElement("p");
+					
+					// >> Create content
+					var recipeId = obj[i].id;
+					var recipeImage = obj[i].image;
+					var recipeCarbs = obj[i].carbs;
+					if(!recipeCarbs){
+						//Inconsistent position. Might be a top level attribute. Might have some place among nutrition.nutrients. Posibly other places.
+						let recipeNutrition = obj[i].nutrition.nutrients;
+						for(let j = 0; j < recipeNutrition.length; j++){
+							if(obj[i].nutrition.nutrients[j].title == "Carbohydrates" || obj[i].nutrition.nutrients[j].title == "Carb" || obj[i].nutrition.nutrients[j].title == "Carbs"){
+								recipeCarbs = obj[i].nutrition.nutrients[j].amount.toFixed(2).toString().replace(".", ",") + obj[i].nutrition.nutrients[j].unit + " Carbs";
+								break;
+							}
 						}
+					} else{
+						recipeCarbs = recipeCarbs + " Carbs";
 					}
-				} else{
-					recipeCarbs = recipeCarbs + " Carbs";
+					var recipeTitle = "";
+					var recipeInfoString = "";
+					var sourceText = "";
+					var sourceUrl = "";
+					
+					// >>> Get recipe Infoemarion
+					var recipeRequest = "https://api.spoonacular.com/recipes/" + recipeId + "/information?includeNutrition=false";
+					recipeRequest = recipeRequest + spoonacularKey; // Search by input value
+					//console.log(recipeRequest);
+					fetch(recipeRequest)
+					.then((recipeRequestResponse) => {
+						return recipeRequestResponse.json();
+					})
+					.then((recipeData) => {
+						//console.log(recipeData);
+						recipeTitle = recipeData.title;
+						sourceText = recipeData.creditsText;
+						sourceUrl = recipeData.sourceUrl;
+						if(recipeData.servings){
+							recipeInfoString = recipeInfoString + ", Servings: " + recipeData.servings;
+						}
+						if(recipeData.readyInMinutes){
+							recipeInfoString = recipeInfoString + ", Ready in: " + recipeData.readyInMinutes;
+						}
+						if(recipeData.dairyFree){
+							recipeInfoString = recipeInfoString + ", Dairy free";
+						}
+						if(recipeData.vegan){
+							recipeInfoString = recipeInfoString + ", Vegan";
+						}
+						if(recipeData.vegetarian){
+							recipeInfoString = recipeInfoString + ", Vegetarian";
+						}
+						if(recipeData.glutenFree){
+							recipeInfoString = recipeInfoString + ", Gluten free";
+						}
+						if(recipeData.sustainable){
+							recipeInfoString = recipeInfoString + ", Sustainable";
+						}
+						if(recipeData.veryHealthy){
+							recipeInfoString = recipeInfoString + ", Healthy";
+						} else{
+							recipeInfoString = recipeInfoString + ", Not specified as healthy";
+						}
+						if(recipeData.veryPopular){
+							recipeInfoString = recipeInfoString + ", Popular";
+						} else{
+							recipeInfoString = recipeInfoString + ", Not popular";
+						}
+						if(recipeData.cheap){
+							recipeInfoString = recipeInfoString + ", Cheap";
+						} else{
+							recipeInfoString = recipeInfoString + ", Not cheap";
+						}
+						if(recipeData.dishTypes){
+							for(let j = 0; j < recipeData.dishTypes.length; j++){
+								recipeInfoString = recipeInfoString + ", " + recipeData.dishTypes[j];
+							}
+						}
+						if(recipeData.diets){
+							for(let j = 0; j < recipeData.diets.length; j++){
+								recipeInfoString = recipeInfoString + ", " + recipeData.diets[j];
+							}
+						}
+						if(recipeData.cuisines){
+							for(let j = 0; j < recipeData.cuisines.length; j++){
+								recipeInfoString = recipeInfoString + ", " + recipeData.cuisines[j];
+							}
+						}
+						if(recipeInfoString){
+							recipeInfoString = recipeInfoString.slice(1); // Remove starting comma
+							recipeInfoString = recipeInfoString.trim();
+						}
+						recipeReadMoreElem.setAttribute("href", sourceUrl);
+						recipeReadMoreElem.setAttribute("title", sourceText);
+						recipeReadMoreElem.setAttribute("target", "_blank");
+						recipeSourceElem.setAttribute("href", sourceUrl);
+						recipeSourceElem.setAttribute("target", "_blank");
+						recipeImageElem.setAttribute("src", recipeImage);
+						recipeImageElem.setAttribute("alt", recipeTitle);
+						recipeTitleElem.setAttribute("title", recipeTitle);
+						recipeReadMoreElem.setAttribute("title", "Read more on " + sourceUrl);
+						// >> Set attributes
+						//console.log(recipeImage);
+						recipeSourceElem.setAttribute("class", "source");
+						recipeCarbsElem.setAttribute("class", "recipe-carb-amount");
+						recipeInfoElem.setAttribute("class", "recipe-info");
+						
+						// >> Fill elements
+						recipeTitleElem.appendChild(document.createTextNode(recipeTitle));
+						recipeReadMoreElem.appendChild(document.createTextNode("Read more"));
+						recipeHeaderElem.appendChild(recipeImageElem);
+						recipeHeaderElem.appendChild(recipeTitleElem);
+						recipeHeaderElem.appendChild(recipeReadMoreElem);
+						recipeCarbsElem.appendChild(document.createTextNode(recipeCarbs));
+						recipeInfoElem.appendChild(document.createTextNode(recipeInfoString));
+						recipeSourceElem.appendChild(document.createTextNode(sourceText));
+						recipeFooterElem.appendChild(recipeCarbsElem);
+						recipeFooterElem.appendChild(recipeInfoElem);
+						recipeFooterElem.appendChild(recipeSourceElem);
+						recipeArticleiElem.appendChild(recipeHeaderElem);
+						recipeArticleiElem.appendChild(recipeFooterElem);
+						recipeLiElem.appendChild(recipeArticleiElem);
+						recipeUlElem.appendChild(recipeLiElem);
+						
+						// >> Populate target
+						recipeWrapper.appendChild(recipeUlElem);
+					})
+					.catch((err) => {
+						recipeWrapper.innerHTML = "<p>Could not find or get any recipes.</p>";
+						console.log(err);
+					});
 				}
-				var recipeTitle = "";
-				var recipeInfoString = "";
-				var sourceText = "";
-				var sourceUrl = "";
-				
-				// >>> Get recipe Infoemarion
-				var recipeRequest = "https://api.spoonacular.com/recipes/" + recipeId + "/information?includeNutrition=false";
-				recipeRequest = recipeRequest + spoonacularKey; // Search by input value
-				//console.log(recipeRequest);
-				fetch(recipeRequest)
-				.then((recipeRequestResponse) => {
-					return recipeRequestResponse.json();
-				})
-				.then((recipeData) => {
-					//console.log(recipeData);
-					recipeTitle = recipeData.title;
-					sourceText = recipeData.creditsText;
-					sourceUrl = recipeData.sourceUrl;
-					if(recipeData.servings){
-						recipeInfoString = recipeInfoString + ", Servings: " + recipeData.servings;
-					}
-					if(recipeData.readyInMinutes){
-						recipeInfoString = recipeInfoString + ", Ready in: " + recipeData.readyInMinutes;
-					}
-					if(recipeData.dairyFree){
-						recipeInfoString = recipeInfoString + ", Dairy free";
-					}
-					if(recipeData.vegan){
-						recipeInfoString = recipeInfoString + ", Vegan";
-					}
-					if(recipeData.vegetarian){
-						recipeInfoString = recipeInfoString + ", Vegetarian";
-					}
-					if(recipeData.glutenFree){
-						recipeInfoString = recipeInfoString + ", Gluten free";
-					}
-					if(recipeData.sustainable){
-						recipeInfoString = recipeInfoString + ", Sustainable";
-					}
-					if(recipeData.veryHealthy){
-						recipeInfoString = recipeInfoString + ", Healthy";
-					} else{
-						recipeInfoString = recipeInfoString + ", Not specified as healthy";
-					}
-					if(recipeData.veryPopular){
-						recipeInfoString = recipeInfoString + ", Popular";
-					} else{
-						recipeInfoString = recipeInfoString + ", Not popular";
-					}
-					if(recipeData.cheap){
-						recipeInfoString = recipeInfoString + ", Cheap";
-					} else{
-						recipeInfoString = recipeInfoString + ", Not cheap";
-					}
-					if(recipeData.dishTypes){
-						for(let j = 0; j < recipeData.dishTypes.length; j++){
-							recipeInfoString = recipeInfoString + ", " + recipeData.dishTypes[j];
-						}
-					}
-					if(recipeData.diets){
-						for(let j = 0; j < recipeData.diets.length; j++){
-							recipeInfoString = recipeInfoString + ", " + recipeData.diets[j];
-						}
-					}
-					if(recipeData.cuisines){
-						for(let j = 0; j < recipeData.cuisines.length; j++){
-							recipeInfoString = recipeInfoString + ", " + recipeData.cuisines[j];
-						}
-					}
-					if(recipeInfoString){
-						recipeInfoString = recipeInfoString.slice(1); // Remove starting comma
-						recipeInfoString = recipeInfoString.trim();
-					}
-					recipeReadMoreElem.setAttribute("href", sourceUrl);
-					recipeReadMoreElem.setAttribute("title", sourceText);
-					recipeReadMoreElem.setAttribute("target", "_blank");
-					recipeSourceElem.setAttribute("href", sourceUrl);
-					recipeSourceElem.setAttribute("target", "_blank");
-					recipeImageElem.setAttribute("src", recipeImage);
-					recipeImageElem.setAttribute("alt", recipeTitle);
-					recipeTitleElem.setAttribute("title", recipeTitle);
-					recipeReadMoreElem.setAttribute("title", "Read more on " + sourceUrl);
-					// >> Set attributes
-					//console.log(recipeImage);
-					recipeSourceElem.setAttribute("class", "source");
-					recipeCarbsElem.setAttribute("class", "recipe-carb-amount");
-					recipeInfoElem.setAttribute("class", "recipe-info");
-					
-					// >> Fill elements
-					recipeTitleElem.appendChild(document.createTextNode(recipeTitle));
-					recipeReadMoreElem.appendChild(document.createTextNode("Read more"));
-					recipeHeaderElem.appendChild(recipeImageElem);
-					recipeHeaderElem.appendChild(recipeTitleElem);
-					recipeHeaderElem.appendChild(recipeReadMoreElem);
-					recipeCarbsElem.appendChild(document.createTextNode(recipeCarbs));
-					recipeInfoElem.appendChild(document.createTextNode(recipeInfoString));
-					recipeSourceElem.appendChild(document.createTextNode(sourceText));
-					recipeFooterElem.appendChild(recipeCarbsElem);
-					recipeFooterElem.appendChild(recipeInfoElem);
-					recipeFooterElem.appendChild(recipeSourceElem);
-					recipeArticleiElem.appendChild(recipeHeaderElem);
-					recipeArticleiElem.appendChild(recipeFooterElem);
-					recipeLiElem.appendChild(recipeArticleiElem);
-					recipeUlElem.appendChild(recipeLiElem);
-					
-					// >> Populate target
-					recipeWrapper.appendChild(recipeUlElem);
-				})
-				.catch((err) => {
-					recipeWrapper.innerHTML = "<p>Could not find any recipes</p>";
-					console.log(err);
-				});
+			} else{
+				recipeWrapper.innerHTML = "<p>Could not get any recipes.</p>";
 			}
 		} else{
-			recipeWrapper.innerHTML = "<p>Could not find any recipes</p>";
+			recipeWrapper.innerHTML = "<p>Could not get any recipes.</p>";
 		}
 	})
 	.catch((err) => {
-		recipeWrapper.innerHTML = "<p>Could not find any recipes</p>";
+		recipeWrapper.innerHTML = "<p>Could not find or get any recipes.</p>";
 		console.log(err);
 	});
 	return(false);

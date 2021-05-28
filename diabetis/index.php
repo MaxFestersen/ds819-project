@@ -65,6 +65,7 @@
 					<h2 class="title" title="About">About</h2>
 				</header>
 				<div class="content-wrapper">
+					<p>The purpose of this page is to give diabetics and thoose who want to know more, tools and information about diabetes from many different resources in on a information hub.</p>
 					<p>This page features information about diabetes with <a href="#information" onclick="scrollTo()">news</a> <a href="#info-wrapper" onclick="scrollTo()">a infocard</a>, <a href="#type-stats" onclick="scrollTo()">a comparison of type 1 and type 2 diabetes</a> and <a href="#tips" onclick="scrollTo()">tips</a>. Media with <a href="#movies" onclick="scrollTo()">movie list with trailers</a> and <a href="#diabetes-book-list" onclick="scrollTo()">book list</a> about diabetes. Information about morality, conveyed through a <a href="#diabetes-book-list" onclick="scrollTo()">map</a> and a <a href="highcharts-figure" onclick="scrollTo()">chart</a>.</p>
 					<h4>Contact information</p>
 					<address id="contact">
@@ -222,7 +223,7 @@
 				<div class="content-wrapper">
 					<ul id="news"></ul>
 				</div>
-				<a class="source" href="https://www.nytimes.com/" target="_blank">Source: New York Times</a>
+				<a class="source" href="https://www.nytimes.com/" target="_blank"><img src="https://developer.nytimes.com/files/poweredby_nytimes_200b.png?v=1583354208360" alt="Data Provided By New York Times"></a>
 			</article>
 			<aside id="info-wrapper">
 				<header>
@@ -285,7 +286,7 @@
 					</aside>
 				</div>
 				<a class="source" href="https://www.imdb.com/" target="_blank">Source: IMDb via OMDb API</a>
-				<p class="notice"><span class="important">Important notice</span>: Some content is not a movie or a documentary, despite being labeld as. The trailers provided are found automatically on YouTube, and might not be very accurate.</p>
+				<p class="notice"><span class="important">Important notice</span>: Some content is not a movie or a documentary, despite being labeld as. The trailers provided are found automatically on YouTube, and might not be correct.</p>
 			</article>
 			<aside>
 				<header>
